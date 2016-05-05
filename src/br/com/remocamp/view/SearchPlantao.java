@@ -6,7 +6,6 @@
 package br.com.remocamp.view;
 
 import br.com.remocamp.controller.PlantaoController;
-import br.com.remocamp.dao.PlantaoDao;
 import br.com.remocamp.model.CellRenderer;
 import br.com.remocamp.model.Plantao;
 import java.util.ArrayList;
@@ -28,9 +27,19 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
     
     public SearchPlantao() {
         initComponents();
-        
-        plantoes = controller.selectPlantoesAll();
-        tableConsultaPlantao.setModel(new DefaultTableModel(new Object[][] {}, new String[] {"Nº", "Evento", "Data Inicio", "Data Final",}));
+        configTable();
+        tabelaInicial();
+    }
+    private void configTable(){
+    
+        tableConsultaPlantao.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"Nº", "Evento", "Data Inicio", "Data Final",}) {
+
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+
+        });
         tabelaModelo = (DefaultTableModel) tableConsultaPlantao.getModel();
         tcr = new CellRenderer();
         
@@ -38,13 +47,11 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
             TableColumn column =  tableConsultaPlantao.getColumnModel().getColumn(i);
             column.setCellRenderer(tcr);
         }
-        
-        
-        tabelaInicial();
-    }
     
+    }
     public final void tabelaInicial(){
         Plantao plantao;
+        plantoes = controller.selectPlantoesAll();
         
         for(int i=0; i < plantoes.size();i++){
             plantao = plantoes.get(i);
@@ -77,6 +84,8 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         tableConsultaPlantao = new javax.swing.JTable();
 
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Consulta plantão");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
@@ -108,7 +117,7 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +142,13 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
 
             }
         ));
+        tableConsultaPlantao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableConsultaPlantao.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableConsultaPlantao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableConsultaPlantaoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableConsultaPlantao);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -144,16 +159,16 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -164,19 +179,31 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PlantaoDao teste = new PlantaoDao();
-        String t = "BR-XPDZSP-SPOX-H88/01XX_BR-XBARRJ-RJOX-H88/03XX_10GBE_1N_1234567";
-        System.out.println(t.length());
-        teste.consultaAllTablePlantao();
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableConsultaPlantaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaPlantaoMouseClicked
+        if(evt.getClickCount()==2){
+        
+            int i = tableConsultaPlantao.getSelectedRow();
+            int numeroPlantao = (int) tableConsultaPlantao.getValueAt(i, 0);
+            
+            PlantaoController controller = new PlantaoController();
+            Plantao selecionado = controller.selectPlantao(numeroPlantao);
+            FormularioPlantao plantaoFormulario = new FormularioPlantao(selecionado);
+            Principal.desktopPane.add(plantaoFormulario);
+            plantaoFormulario.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_tableConsultaPlantaoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,7 +3,6 @@ package br.com.remocamp.dao;
 import br.com.remocamp.jdbc.ConnectionFactory;
 import br.com.remocamp.model.Plantao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,7 +66,7 @@ public class PlantaoDao {
         try {
             // prepared statement para consulta
             stmt = connection.prepareStatement(sql);
-
+ 
             // executa um select
             ResultSet rs = stmt.executeQuery();
             
@@ -84,5 +83,29 @@ public class PlantaoDao {
             throw new RuntimeException(e);
         }
 
+    }
+    
+    public Plantao consultaPlantao(int i) {
+
+        String sql = "select * from plantao where idPlantao = ?";
+        Plantao plantao = new Plantao();
+        try {
+            // prepared statement para consulta
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1,i+"");
+            // executa um select
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                plantao.setIdPlantao(rs.getInt("idPlantao"));
+                plantao.setNomeEvento(rs.getString("nomeEvento"));
+                plantao.setInicio(rs.getDate("dataInicio"));
+                plantao.setFim(rs.getDate("dataFim"));
+            }
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return plantao;
     }
 }

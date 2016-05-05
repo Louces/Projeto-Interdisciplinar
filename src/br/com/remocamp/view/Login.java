@@ -55,6 +55,7 @@ public class Login {
 
 		txtPass = new JPasswordField();
 		txtPass.setBounds(82, 45, 150, 20);
+                txtPass.setText("adm");
 		frmRemocamp.getContentPane().add(txtPass);
 
 		txtUsuario = new JTextField();

@@ -32,16 +32,16 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPaneAtividades = new javax.swing.JScrollPane();
+        scrollPaneAtividades = new javax.swing.JScrollPane();
         treeAtividades = new javax.swing.JTree();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jDesktopPane = new javax.swing.JDesktopPane();
-        jMenuBar = new javax.swing.JMenuBar();
-        jMenuArquivo = new javax.swing.JMenu();
+        lbLogo = new javax.swing.JLabel();
+        scrollPaneDesktop = new javax.swing.JScrollPane();
+        desktopPane = new javax.swing.JDesktopPane();
+        menuBar = new javax.swing.JMenuBar();
+        menuArquivo = new javax.swing.JMenu();
         jMenuItemAtualizarBase = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuAjuda = new javax.swing.JMenu();
+        menuAjuda = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,36 +75,36 @@ public class Principal extends javax.swing.JFrame {
                 treeAtividadesMouseClicked(evt);
             }
         });
-        jScrollPaneAtividades.setViewportView(treeAtividades);
+        scrollPaneAtividades.setViewportView(treeAtividades);
         treeAtividades.getAccessibleContext().setAccessibleParent(this);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LOGOMARCA.jpg"))); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\figuras\\LOGOMARCA.jpg")); // NOI18N
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jScrollPane2.setAutoscrolls(true);
-        jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setMaximumSize(new java.awt.Dimension(32767, 42767));
+        scrollPaneDesktop.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPaneDesktop.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPaneDesktop.setAutoscrolls(true);
+        scrollPaneDesktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        scrollPaneDesktop.setMaximumSize(new java.awt.Dimension(32767, 42767));
 
-        jDesktopPane.setBackground(new java.awt.Color(0, 102, 204));
-        jDesktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jDesktopPane.setForeground(new java.awt.Color(0, 102, 204));
-        jDesktopPane.setPreferredSize(new java.awt.Dimension(1024, 900));
+        desktopPane.setBackground(new java.awt.Color(0, 102, 255));
+        desktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        desktopPane.setForeground(new java.awt.Color(0, 102, 204));
+        desktopPane.setPreferredSize(new java.awt.Dimension(1024, 900));
 
-        javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
-        jDesktopPane.setLayout(jDesktopPaneLayout);
-        jDesktopPaneLayout.setHorizontalGroup(
-            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1020, Short.MAX_VALUE)
         );
-        jDesktopPaneLayout.setVerticalGroup(
-            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 896, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(jDesktopPane);
+        scrollPaneDesktop.setViewportView(desktopPane);
 
-        jMenuArquivo.setText("Arquivo");
+        menuArquivo.setText("Arquivo");
 
         jMenuItemAtualizarBase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemAtualizarBase.setText("Atualizar base de dados");
@@ -113,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItemAtualizarBaseActionPerformed(evt);
             }
         });
-        jMenuArquivo.add(jMenuItemAtualizarBase);
+        menuArquivo.add(jMenuItemAtualizarBase);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Sair");
@@ -122,11 +122,11 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenuArquivo.add(jMenuItem1);
+        menuArquivo.add(jMenuItem1);
 
-        jMenuBar.add(jMenuArquivo);
+        menuBar.add(menuArquivo);
 
-        jMenuAjuda.setText("Ajuda");
+        menuAjuda.setText("Ajuda");
 
         jMenuItem2.setText("Versao");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -134,11 +134,11 @@ public class Principal extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenuAjuda.add(jMenuItem2);
+        menuAjuda.add(jMenuItem2);
 
-        jMenuBar.add(jMenuAjuda);
+        menuBar.add(menuAjuda);
 
-        setJMenuBar(jMenuBar);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,11 +146,11 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
+                .addComponent(scrollPaneDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneAtividades, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(scrollPaneAtividades, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbLogo))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,11 +158,11 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 2000, Short.MAX_VALUE)
+                    .addComponent(scrollPaneDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPaneAtividades, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)))
+                        .addComponent(scrollPaneAtividades, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -178,19 +178,19 @@ public class Principal extends javax.swing.JFrame {
          
          if(menu.equals("[Atividades, Orderm de serviço, Nova ordem, Remoção]")){
             FormularioRemocao remocao = new FormularioRemocao();
-            jDesktopPane.add(remocao);
+            desktopPane.add(remocao);
             remocao.setVisible(true);
          }else if(menu.equals("[Atividades, Orderm de serviço, Nova ordem, Plantão]")){
             FormularioPlantao plantao  = new FormularioPlantao();
-            jDesktopPane.add(plantao);
+            desktopPane.add(plantao);
             plantao.setVisible(true);
          }else if(menu.equals("[Atividades, Consultas, Ordem de serviço, Remoção]")){
             SearchRemocao searchRemocao = new SearchRemocao();
-            jDesktopPane.add(searchRemocao);
+            desktopPane.add(searchRemocao);
             searchRemocao.setVisible(true);
          }else if(menu.equals("[Atividades, Consultas, Ordem de serviço, Plantão]")){
             SearchPlantao searchPlantao = new SearchPlantao();
-            jDesktopPane.add(searchPlantao);
+            desktopPane.add(searchPlantao);
             searchPlantao.setVisible(true);
          }
         }
@@ -255,16 +255,16 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenuAjuda;
-    private javax.swing.JMenu jMenuArquivo;
-    private javax.swing.JMenuBar jMenuBar;
+    public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAtualizarBase;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPaneAtividades;
+    private javax.swing.JLabel lbLogo;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JScrollPane scrollPaneAtividades;
+    private javax.swing.JScrollPane scrollPaneDesktop;
     private javax.swing.JTree treeAtividades;
     // End of variables declaration//GEN-END:variables
 }

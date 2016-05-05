@@ -32,4 +32,9 @@ public class PlantaoController {
         return dao.getPlantoes();
     }
     
+    public Plantao selectPlantao(int numero){
+        PlantaoDao dao = new PlantaoDao();
+        return dao.consultaPlantao(numero);
+    }
+    
 }
