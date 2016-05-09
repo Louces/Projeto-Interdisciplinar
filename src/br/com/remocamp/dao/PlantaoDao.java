@@ -10,12 +10,20 @@ import java.util.ArrayList;
 
 public class PlantaoDao {
 
-    private final Connection connection;
+    private Connection connection;
     private PreparedStatement stmt;
     private ArrayList<Plantao> plantoes = new ArrayList<>();
 
     public PlantaoDao() {
-        this.connection = new ConnectionFactory().getConnection();
+        setConnection(new ConnectionFactory().getConnection());
+    }
+    
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
     public ArrayList<Plantao> getPlantoes() {
@@ -25,12 +33,12 @@ public class PlantaoDao {
     public void adiciona(Plantao plantao) {
 
         String sql = "insert into plantao"
-                + "(nomeEvento,dataInicio,dataFim,reponsavel,endereco,cidade,estado,complemento,medico,enfermeiro,motorista,operador,ambulancia,observacao)"
+                + "(nomeEvento,dataInicio,dataFim,responsavel,endereco,cidade,estado,complemento,medico,enfermeiro,motorista,operador,ambulancia,observacao)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         
          try {
          // prepared statement para inserção
-         stmt = connection.prepareStatement(sql);
+         stmt = getConnection().prepareStatement(sql);
  
          // seta os valores
          int i=0;
@@ -65,7 +73,7 @@ public class PlantaoDao {
         
         try {
             // prepared statement para consulta
-            stmt = connection.prepareStatement(sql);
+            stmt = getConnection().prepareStatement(sql);
  
             // executa um select
             ResultSet rs = stmt.executeQuery();
@@ -91,7 +99,7 @@ public class PlantaoDao {
         Plantao plantao = new Plantao();
         try {
             // prepared statement para consulta
-            stmt = connection.prepareStatement(sql);
+            stmt = getConnection().prepareStatement(sql);
             stmt.setString(1,i+"");
             // executa um select
             ResultSet rs = stmt.executeQuery();
@@ -101,6 +109,17 @@ public class PlantaoDao {
                 plantao.setNomeEvento(rs.getString("nomeEvento"));
                 plantao.setInicio(rs.getDate("dataInicio"));
                 plantao.setFim(rs.getDate("dataFim"));
+                plantao.setResponsavel(rs.getString("responsavel"));
+                plantao.setEndereco(rs.getString("endereco"));
+                plantao.setCidade(rs.getString("cidade"));
+                plantao.setEstado(rs.getString("estado"));
+                plantao.setComplemento(rs.getString("complemento"));
+                plantao.setMedico(rs.getString("medico"));
+                plantao.setEnfermeiro(rs.getString("enfermeiro"));
+                plantao.setMotorista(rs.getString("motorista"));
+                plantao.setOperador(rs.getString("operador"));
+                plantao.setAmbulancia(rs.getString("ambulancia"));
+                plantao.setObservacao(rs.getString("observacao"));
             }
             
         } catch (SQLException e) {

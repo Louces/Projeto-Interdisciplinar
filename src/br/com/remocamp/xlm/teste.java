@@ -1,24 +1,15 @@
 package br.com.remocamp.xlm;
 
-import br.com.remocamp.dao.PlantaoDao;
+import br.com.remocamp.controller.PlantaoController;
 import br.com.remocamp.model.Plantao;
-import com.toedter.calendar.JDateChooser;
-import java.io.File;
+
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 
 public class teste {
 
-    public static void main(String[] args) throws JDOMException, IOException {
+    public static void main(String[] args) throws  IOException, Exception {
 
 //        File f = new File("C:\\Users\\fabiano\\Downloads\\xml_000571938345573083.xml");
 //        SAXBuilder sb = new SAXBuilder();
@@ -36,14 +27,15 @@ public class teste {
 //        }
 
     
-    PlantaoDao insert = new PlantaoDao();
-
-    for(int i = 0 ; i<10000 ; i++){
-        
+//    PlantaoDao insert = new PlantaoDao();
+//
+//    for(int i = 0 ; i<10000 ; i++){
+//        
         Plantao plantao = new Plantao();
-        
+        int i =0;
         Date dataInicio = new Date(2016/02/01);
         Date dataFim = new Date(2016/03/01);
+        plantao.setResponsavel("Fabiano Louzada Cesario");
         plantao.setNomeEvento("Evento teste nº " + i);
         plantao.setInicio(dataInicio);
         plantao.setFim(dataFim);
@@ -53,13 +45,34 @@ public class teste {
         plantao.setEnfermeiro("Enfermeiro "+i);
         plantao.setMedico("Medico " + i);
         plantao.setMotorista("Motorista "+i);
+        plantao.setOperador("fulano");
+        plantao.setAmbulancia("UTI");
+        plantao.setComplemento("N/A");
         plantao.setObservacao("A observação é uma das etapas do método científico. Consiste em perceber, ver e não interpretar. A observação é relatada como foi visualizada, sem que, a princípio, as idéias interpretativas dos observadores sejam tomadas.\n"
                 + "\n"
                 + "Ela também pode ser entendida como verificação ou constatação de um fato, podendo ser tanto espontânea ou casual, quanto metódica ou planejada.\n"
                 + "\n"
                 + "Hipóteses só serão elaboradas sobre a questão investigada após uma descrição minuciosa do ambiente e dos objetos de estudo. Uma das regras do método científico é a da não interferência do observador no ambiente ou nos processos observados.");
-        insert.adiciona(plantao);
-    }
-        
+//        insert.adiciona(plantao);
+//    }
+         PlantaoController ctl = new PlantaoController();
+         ctl.gerarFormulario(plantao);
+         
+      
+    //  teste.setNomeEvento("Relatorio");
+      
+     
+//      paciente fabiano  = new paciente("Louzada");
+//      List lista = new ArrayList();
+//      lista.add(fabiano);
+//      
+//      JasperReport report = JasperCompileManager .compileReport("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\src\\br\\com\\remocamp\\jasper\\reportPlantao.jrxml");
+//      
+//      JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
+//      
+//      JasperExportManager.exportReportToPdfFile(print, "relatorios/RelatorioClientes.pdf");
+//      System.out.println("Relatório gerado.");
+      
+      
     }
 }

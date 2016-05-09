@@ -27,10 +27,12 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
      */
     public FormularioPlantao() {
         initComponents();
+        btnEditar.setVisible(false);
     }
     
     public FormularioPlantao(Plantao plantao) {
         initComponents();
+        statusAllTxtField(false);
         btnGravar.setVisible(false);
         this.plantao = plantao;
         setFormulario();
@@ -76,13 +78,13 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         panelEvento = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
         txtNomeEvento = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lbResponsavel = new javax.swing.JLabel();
         txtResponsavel = new javax.swing.JTextField();
         panelDateInicio = new javax.swing.JPanel();
         dateChooserInicio = new com.toedter.calendar.JDateChooser();
         panelDateFinal = new javax.swing.JPanel();
         dateChooserFim = new com.toedter.calendar.JDateChooser();
-        jPanel1 = new javax.swing.JPanel();
+        PanelControle = new javax.swing.JPanel();
         btnImpressao = new javax.swing.JButton();
         btnGravar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -309,7 +311,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbNome.setText("Nome :");
 
-        jLabel4.setText("Responsável :");
+        lbResponsavel.setText("Responsável :");
 
         panelDateInicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Início"));
 
@@ -363,7 +365,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                     .addGroup(panelEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(panelEventoLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jLabel4)
+                            .addComponent(lbResponsavel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelEventoLayout.createSequentialGroup()
@@ -386,7 +388,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                     .addComponent(panelDateFinal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lbResponsavel)
                     .addComponent(txtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(105, 105, 105))
         );
@@ -406,12 +408,17 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PanelControleLayout = new javax.swing.GroupLayout(PanelControle);
+        PanelControle.setLayout(PanelControleLayout);
+        PanelControleLayout.setHorizontalGroup(
+            PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelControleLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImpressao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -420,16 +427,18 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                 .addComponent(btnGravar)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PanelControleLayout.setVerticalGroup(
+            PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelControleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImpressao)
                     .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar))
                 .addContainerGap())
         );
+
+        PanelControleLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditar, btnGravar, btnImpressao});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -444,7 +453,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                             .addComponent(panelDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelEquipe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanelControle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -465,7 +474,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -521,7 +530,9 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnImpressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpressaoActionPerformed
-
+            PlantaoController clt = new PlantaoController();
+            clt.gerarFormulario(plantao);
+            
     }//GEN-LAST:event_btnImpressaoActionPerformed
 
     private void checkBoxSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxSimplesActionPerformed
@@ -530,6 +541,11 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
             checkBoxUTI.setSelected(false);
     }//GEN-LAST:event_checkBoxSimplesActionPerformed
     }
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        statusAllTxtField(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
+    
 
     private void setPlantao() {
         plantao.setNomeEvento(txtNomeEvento.getText());
@@ -562,6 +578,46 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         txtNomeEvento.setText(plantao.getNomeEvento());
         dateChooserInicio.setDate(plantao.getInicio());
         dateChooserFim.setDate(plantao.getFim());
+        txtResponsavel.setText(plantao.getResponsavel());
+        txtEndereco.setText(plantao.getEndereco());
+        txtCidade.setText(plantao.getCidade());
+        txtEstado.setText(plantao.getEstado());
+        txtComplemento.setText(plantao.getComplemento());
+        txtMedico.setText(plantao.getMedico());
+        txtEnfermeiro.setText(plantao.getEnfermeiro());
+        txtMotorista.setText(plantao.getMotorista());
+        txtOperador.setText(plantao.getOperador());
+        txtAreaObs.setText(plantao.getObservacao());
+        setAmbulanciaFormulario(plantao);
+    }
+    
+    private void setAmbulanciaFormulario(Plantao plantao){
+    
+        String tipo = plantao.getAmbulancia();
+        
+        if(tipo.equals("UTI")){
+         checkBoxUTI.setSelected(true);
+        }else if(tipo.equals("Basica")){
+        checkBoxBasica.setSelected(true);
+        }else{
+        checkBoxSimples.setSelected(true);
+        }
+    }
+    
+    private void statusAllTxtField(boolean habilitar){
+        txtNomeEvento.setEditable(habilitar);
+        dateChooserInicio.setEnabled(habilitar);
+        dateChooserFim.setEnabled(habilitar);
+        txtResponsavel.setEditable(habilitar);
+        txtEndereco.setEditable(habilitar);
+        txtCidade.setEditable(habilitar);
+        txtEstado.setEditable(habilitar);
+        txtComplemento.setEditable(habilitar);
+        txtMedico.setEditable(habilitar);
+        txtEnfermeiro.setEditable(habilitar);
+        txtMotorista.setEditable(habilitar);
+        txtOperador.setEditable(habilitar);
+        txtAreaObs.setEditable(habilitar);
     }
 
     public java.sql.Date date(com.toedter.calendar.JDateChooser dateChoser) {
@@ -578,6 +634,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelControle;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnImpressao;
@@ -586,8 +643,6 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox checkBoxUTI;
     private com.toedter.calendar.JDateChooser dateChooserFim;
     private com.toedter.calendar.JDateChooser dateChooserInicio;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPaneObs;
     private javax.swing.JLabel lbCidade;
     private javax.swing.JLabel lbComplemento;
@@ -598,6 +653,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbMotorista;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbOperador;
+    private javax.swing.JLabel lbResponsavel;
     private javax.swing.JPanel panelAmbulancia;
     private javax.swing.JPanel panelDateFinal;
     private javax.swing.JPanel panelDateInicio;

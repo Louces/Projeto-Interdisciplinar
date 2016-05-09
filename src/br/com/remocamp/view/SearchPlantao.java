@@ -192,7 +192,6 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
 
     private void tableConsultaPlantaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaPlantaoMouseClicked
         if(evt.getClickCount()==2){
-        
             int i = tableConsultaPlantao.getSelectedRow();
             int numeroPlantao = (int) tableConsultaPlantao.getValueAt(i, 0);
             
@@ -201,7 +200,6 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
             FormularioPlantao plantaoFormulario = new FormularioPlantao(selecionado);
             Principal.desktopPane.add(plantaoFormulario);
             plantaoFormulario.setVisible(true);
-            
         }
     }//GEN-LAST:event_tableConsultaPlantaoMouseClicked
 

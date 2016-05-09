@@ -6,13 +6,20 @@
 package br.com.remocamp.controller;
 
 import br.com.remocamp.dao.PlantaoDao;
+import br.com.remocamp.jasper.plantao.PlantaoGerarRelatorio;
+import br.com.remocamp.jasper.plantao.PlantaoJRDataSourceFactory;
 import br.com.remocamp.model.Plantao;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
 
 
 public class PlantaoController {
 
-    Plantao plantao;
+    private Plantao plantao;
+    private PlantaoDao dao = new PlantaoDao();
+    
     
     public PlantaoController() {
     }
@@ -22,19 +29,24 @@ public class PlantaoController {
     }
 
     public void gravarFormulario(){
-        PlantaoDao dao = new PlantaoDao();
         dao.adiciona(plantao);
     }
     
     public ArrayList selectPlantoesAll(){
-        PlantaoDao dao = new PlantaoDao();
         dao.consultaAllTablePlantao();
         return dao.getPlantoes();
     }
     
     public Plantao selectPlantao(int numero){
-        PlantaoDao dao = new PlantaoDao();
         return dao.consultaPlantao(numero);
+    }
+    
+    public void gerarFormulario(Plantao plantao){
+        try {
+            PlantaoGerarRelatorio.gerarRelatorio(PlantaoJRDataSourceFactory.createDatasource(plantao));
+        } catch (JRException ex) {
+            Logger.getLogger(PlantaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
