@@ -57,7 +57,6 @@ public class PlantaoDao {
          stmt.setString(++i,plantao.getAmbulancia());
          stmt.setString(++i,plantao.getObservacao());
          
-         System.out.println(sql);
         // executa
          stmt.execute();
          stmt.close();
@@ -100,7 +99,9 @@ public class PlantaoDao {
         try {
             // prepared statement para consulta
             stmt = getConnection().prepareStatement(sql);
+            int j=0;
             stmt.setString(1,i+"");
+            
             // executa um select
             ResultSet rs = stmt.executeQuery();
 
@@ -126,5 +127,54 @@ public class PlantaoDao {
             throw new RuntimeException(e);
         }
         return plantao;
+    }
+    
+    public Plantao alteraPlantao(Plantao plantao,int i){
+         String sql = "update plantao set "
+                       +"nomeEvento=?, "
+                       +"dataInicio=?, "
+                       +"dataFim=?, "
+                       +"responsavel=?, "
+                       +"endereco=?, "
+                       +"cidade=?, "
+                       +"estado=?, "
+                       +"complemento=?, "
+                       +"medico=?, "
+                       +"enfermeiro=?, "
+                       +"motorista=?, "
+                       +"operador=?, "
+                       +"ambulancia=?, "
+                       +"observacao=? "
+                 +"where idPlantao=?";
+     
+         try {
+            // prepared statement para consulta
+            int j=0;
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(++j,plantao.getNomeEvento());
+            stmt.setString(++j,plantao.getInicio()+"");
+            stmt.setString(++j,plantao.getFim()+"");
+            stmt.setString(++j,plantao.getResponsavel());
+            stmt.setString(++j,plantao.getEndereco());
+            stmt.setString(++j,plantao.getCidade());
+            stmt.setString(++j,plantao.getEstado());
+            stmt.setString(++j,plantao.getComplemento());
+            stmt.setString(++j,plantao.getMedico());
+            stmt.setString(++j,plantao.getEnfermeiro());
+            stmt.setString(++j,plantao.getMotorista());
+            stmt.setString(++j,plantao.getOperador());
+            stmt.setString(++j,plantao.getAmbulancia());
+            stmt.setString(++j,plantao.getObservacao());
+            stmt.setString(++j,i+"");
+            // executa um update
+            stmt.execute();
+            stmt.close();
+            
+            
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return plantao;
+         
     }
 }

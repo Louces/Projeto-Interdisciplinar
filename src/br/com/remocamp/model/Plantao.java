@@ -1,9 +1,6 @@
 
 package br.com.remocamp.model;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class Plantao {
 
     private int idPlantao;

@@ -27,6 +27,8 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
     
     public SearchPlantao() {
         initComponents();
+        dateChooserInicio.setEnabled(false);
+        dateChooserFim.setEnabled(false);
         configTable();
         tabelaInicial();
     }
@@ -73,13 +75,14 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        panelPesquisa = new javax.swing.JPanel();
+        txtNomeEvento = new javax.swing.JTextField();
+        lbNomeEvento = new javax.swing.JLabel();
+        dateChooserInicio = new com.toedter.calendar.JDateChooser();
+        dateChooserFim = new com.toedter.calendar.JDateChooser();
+        btnPesquisar = new javax.swing.JButton();
+        checkBoxEnableDate = new javax.swing.JCheckBox();
+        panelTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsultaPlantao = new javax.swing.JTable();
 
@@ -88,51 +91,65 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Consulta plantão");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
+        panelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
 
-        jLabel1.setText("Nome do envento :");
+        lbNomeEvento.setText("Nome do envento :");
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio"));
+        dateChooserInicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio"));
 
-        jDateChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder("Fim"));
+        dateChooserFim.setBorder(javax.swing.BorderFactory.createTitledBorder("Fim"));
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+        checkBoxEnableDate.setText("Habilitar");
+        checkBoxEnableDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxEnableDateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
+        panelPesquisa.setLayout(panelPesquisaLayout);
+        panelPesquisaLayout.setHorizontalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisaLayout.createSequentialGroup()
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelPesquisaLayout.createSequentialGroup()
+                        .addComponent(lbNomeEvento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomeEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPesquisaLayout.createSequentialGroup()
+                        .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(dateChooserFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(checkBoxEnableDate)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        panelPesquisaLayout.setVerticalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lbNomeEvento)
+                    .addComponent(txtNomeEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateChooserFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkBoxEnableDate, javax.swing.GroupLayout.Alignment.TRAILING)))
+        );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         tableConsultaPlantao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,15 +168,15 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tableConsultaPlantao);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,26 +186,26 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addComponent(panelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tableConsultaPlantaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaPlantaoMouseClicked
         if(evt.getClickCount()==2){
@@ -196,23 +213,35 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
             int numeroPlantao = (int) tableConsultaPlantao.getValueAt(i, 0);
             
             PlantaoController controller = new PlantaoController();
-            Plantao selecionado = controller.selectPlantao(numeroPlantao);
-            FormularioPlantao plantaoFormulario = new FormularioPlantao(selecionado);
+            FormularioPlantao plantaoFormulario = controller.selectPlantao(numeroPlantao);
+            plantaoFormulario.getDateChoserInicio().setDate(plantaoFormulario.getInicio());
+            plantaoFormulario.getDateChoserFim().setDate(plantaoFormulario.getFim());
             Principal.desktopPane.add(plantaoFormulario);
             plantaoFormulario.setVisible(true);
         }
     }//GEN-LAST:event_tableConsultaPlantaoMouseClicked
 
+    private void checkBoxEnableDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxEnableDateActionPerformed
+        if(checkBoxEnableDate.isSelected()){
+            dateChooserInicio.setEnabled(true);
+            dateChooserFim.setEnabled(true);
+        }else{
+            dateChooserInicio.setEnabled(false);
+            dateChooserFim.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkBoxEnableDateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JCheckBox checkBoxEnableDate;
+    private com.toedter.calendar.JDateChooser dateChooserFim;
+    private com.toedter.calendar.JDateChooser dateChooserInicio;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbNomeEvento;
+    private javax.swing.JPanel panelPesquisa;
+    private javax.swing.JPanel panelTable;
     private javax.swing.JTable tableConsultaPlantao;
+    private javax.swing.JTextField txtNomeEvento;
     // End of variables declaration//GEN-END:variables
 }

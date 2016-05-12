@@ -56,7 +56,7 @@ public class teste {
 //        insert.adiciona(plantao);
 //    }
          PlantaoController ctl = new PlantaoController();
-         ctl.gerarFormulario(plantao);
+       //  ctl.gerarFormulario(plantao);
          
       
     //  teste.setNomeEvento("Relatorio");

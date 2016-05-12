@@ -1,46 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.remocamp.view;
 
 import br.com.remocamp.controller.PlantaoController;
 import br.com.remocamp.model.Plantao;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author fabiano
- */
+
 public class FormularioPlantao extends javax.swing.JInternalFrame {
 
-    Plantao plantao = new Plantao();
-
-    /**
-     * Creates new form FormularioPlantao
-     */
+    private java.sql.Date inicio;
+    private java.sql.Date fim;
+    private String ambulancia;
+    private int idPlantao;
+    private com.toedter.calendar.JDateChooser dateInicio;
+    private com.toedter.calendar.JDateChooser dateFim;
+    
     public FormularioPlantao() {
         initComponents();
         btnEditar.setVisible(false);
+        btnImpressao.setVisible(false);
     }
     
-    public FormularioPlantao(Plantao plantao) {
-        initComponents();
-        statusAllTxtField(false);
-        btnGravar.setVisible(false);
-        this.plantao = plantao;
-        setFormulario();
-    }
 
-    public void preecherFormulario(){
     
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,13 +75,13 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         panelEquipe.setBorder(javax.swing.BorderFactory.createTitledBorder("Equipe"));
 
-        lbMedico.setText("Médico :");
+        lbMedico.setText("*Médico :");
 
-        lbEnfermeiro.setText("Enfermeiro(a) :");
+        lbEnfermeiro.setText("*Enfermeiro(a) :");
 
-        lbMotorista.setText("Motorista :");
+        lbMotorista.setText("*Condutor:");
 
-        lbOperador.setText("Operador(a) :");
+        lbOperador.setText("*Operador(a) :");
 
         txtMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +107,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
             }
         });
 
-        panelAmbulancia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ambulancia"));
+        panelAmbulancia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "*Ambulancia"));
 
         checkBoxUTI.setText("UTI");
         checkBoxUTI.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +170,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                     .addComponent(txtMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEnfermeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOperador, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(panelAmbulancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
@@ -237,7 +218,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
             panelObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelObsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneObs, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                .addComponent(jScrollPaneObs, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelObsLayout.setVerticalGroup(
@@ -251,11 +232,11 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbComplemento.setText("Complemento :");
 
-        lbEndereco.setText("Endereço :");
+        lbEndereco.setText("*Endereço :");
 
-        lbEstado.setText("Estado :");
+        lbEstado.setText("*Estado :");
 
-        lbCidade.setText("Cidade :");
+        lbCidade.setText("*Cidade :");
 
         txtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +265,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                         .addComponent(lbEstado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 138, Short.MAX_VALUE)))
+                        .addGap(0, 150, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelDestinoLayout.setVerticalGroup(
@@ -309,11 +290,11 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         panelEvento.setBorder(javax.swing.BorderFactory.createTitledBorder("Evento"));
 
-        lbNome.setText("Nome :");
+        lbNome.setText("*Nome :");
 
-        lbResponsavel.setText("Responsável :");
+        lbResponsavel.setText("*Responsável :");
 
-        panelDateInicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Início"));
+        panelDateInicio.setBorder(javax.swing.BorderFactory.createTitledBorder("*Início"));
 
         javax.swing.GroupLayout panelDateInicioLayout = new javax.swing.GroupLayout(panelDateInicio);
         panelDateInicio.setLayout(panelDateInicioLayout);
@@ -332,7 +313,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        panelDateFinal.setBorder(javax.swing.BorderFactory.createTitledBorder("Final"));
+        panelDateFinal.setBorder(javax.swing.BorderFactory.createTitledBorder("*Final"));
 
         javax.swing.GroupLayout panelDateFinalLayout = new javax.swing.GroupLayout(panelDateFinal);
         panelDateFinal.setLayout(panelDateFinalLayout);
@@ -373,7 +354,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                             .addComponent(panelDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(panelDateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         panelEventoLayout.setVerticalGroup(
             panelEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,15 +504,20 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEstadoActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        setPlantao();
-        PlantaoController controller = new PlantaoController(plantao);
-        controller.gravarFormulario();
-
+        if(validarFormulario()){
+            PlantaoController controller = new PlantaoController(this);
+            controller.gravarFormulario();
+            btnImpressao.setVisible(true);
+            btnGravar.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(this, "Os campos obrigatórios não foram preenchidos", "Validação de formulário", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnImpressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpressaoActionPerformed
-            PlantaoController clt = new PlantaoController();
-            clt.gerarFormulario(plantao);
+            PlantaoController clt = new PlantaoController(this);
+            clt.gerarFormulario();
             
     }//GEN-LAST:event_btnImpressaoActionPerformed
 
@@ -544,67 +530,72 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         statusAllTxtField(true);
-    }//GEN-LAST:event_btnEditarActionPerformed
-    
-
-    private void setPlantao() {
-        plantao.setNomeEvento(txtNomeEvento.getText());
-        plantao.setInicio(date(dateChooserInicio));
-        plantao.setFim(date(dateChooserFim));
-        plantao.setResponsavel(txtResponsavel.getText());
-        plantao.setEndereco(txtEndereco.getText());
-        plantao.setCidade(txtCidade.getText());
-        plantao.setEstado(txtEstado.getText());
-        plantao.setComplemento(txtComplemento.getText());
-        plantao.setMedico(txtMedico.getText());
-        plantao.setEnfermeiro(txtEnfermeiro.getText());
-        plantao.setMotorista(txtMotorista.getText());
-        plantao.setOperador(txtOperador.getText());
-        plantao.setObservacao(txtAreaObs.getText());
         
-        if(checkBoxBasica.isSelected()){
-        plantao.setAmbulancia("Basica");
-        }else if(checkBoxSimples.isSelected()){
-        plantao.setAmbulancia("Simples");
-        }else if(checkBoxUTI.isSelected()){
-        plantao.setAmbulancia("UTI");
-        }else{
-        plantao.setAmbulancia("Simples");
+        if(btnEditar.getText().equals("Gravar")){
+            
+            if(validarFormulario()){
+                PlantaoController controller = new PlantaoController(this);
+                FormularioPlantao plantaoFormulario=controller.updatePlantao();
+                dispose();
+                Principal.desktopPane.add(plantaoFormulario);
+                plantaoFormulario.setVisible(true);
+                btnEditar.setText("Editar");
+                return;
+            }else{
+                JOptionPane.showMessageDialog(this, "Os campos obrigatórios não foram preenchidos", "Validação de formulário", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    
         }
         
-    }
-    
-    private void setFormulario(){
-        txtNomeEvento.setText(plantao.getNomeEvento());
-        dateChooserInicio.setDate(plantao.getInicio());
-        dateChooserFim.setDate(plantao.getFim());
-        txtResponsavel.setText(plantao.getResponsavel());
-        txtEndereco.setText(plantao.getEndereco());
-        txtCidade.setText(plantao.getCidade());
-        txtEstado.setText(plantao.getEstado());
-        txtComplemento.setText(plantao.getComplemento());
-        txtMedico.setText(plantao.getMedico());
-        txtEnfermeiro.setText(plantao.getEnfermeiro());
-        txtMotorista.setText(plantao.getMotorista());
-        txtOperador.setText(plantao.getOperador());
-        txtAreaObs.setText(plantao.getObservacao());
-        setAmbulanciaFormulario(plantao);
-    }
-    
+        if(btnEditar.getText().equals("Editar")){
+            btnEditar.setText("Gravar");
+        }
+        
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+        
+    private boolean validarFormulario(){
+        if(txtNomeEvento.getText().isEmpty()){
+            return false;
+        }else if(dateChooserInicio == null){
+            return false;
+        }else if(dateChooserFim == null){
+            return false;
+        }else if(txtResponsavel.getText().isEmpty()){
+            return false;
+        }else if(txtEndereco.getText().isEmpty()){
+            return false;
+        }else if(txtCidade.getText().isEmpty()){
+            return false;
+        }else if(txtEstado.getText().isEmpty()){
+            return false;
+        }else if(txtMedico.getText().isEmpty()){
+            return false;
+        }else if(txtEnfermeiro.getText().isEmpty()){
+            return false;
+        }else if(txtMotorista.getText().isEmpty()){
+            return false;
+        }else if(txtOperador.getText().isEmpty()){
+            return false;
+        }else return !getAmbulancia().equals("");
+  }
+
+   
     private void setAmbulanciaFormulario(Plantao plantao){
     
         String tipo = plantao.getAmbulancia();
         
-        if(tipo.equals("UTI")){
-         checkBoxUTI.setSelected(true);
-        }else if(tipo.equals("Basica")){
-        checkBoxBasica.setSelected(true);
-        }else{
-        checkBoxSimples.setSelected(true);
+        if (tipo.equals("UTI")) {
+            checkBoxUTI.setSelected(true);
+        } else if (tipo.equals("Basica")) {
+            checkBoxBasica.setSelected(true);
+        } else {
+            checkBoxSimples.setSelected(true);
         }
     }
     
-    private void statusAllTxtField(boolean habilitar){
+    public void statusAllTxtField(boolean habilitar){
         txtNomeEvento.setEditable(habilitar);
         dateChooserInicio.setEnabled(habilitar);
         dateChooserFim.setEnabled(habilitar);
@@ -620,17 +611,172 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         txtAreaObs.setEditable(habilitar);
     }
 
-    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChoser) {
-        String strDate = DateFormat.getDateInstance().format(dateChoser.getDate());
-        java.sql.Date sqlDate = null;
-        try {
-            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
-            sqlDate = new java.sql.Date(utilDate.getTime());
-            return sqlDate;
-        } catch (ParseException ex) {
-            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
+    public int getIdPlantao(){
+        return idPlantao;
+    }
+    
+    public void setIdPlantao(int id){
+        this.idPlantao=id;
+    }
+    public String getNomeEvento() {
+        return txtNomeEvento.getText();
+    }
+
+    public void setNomeEvento(String campo) {
+        this.txtNomeEvento.setText(campo);
+    }
+
+    public java.sql.Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(java.sql.Date inicio) {
+        this.inicio = inicio;
+    }
+    
+    public java.sql.Date getFim() {
+        return fim;
+    }
+
+    public void setFim(java.sql.Date fim) {
+        this.fim = fim;
+    }
+    
+     public String getResponsavel() {
+        return txtResponsavel.getText();
+    }
+
+    public void setResponsavel(String campo) {
+        this.txtResponsavel.setText(campo);
+    }
+    
+     public String getEndereco() {
+        return txtEndereco.getText();
+    }
+
+    public void setEndereco(String campo) {
+        this.txtEndereco.setText(campo);
+    }
+    
+     public String getCidade() {
+        return txtCidade.getText();
+    }
+
+    public void setCidade(String campo) {
+        this.txtCidade.setText(campo);
+    }
+    
+     public String getEstado() {
+        return txtEstado.getText();
+    }
+
+    public void setEstado(String campo) {
+        this.txtEstado.setText(campo);
+    }
+    
+     public String getComplemento() {
+        return txtComplemento.getText();
+    }
+
+    public void setComplemento(String campo) {
+        this.txtComplemento.setText(campo);
+    }
+    
+     public String getMedico() {
+        return txtMedico.getText();
+    }
+
+    public void setMedico(String campo) {
+        this.txtMedico.setText(campo);
+    }
+    
+    public String getEnfermeiro() {
+        return txtEnfermeiro.getText();
+    }
+
+    public void setEnfermeiro(String campo) {
+        this.txtEnfermeiro.setText(campo);
+    }
+    
+    public String getMotorista() {
+        return txtMotorista.getText();
+    }
+
+    public void setMotorista(String campo) {
+        this.txtMotorista.setText(campo);
+    }
+    
+    public String getOperador() {
+        return txtOperador.getText();
+    }
+
+    public void setOperador(String campo) {
+        this.txtOperador.setText(campo);
+    }
+    
+     public String getObservacao() {
+        return txtAreaObs.getText();
+    }
+
+    public void setObservacao(String campo) {
+        this.txtAreaObs.setText(campo);
+    }
+    
+    public String getAmbulancia() {
+        setAmbulancia();
+        return ambulancia;
+    }
+
+    public void setAmbulancia() {
+        if (checkBoxBasica.isSelected()) {
+            ambulancia = "Basica";
+        } else if (checkBoxSimples.isSelected()) {
+            ambulancia = "Simples";
+        } else if (checkBoxUTI.isSelected()) {
+            ambulancia = "UTI";
+        }else{
+            ambulancia = "";
         }
-        return sqlDate;
+    }
+    public void setAmbulancia(String campo){
+        ambulancia = campo;
+        if(ambulancia.equals("Basica")){
+            checkBoxBasica.setSelected(true);
+        }else if(ambulancia.equals("Simples")){
+            checkBoxSimples.setSelected(true);
+        }else{
+            checkBoxUTI.setSelected(true);
+        }
+    }
+
+    public com.toedter.calendar.JDateChooser getDateChoserInicio() {
+        setDateChoserInicio(dateChooserInicio);
+        return dateInicio;
+    }
+
+    public void setDateChoserInicio(com.toedter.calendar.JDateChooser dateChoserInicio) {
+       dateInicio = dateChoserInicio;
+    }
+
+    public com.toedter.calendar.JDateChooser getDateChoserFim() {
+        setDateChoserFim(dateChooserFim);
+        return dateFim;
+    }
+
+    public void setDateChoserFim(com.toedter.calendar.JDateChooser dateChoserFim) {
+        dateFim=dateChoserFim;
+    }
+    
+    public void btnGravarVisible(boolean mode){
+        btnGravar.setVisible(mode);
+    }
+    
+    public void btnVisualizarImpressaoVisible(boolean mode){
+        btnImpressao.setVisible(mode);
+    }
+    
+    public void btnEditarImpressaoVisible(boolean mode){
+        btnEditar.setVisible(mode);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

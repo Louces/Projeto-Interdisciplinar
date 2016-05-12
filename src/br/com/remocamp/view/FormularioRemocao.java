@@ -210,7 +210,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         lbEnfermeiro.setText("Enfermeiro(a) :");
 
-        lbMotorista.setText("Motorista :");
+        lbMotorista.setText("Condutor:");
 
         lbOperador.setText("Operador(a) :");
 

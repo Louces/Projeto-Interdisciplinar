@@ -101,7 +101,7 @@
                       <Component id="txtEnfermeiro" linkSize="1" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
                       <Component id="txtOperador" linkSize="1" alignment="0" min="-2" pref="315" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="49" max="32767" attributes="0"/>
                   <Component id="panelAmbulancia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
@@ -147,22 +147,22 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lbMedico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="M&#xe9;dico :"/>
+            <Property name="text" type="java.lang.String" value="*M&#xe9;dico :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEnfermeiro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enfermeiro(a) :"/>
+            <Property name="text" type="java.lang.String" value="*Enfermeiro(a) :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbMotorista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Motorista :"/>
+            <Property name="text" type="java.lang.String" value="*Condutor:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbOperador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Operador(a) :"/>
+            <Property name="text" type="java.lang.String" value="*Operador(a) :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMedico">
@@ -189,7 +189,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Ambulancia">
+                <TitledBorder title="*Ambulancia">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder/>
                   </Border>
@@ -268,7 +268,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPaneObs" pref="555" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneObs" pref="573" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -331,7 +331,7 @@
                           <Component id="lbEstado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtEstado" min="-2" pref="24" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="150" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -371,12 +371,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbEndereco">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Endere&#xe7;o :"/>
+            <Property name="text" type="java.lang.String" value="*Endere&#xe7;o :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstado">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estado :"/>
+            <Property name="text" type="java.lang.String" value="*Estado :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCidade">
@@ -385,7 +385,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbCidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cidade :"/>
+            <Property name="text" type="java.lang.String" value="*Cidade :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtComplemento">
@@ -432,7 +432,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="190" max="32767" attributes="0"/>
+                  <EmptySpace pref="202" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -462,14 +462,14 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lbNome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome :"/>
+            <Property name="text" type="java.lang.String" value="*Nome :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNomeEvento">
         </Component>
         <Component class="javax.swing.JLabel" name="lbResponsavel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Respons&#xe1;vel :"/>
+            <Property name="text" type="java.lang.String" value="*Respons&#xe1;vel :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtResponsavel">
@@ -478,7 +478,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="In&#xed;cio"/>
+                <TitledBorder title="*In&#xed;cio"/>
               </Border>
             </Property>
           </Properties>
@@ -512,7 +512,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Final"/>
+                <TitledBorder title="*Final"/>
               </Border>
             </Property>
           </Properties>
