@@ -532,26 +532,25 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         statusAllTxtField(true);
         
         if(btnEditar.getText().equals("Gravar")){
-            
             if(validarFormulario()){
                 PlantaoController controller = new PlantaoController(this);
                 FormularioPlantao plantaoFormulario=controller.updatePlantao();
                 dispose();
                 Principal.desktopPane.add(plantaoFormulario);
                 plantaoFormulario.setVisible(true);
-                btnEditar.setText("Editar");
+             //   btnEditarVisible(false);
+            //    btnVisualizarImpressaoVisible(true);
                 return;
             }else{
                 JOptionPane.showMessageDialog(this, "Os campos obrigatórios não foram preenchidos", "Validação de formulário", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-    
-        }
+         }
         
         if(btnEditar.getText().equals("Editar")){
-            btnEditar.setText("Gravar");
+           btnEditar.setText("Gravar");
+           btnVisualizarImpressaoVisible(false);
         }
-        
         
     }//GEN-LAST:event_btnEditarActionPerformed
         
@@ -775,7 +774,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         btnImpressao.setVisible(mode);
     }
     
-    public void btnEditarImpressaoVisible(boolean mode){
+    public void btnEditarVisible(boolean mode){
         btnEditar.setVisible(mode);
     }
 

@@ -10,6 +10,7 @@ import br.com.remocamp.jasper.plantao.PlantaoGerarRelatorio;
 import br.com.remocamp.jasper.plantao.PlantaoJRDataSourceFactory;
 import br.com.remocamp.model.Plantao;
 import br.com.remocamp.view.FormularioPlantao;
+import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 
 
@@ -75,13 +78,87 @@ public class PlantaoController {
         formularioPlantao.setAmbulancia(plantao.getAmbulancia());
         formularioPlantao.btnGravarVisible(false);
         formularioPlantao.btnVisualizarImpressaoVisible(true);
-        formularioPlantao.btnEditarImpressaoVisible(true);
+        formularioPlantao.btnEditarVisible(true);
         formularioPlantao.statusAllTxtField(false);
     }
     
-    public ArrayList selectPlantoesAll(){
+//    public ArrayList selectPlantoesAll(){
+//        dao.consultaAllTablePlantao();
+//        return dao.getPlantoes();
+//    }
+    
+    public DefaultTableModel selectPlantoesAll(DefaultTableModel  table){
+        
+        Plantao plantao;
         dao.consultaAllTablePlantao();
-        return dao.getPlantoes();
+        ArrayList<Plantao> plantoes = dao.getPlantoes();
+        
+        for(int i=0; i < plantoes.size();i++){
+            plantao = plantoes.get(i);
+            Object row[] = new Object[4];
+            row[0] = plantao.getIdPlantao();
+            row[1] = plantao.getNomeEvento();
+            row[2] = plantao.getInicio();
+            row[3] = plantao.getFim();
+            
+            table.addRow(row);
+        }
+       return table;
+    }
+    
+    public DefaultTableModel selectPlantaoNome(DefaultTableModel  table, String nomePlantao){
+        Plantao plantao;
+        dao.consultaNomeEvento(nomePlantao);
+        
+        ArrayList<Plantao> plantoes = dao.getPlantoes();
+        
+        for(int i=0; i < plantoes.size();i++){
+            plantao = plantoes.get(i);
+            Object row[] = new Object[4];
+            row[0] = plantao.getIdPlantao();
+            row[1] = plantao.getNomeEvento();
+            row[2] = plantao.getInicio();
+            row[3] = plantao.getFim();
+            
+            table.addRow(row);
+        }
+       return table;
+    }
+    
+    public DefaultTableModel selectPlantaoData(DefaultTableModel  table,java.sql.Date  inicio,java.sql.Date fim){
+        Plantao plantao;
+        dao.consultaEntreDatas(inicio, fim);
+        ArrayList<Plantao> plantoes = dao.getPlantoes();
+        
+        for(int i=0; i < plantoes.size();i++){
+            plantao = plantoes.get(i);
+            Object row[] = new Object[4];
+            row[0] = plantao.getIdPlantao();
+            row[1] = plantao.getNomeEvento();
+            row[2] = plantao.getInicio();
+            row[3] = plantao.getFim();
+            
+            table.addRow(row);
+        }
+       return table;
+    }
+    
+    public DefaultTableModel selectPlantaoDataNome(DefaultTableModel  table,java.sql.Date  inicio,java.sql.Date fim, String nomeEvento){
+        Plantao plantao;
+        dao.consultaEntreDatasComNome(inicio, fim, nomeEvento);
+        ArrayList<Plantao> plantoes = dao.getPlantoes();
+        
+        for(int i=0; i < plantoes.size();i++){
+            plantao = plantoes.get(i);
+            Object row[] = new Object[4];
+            row[0] = plantao.getIdPlantao();
+            row[1] = plantao.getNomeEvento();
+            row[2] = plantao.getInicio();
+            row[3] = plantao.getFim();
+            
+            table.addRow(row);
+        }
+       return table;
     }
     
     public FormularioPlantao selectPlantao(int numero){
@@ -116,5 +193,7 @@ public class PlantaoController {
         }
         return sqlDate;
     }
+
+    
     
 }

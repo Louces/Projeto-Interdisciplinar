@@ -1,4 +1,3 @@
-
 package br.com.remocamp.model;
 
 import java.awt.Component;

@@ -2,6 +2,7 @@ package br.com.remocamp.dao;
 
 import br.com.remocamp.jdbc.ConnectionFactory;
 import br.com.remocamp.model.Plantao;
+import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,30 +41,35 @@ public class PlantaoDao {
          // prepared statement para inserção
          stmt = getConnection().prepareStatement(sql);
  
-         // seta os valores
-         int i=0;
-         stmt.setString(++i,plantao.getNomeEvento());
-         stmt.setString(++i,plantao.getInicio()+"");
-         stmt.setString(++i,plantao.getFim()+"");
-         stmt.setString(++i,plantao.getResponsavel());
-         stmt.setString(++i,plantao.getEndereco());
-         stmt.setString(++i,plantao.getCidade());
-         stmt.setString(++i,plantao.getEstado());
-         stmt.setString(++i,plantao.getComplemento());
-         stmt.setString(++i,plantao.getMedico());
-         stmt.setString(++i,plantao.getEnfermeiro());
-         stmt.setString(++i,plantao.getMotorista());
-         stmt.setString(++i,plantao.getOperador());
-         stmt.setString(++i,plantao.getAmbulancia());
-         stmt.setString(++i,plantao.getObservacao());
-         
-        // executa
-         stmt.execute();
-         stmt.close();
+            adicionaStmt(plantao);
+            
      } catch (SQLException e) {
          throw new RuntimeException(e);
      }
 
+    }
+
+    private void adicionaStmt(Plantao plantao) throws SQLException {
+        // seta os valores
+        int i=0;
+        stmt.setString(++i,plantao.getNomeEvento());
+        stmt.setString(++i,plantao.getInicio()+"");
+        stmt.setString(++i,plantao.getFim()+"");
+        stmt.setString(++i,plantao.getResponsavel());
+        stmt.setString(++i,plantao.getEndereco());
+        stmt.setString(++i,plantao.getCidade());
+        stmt.setString(++i,plantao.getEstado());
+        stmt.setString(++i,plantao.getComplemento());
+        stmt.setString(++i,plantao.getMedico());
+        stmt.setString(++i,plantao.getEnfermeiro());
+        stmt.setString(++i,plantao.getMotorista());
+        stmt.setString(++i,plantao.getOperador());
+        stmt.setString(++i,plantao.getAmbulancia());
+        stmt.setString(++i,plantao.getObservacao());
+        
+        // executa
+        stmt.execute();
+        stmt.close();
     }
     
     public void consultaAllTablePlantao() {
@@ -89,7 +95,85 @@ public class PlantaoDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+     }
+    
+    public void consultaNomeEvento(String nomeEvento){
+        String sql = "SELECT * FROM plantao WHERE LOWER(nomeEvento) LIKE ?";
+        try {
+            // prepared statement para consulta
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,"%"+nomeEvento+"%");
+ 
+            // executa um select
+            ResultSet rs = stmt.executeQuery();
+            plantoes.clear();
+            while (rs.next()) {
+                Plantao plantao = new Plantao();
+                plantao.setIdPlantao(rs.getInt("idPlantao"));
+                plantao.setNomeEvento(rs.getString("nomeEvento"));
+                plantao.setInicio(rs.getDate("dataInicio"));
+                plantao.setFim(rs.getDate("dataFim"));
+                plantoes.add(plantao);
+            }   
+           
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void consultaEntreDatas(java.sql.Date inicio, java.sql.Date fim){
+        
+        String sql ="SELECT * FROM plantao WHERE dataInicio >= ? AND dataFim <= ?";
+        
+        try {
+            // prepared statement para consulta
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,inicio+"");
+            stmt.setString(2,fim+"");
+ 
+            // executa um select
+            ResultSet rs = stmt.executeQuery();
+            plantoes.clear();
+            while (rs.next()) {
+                Plantao plantao = new Plantao();
+                plantao.setIdPlantao(rs.getInt("idPlantao"));
+                plantao.setNomeEvento(rs.getString("nomeEvento"));
+                plantao.setInicio(rs.getDate("dataInicio"));
+                plantao.setFim(rs.getDate("dataFim"));
+                plantoes.add(plantao);
+            }   
+           
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void consultaEntreDatasComNome(java.sql.Date inicio, java.sql.Date fim, String nomeEvento){
+         String sql ="SELECT * FROM plantao WHERE (dataInicio >= ? AND dataFim <= ?) AND LOWER(nomeEvento) LIKE ?";
+         System.out.println(inicio+" "+fim+" "+nomeEvento);
+        try {
+            // prepared statement para consulta
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,inicio+"");
+            stmt.setString(2,fim+"");
+            stmt.setString(3,"%"+nomeEvento+"%");
+            System.out.println(sql);
+            // executa um select
+            ResultSet rs = stmt.executeQuery();
+            plantoes.clear();
+            while (rs.next()) {
+                System.out.println("while");
+                Plantao plantao = new Plantao();
+                plantao.setIdPlantao(rs.getInt("idPlantao"));
+                plantao.setNomeEvento(rs.getString("nomeEvento"));
+                plantao.setInicio(rs.getDate("dataInicio"));
+                plantao.setFim(rs.getDate("dataFim"));
+                plantoes.add(plantao);
+            }   
+           
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public Plantao consultaPlantao(int i) {
@@ -148,33 +232,35 @@ public class PlantaoDao {
                  +"where idPlantao=?";
      
          try {
-            // prepared statement para consulta
-            int j=0;
-            stmt = getConnection().prepareStatement(sql);
-            stmt.setString(++j,plantao.getNomeEvento());
-            stmt.setString(++j,plantao.getInicio()+"");
-            stmt.setString(++j,plantao.getFim()+"");
-            stmt.setString(++j,plantao.getResponsavel());
-            stmt.setString(++j,plantao.getEndereco());
-            stmt.setString(++j,plantao.getCidade());
-            stmt.setString(++j,plantao.getEstado());
-            stmt.setString(++j,plantao.getComplemento());
-            stmt.setString(++j,plantao.getMedico());
-            stmt.setString(++j,plantao.getEnfermeiro());
-            stmt.setString(++j,plantao.getMotorista());
-            stmt.setString(++j,plantao.getOperador());
-            stmt.setString(++j,plantao.getAmbulancia());
-            stmt.setString(++j,plantao.getObservacao());
-            stmt.setString(++j,i+"");
-            // executa um update
-            stmt.execute();
-            stmt.close();
-            
-            
+            updateStm(sql, plantao, i);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return plantao;
          
+    }
+
+    private void updateStm(String sql, Plantao plantao, int i) throws SQLException {
+        // prepared statement para consulta
+        int j=0;
+        stmt = getConnection().prepareStatement(sql);
+        stmt.setString(++j,plantao.getNomeEvento());
+        stmt.setString(++j,plantao.getInicio()+"");
+        stmt.setString(++j,plantao.getFim()+"");
+        stmt.setString(++j,plantao.getResponsavel());
+        stmt.setString(++j,plantao.getEndereco());
+        stmt.setString(++j,plantao.getCidade());
+        stmt.setString(++j,plantao.getEstado());
+        stmt.setString(++j,plantao.getComplemento());
+        stmt.setString(++j,plantao.getMedico());
+        stmt.setString(++j,plantao.getEnfermeiro());
+        stmt.setString(++j,plantao.getMotorista());
+        stmt.setString(++j,plantao.getOperador());
+        stmt.setString(++j,plantao.getAmbulancia());
+        stmt.setString(++j,plantao.getObservacao());
+        stmt.setString(++j,i+"");
+        // executa um update
+        stmt.execute();
+        stmt.close();
     }
 }

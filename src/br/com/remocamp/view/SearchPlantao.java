@@ -7,8 +7,12 @@ package br.com.remocamp.view;
 
 import br.com.remocamp.controller.PlantaoController;
 import br.com.remocamp.model.CellRenderer;
-import br.com.remocamp.model.Plantao;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -20,7 +24,7 @@ import javax.swing.table.TableColumn;
 public class SearchPlantao extends javax.swing.JInternalFrame {
 
     private PlantaoController controller = new PlantaoController();
-    private ArrayList<Plantao> plantoes;
+   // private ArrayList<Plantao> plantoes;
     private DefaultTableModel tabelaModelo;
     private  TableCellRenderer tcr;
 
@@ -51,19 +55,32 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         }
     
     }
-    public final void tabelaInicial(){
-        Plantao plantao;
-        plantoes = controller.selectPlantoesAll();
-        
-        for(int i=0; i < plantoes.size();i++){
-            plantao = plantoes.get(i);
-            Object row[] = new Object[4];
-            row[0] = plantao.getIdPlantao();
-            row[1] = plantao.getNomeEvento();
-            row[2] = plantao.getInicio();
-            row[3] = plantao.getFim();
-            
-            tabelaModelo.addRow(row);
+//    public final void tabelaInicial(){
+//        Plantao plantao;
+//        plantoes = controller.selectPlantoesAll();
+//        
+//        for(int i=0; i < plantoes.size();i++){
+//            plantao = plantoes.get(i);
+//            Object row[] = new Object[4];
+//            row[0] = plantao.getIdPlantao();
+//            row[1] = plantao.getNomeEvento();
+//            row[2] = plantao.getInicio();
+//            row[3] = plantao.getFim();
+//            
+//            tabelaModelo.addRow(row);
+//        }
+//    }
+    
+     public final void tabelaInicial(){
+         tabelaModelo = controller.selectPlantoesAll(tabelaModelo);
+     }
+     
+   
+    public void eraseTable() {
+        if (tabelaModelo.getRowCount() > 0) {
+            for (int i = tabelaModelo.getRowCount() - 1; i > -1; i--) {
+                tabelaModelo.removeRow(i);
+            }
         }
     }
     /**
@@ -204,9 +221,37 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+        eraseTable();
+        if(checkBoxEnableDate.isSelected()&&!txtNomeEvento.getText().equals("")){
+        //pesquisa por nome e data
+        System.out.println("1 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
+        tabelaModelo=controller.selectPlantaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim),txtNomeEvento.getText());
+        }else if(!txtNomeEvento.getText().equals("")){
+        //pesquisa por nome
+        System.out.println("2 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
+        tabelaModelo=controller.selectPlantaoNome(tabelaModelo, txtNomeEvento.getText());
+        }else if(checkBoxEnableDate.isSelected()&&txtNomeEvento.getText().equals("")){
+        //pesquisa por data
+        System.out.println("3 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()" + date(dateChooserInicio));
+        tabelaModelo=controller.selectPlantaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
+        }else{
+        //pesquisa tudo
+        System.out.println("4 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {
+        String strDate = DateFormat.getDateInstance().format(dateChooser.getDate());
+        java.sql.Date sqlDate = null;
+        try {
+            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            return sqlDate;
+        } catch (ParseException ex) {
+            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sqlDate;
+    }
     private void tableConsultaPlantaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaPlantaoMouseClicked
         if(evt.getClickCount()==2){
             int i = tableConsultaPlantao.getSelectedRow();
