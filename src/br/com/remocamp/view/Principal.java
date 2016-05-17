@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.remocamp.view;
+import br.com.remocamp.xlm.NotaFiscalXML;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -174,7 +175,6 @@ public class Principal extends javax.swing.JFrame {
     
         if(evt.getClickCount()==2){
          String menu = treeAtividades.getAnchorSelectionPath()+"";
-         System.out.println(menu);
          
          if(menu.equals("[Atividades, Orderm de serviço, Nova ordem, Remoção]")){
             FormularioRemocao remocao = new FormularioRemocao();
@@ -203,6 +203,8 @@ public class Principal extends javax.swing.JFrame {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             if (fileChooser.getSelectedFile().getName().contains("xml")) {
                 File selectedFile = fileChooser.getSelectedFile();
+                NotaFiscalXML nf = new NotaFiscalXML(selectedFile);
+                nf.update();
             }else{
                 JOptionPane.showMessageDialog(null, "Arquivo invÃ¡lido");
             }

@@ -222,22 +222,21 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         eraseTable();
-        if(checkBoxEnableDate.isSelected()&&!txtNomeEvento.getText().equals("")){
-        //pesquisa por nome e data
-        System.out.println("1 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
-        tabelaModelo=controller.selectPlantaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim),txtNomeEvento.getText());
-        }else if(!txtNomeEvento.getText().equals("")){
-        //pesquisa por nome
-        System.out.println("2 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
-        tabelaModelo=controller.selectPlantaoNome(tabelaModelo, txtNomeEvento.getText());
-        }else if(checkBoxEnableDate.isSelected()&&txtNomeEvento.getText().equals("")){
-        //pesquisa por data
-        System.out.println("3 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()" + date(dateChooserInicio));
-        tabelaModelo=controller.selectPlantaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
-        }else{
-        //pesquisa tudo
-        System.out.println("4 - br.com.remocamp.view.SearchPlantao.btnPesquisarActionPerformed()");
+        
+        if (checkBoxEnableDate.isSelected() && !txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome e data
+            tabelaModelo = controller.selectPlantaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim), txtNomeEvento.getText());
+        } else if (!txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome
+            tabelaModelo = controller.selectPlantaoNome(tabelaModelo, txtNomeEvento.getText());
+        } else if (checkBoxEnableDate.isSelected() && txtNomeEvento.getText().equals("")) {
+            //pesquisa por data
+            tabelaModelo = controller.selectPlantaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
+        } else {
+            //pesquisa tudo
+            tabelaModelo = controller.selectPlantoesAll(tabelaModelo);
         }
+        
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {

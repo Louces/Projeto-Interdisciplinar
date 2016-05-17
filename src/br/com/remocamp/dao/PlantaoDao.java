@@ -2,7 +2,6 @@ package br.com.remocamp.dao;
 
 import br.com.remocamp.jdbc.ConnectionFactory;
 import br.com.remocamp.model.Plantao;
-import com.toedter.calendar.JDateChooser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +81,7 @@ public class PlantaoDao {
  
             // executa um select
             ResultSet rs = stmt.executeQuery();
-            
+            plantoes.clear();
             while (rs.next()) {
                 Plantao plantao = new Plantao();
                 plantao.setIdPlantao(rs.getInt("idPlantao"));
