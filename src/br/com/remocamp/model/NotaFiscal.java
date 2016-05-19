@@ -43,7 +43,7 @@ public class NotaFiscal {
     private String TOMADOR_RAZAO_SOCIAL;
     private String TOMADOR_TIPO_LOGRADOURO;
     private String TOMADOR_LOGRADOURO;
-    private int TOMADOR_NUMERO;
+    private String TOMADOR_NUMERO;
     private String TOMADOR_TIPO_BAIRRO;
     private String TOMADOR_BAIRRO;
     private int TOMADOR_CIDADE_CODIGO;
@@ -96,6 +96,13 @@ public class NotaFiscal {
     private String VALOR_ISS_RET;
     private String ALIQ_RET;
     private String DESCONTO_RET;
+    private String TRIBUTAVEL;
+    private String DESCRICAO;
+    private String QUANTIDADE;
+    private double VALOR_UNITARIO;
+    private double VALOR_TOTAL;
+    private String DEDUCAO;
+    private String VALOR_ISS_UNITARIO;
 
     public String getTIPO() {
         return TIPO;
@@ -353,11 +360,11 @@ public class NotaFiscal {
         this.TOMADOR_LOGRADOURO = TOMADOR_LOGRADOURO;
     }
 
-    public int getTOMADOR_NUMERO() {
+    public String getTOMADOR_NUMERO() {
         return TOMADOR_NUMERO;
     }
 
-    public void setTOMADOR_NUMERO(int TOMADOR_NUMERO) {
+    public void setTOMADOR_NUMERO(String TOMADOR_NUMERO) {
         this.TOMADOR_NUMERO = TOMADOR_NUMERO;
     }
 
@@ -775,6 +782,62 @@ public class NotaFiscal {
 
     public void setDESCONTO_RET(String DESCONTO_RET) {
         this.DESCONTO_RET = DESCONTO_RET;
+    }
+
+    public String getTRIBUTAVEL() {
+        return TRIBUTAVEL;
+    }
+
+    public void setTRIBUTAVEL(String TRIBUTAVEL) {
+        this.TRIBUTAVEL = TRIBUTAVEL;
+    }
+
+    public String getDESCRICAO() {
+        return DESCRICAO;
+    }
+
+    public void setDESCRICAO(String DESCRICAO) {
+        this.DESCRICAO = DESCRICAO;
+    }
+
+    public String getQUANTIDADE() {
+        return QUANTIDADE;
+    }
+
+    public void setQUANTIDADE(String QUANTIDADE) {
+        this.QUANTIDADE = QUANTIDADE;
+    }
+
+    public double getVALOR_UNITARIO() {
+        return VALOR_UNITARIO;
+    }
+
+    public void setVALOR_UNITARIO(double VALOR_UNITARIO) {
+        this.VALOR_UNITARIO = VALOR_UNITARIO;
+    }
+
+    public double getVALOR_TOTAL() {
+        return VALOR_TOTAL;
+    }
+
+    public void setVALOR_TOTAL(double VALOR_TOTAL) {
+        this.VALOR_TOTAL = VALOR_TOTAL;
+    }
+
+    public String getDEDUCAO() {
+        return DEDUCAO;
+    }
+
+    public void setDEDUCAO(String DEDUCAO) {
+        this.DEDUCAO = DEDUCAO;
+    }
+
+    public String getVALOR_ISS_UNITARIO() {
+        return VALOR_ISS_UNITARIO;
+    }
+
+    public void setVALOR_ISS_UNITARIO(String VALOR_ISS_UNITARIO) {
+        this.VALOR_ISS_UNITARIO = VALOR_ISS_UNITARIO;
     }
  
     
