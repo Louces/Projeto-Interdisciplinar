@@ -6,7 +6,7 @@
 package br.com.remocamp.dao;
 
 import br.com.remocamp.jdbc.ConnectionFactory;
-import br.com.remocamp.xlm.NotaFiscalXML;
+import br.com.remocamp.model.NotaFiscal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class NotaFiscalDao {
 
     private Connection connection;
     private PreparedStatement stmt;
-    private ArrayList<NotaFiscalXML> notasFiscaisXML = new ArrayList<>();
+    private ArrayList<NotaFiscal> notasFiscaisXML = new ArrayList<>();
 
     public NotaFiscalDao() {
         setConnection(new ConnectionFactory().getConnection());
@@ -34,11 +34,7 @@ public class NotaFiscalDao {
         this.connection = connection;
     }
 
-    public ArrayList<NotaFiscalXML> getPlantoes() {
-        return notasFiscaisXML;
-    }
-    
-    public void adiciona(NotaFiscalXML nota) {
+    public void adiciona(NotaFiscal nota) {
 
         String sql = "insert into nfse"
            + "("
@@ -127,59 +123,141 @@ public class NotaFiscalDao {
                 +"VALOR_ISS_RET,"
                 +"ALIQ_RET,"
                 +"DESCONTO_RET,"
-                
-//  <TRIBUTAVEL>S</TRIBUTAVEL>
-//  <DESCRICAO>LOCAÇÃO 01 UTI MÓVEL</DESCRICAO>
-//  <QUANTIDADE>1</QUANTIDADE>
-//  <VALOR_UNITARIO>1600</VALOR_UNITARIO>
-//  <VALOR_TOTAL>1600</VALOR_TOTAL>
-//  <DEDUCAO>N</DEDUCAO>
-//  <VALOR_ISS_UNITARIO>0</VALOR_ISS_UNITARIO>
+                +"TRIBUTAVEL,"
+                +"DESCRICAO,"
+                +"QUANTIDADE,"
+                +"VALOR_UNITARIO,"
+                +"VALOR_TOTAL,"
+                +"DEDUCAO,"
+                +"VALOR_ISS_UNITARIO"
            +")"
                 
-                + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + " values(?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?,?,?,?,?,?,?,?,?,"
+                            + "?,?"
+                            + ")";
         
          try {
          // prepared statement para inserção
-         stmt = getConnection().prepareStatement(sql);
+          stmt = getConnection().prepareStatement(sql);
 
+          int i=0;
+          stmt.setString(++i,nota.getTIPO());
+          stmt.setString(++i,nota.getNUM_NOTA()+"");
+          stmt.setString(++i,nota.getDATA_HORA_EMISSAO());
+          stmt.setString(++i,nota.getDIA_EMISSAO());
+          stmt.setString(++i,nota.getMES_COMPETENCIA());
+          stmt.setString(++i,nota.getSITUACAO_NF());
+          stmt.setString(++i,nota.getCODIGO_CIDADE()+"");
+          stmt.setString(++i,nota.getUSUARIO_CPF_CNPJ());
+          stmt.setString(++i,nota.getUSUARIO_RAZAO_SOCIAL());
+          stmt.setString(++i,nota.getDATA_HORA_CANCELAMENTO());
+          stmt.setString(++i,nota.getRPS_EMISSAO()+"");
+          stmt.setString(++i,nota.getSUB_EMISSAO()+"");
+          stmt.setString(++i,nota.getPRESTADOR_CPF_CNPJ());
+          stmt.setString(++i,nota.getPRESTADOR_INSCRICAO_MUNICIPAL());
+          stmt.setString(++i,nota.getPRESTADOR_RAZAO_SOCIAL());
+          stmt.setString(++i,nota.getPRESTADOR_NOME_FANTASIA());
+          stmt.setString(++i,nota.getPRESTADOR_TIPO_LOGRADOURO());
+          stmt.setString(++i,nota.getPRESTADOR_LOGRADOURO());
+          stmt.setString(++i,nota.getPRESTADOR_PREST_NUMERO());
+          stmt.setString(++i,nota.getPRESTADOR_COMPLEMENTO());
+          stmt.setString(++i,nota.getPRESTADOR_TIPO_BAIRRO());
+          stmt.setString(++i,nota.getPRESTADOR_BAIRRO());
+          stmt.setString(++i,nota.getPRESTADOR_CIDADE_CODIGO()+"");
+          stmt.setString(++i,nota.getPRESTADOR_CIDADE());
+          stmt.setString(++i,nota.getPRESTADOR_UF());
+          stmt.setString(++i,nota.getPRESTADOR_CEP());
+          stmt.setString(++i,nota.getPRESTADOR_DDD_TELEFONE()+"");
+          stmt.setString(++i,nota.getPRESTADOR_TELEFONE());
+          stmt.setString(++i,nota.getTOMADOR_CPF_CNPJ());
+          stmt.setString(++i,nota.getTOMADOR_RAZAO_SOCIAL());
+          stmt.setString(++i,nota.getTOMADOR_TIPO_LOGRADOURO());
+          stmt.setString(++i,nota.getTOMADOR_LOGRADOURO());
+          stmt.setString(++i,nota.getTOMADOR_NUMERO());
+          stmt.setString(++i,nota.getTOMADOR_TIPO_BAIRRO());
+          stmt.setString(++i,nota.getTOMADOR_BAIRRO());
+          stmt.setString(++i,nota.getTOMADOR_CIDADE_CODIGO()+"");
+          stmt.setString(++i,nota.getTOMADOR_CIDADE());
+          stmt.setString(++i,nota.getTOMADOR_UF());
+          stmt.setString(++i,nota.getTOMADOR_CEP());
+          stmt.setString(++i,nota.getTOMADOR_EMAIL());
+          stmt.setString(++i,nota.getTOMADOR_OPTANTE_SIMPLES());
+          stmt.setString(++i,nota.getTOMADOR_DDD_TELEFONE()+"");
+          stmt.setString(++i,nota.getTOMADOR_TELEFONE());
+          stmt.setString(++i,nota.getVALOR_NOTA()+"");
+          stmt.setString(++i,nota.getVALOR_DEDUCAO()+"");
+          stmt.setString(++i,nota.getVALOR_SERVICO()+"");
+          stmt.setString(++i,nota.getVALOR_ISS()+"");
+          stmt.setString(++i,nota.getVALOR_PIS()+"");
+          stmt.setString(++i,nota.getVALOR_COFINS()+"");
+          stmt.setString(++i,nota.getVALOR_INSS()+"");
+          stmt.setString(++i,nota.getVALOR_IR()+"");
+          stmt.setString(++i,nota.getVALOR_CSLL()+"");
+          stmt.setString(++i,nota.getALIQUOTA_PIS());
+          stmt.setString(++i,nota.getALIQUOTA_COFINS());
+          stmt.setString(++i,nota.getALIQUOTA_INSS());
+          stmt.setString(++i,nota.getALIQUOTA_IR());
+          stmt.setString(++i,nota.getALIQUOTA_CSLL());
+          stmt.setString(++i,nota.getCODIGO_ATIVIDADE());
+          stmt.setString(++i,nota.getDESCRICAO_ATIVIDADE());
+          stmt.setString(++i,nota.getGRUPO_ATIVIDADE());
+          stmt.setString(++i,nota.getENQUADRAMENTO_ATIVIDADE());
+          stmt.setString(++i,nota.getLOCAL_INCIDENCIA_ATIVIDADE());
+          stmt.setString(++i,nota.getTRIBUTAVEL_ATIVIDADE());
+          stmt.setString(++i,nota.getDEDUCAO_VALOR_ATIVIDADE());
+          stmt.setString(++i,nota.getDEDUCAO_ATIVIDADE());
+          stmt.setString(++i,nota.getATV_ECON_ATV());
+          stmt.setString(++i,nota.getCOS_SERVICO()+"");
+          stmt.setString(++i,nota.getDESCRICAO_SERVICO());
+          stmt.setString(++i,nota.getALIQUOTA());
+          stmt.setString(++i,nota.getTIPO_RECOLHIMENTO());
+          stmt.setString(++i,nota.getOPERACAO_TRIBUTACAO());
+          stmt.setString(++i,nota.getMOTIVO_PAGAMENTO());
+          stmt.setString(++i,nota.getCODIGO_REGIME()+"");
+          stmt.setString(++i,nota.getCIDADE_CODIGO_PRESTACAO()+"");
+          stmt.setString(++i,nota.getCIDADE_PRESTACAO());
+          stmt.setString(++i,nota.getUF_PRESTACAO());
+          stmt.setString(++i,nota.getDOCUMENTO_PRESTACAO());
+          stmt.setString(++i,nota.getSERIE_PRESTACAO());
+          stmt.setString(++i,nota.getTRIBUTACAO_PRESTACAO());
+          stmt.setString(++i,nota.getDESCRICAO_NOTA());
+          stmt.setString(++i,nota.getCODIGO_VERIFICACAO());
+          stmt.setString(++i,nota.getID_NOTA_FISCAL()+"");
+          stmt.setString(++i,nota.getVALOR_ISS_RET());
+          stmt.setString(++i,nota.getALIQ_RET());
+          stmt.setString(++i,nota.getDESCONTO_RET());
+          stmt.setString(++i,nota.getTRIBUTAVEL());
+          stmt.setString(++i,nota.getDESCRICAO());
+          stmt.setString(++i,nota.getQUANTIDADE());
+          stmt.setString(++i,nota.getVALOR_UNITARIO()+"");
+          stmt.setString(++i,nota.getVALOR_TOTAL()+"");
+          stmt.setString(++i,nota.getDEDUCAO());
+          stmt.setString(++i,nota.getVALOR_ISS_UNITARIO());
+          
+            System.out.println(sql);
+          stmt.execute();
+          stmt.close();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-            
      } catch (SQLException e) {
          throw new RuntimeException(e);
      }
 
+    }
+
+    public ArrayList<NotaFiscal> getNotasFiscaisXML() {
+        return notasFiscaisXML;
+    }
+
+    public void setNotasFiscaisXML(ArrayList<NotaFiscal> notasFiscaisXML) {
+        this.notasFiscaisXML = notasFiscaisXML;
     }
 
 }

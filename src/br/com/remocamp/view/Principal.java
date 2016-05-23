@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.remocamp.view;
+import br.com.remocamp.controller.NotaFiscalController;
 import br.com.remocamp.xlm.NotaFiscalXML;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -202,9 +203,11 @@ public class Principal extends javax.swing.JFrame {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             if (fileChooser.getSelectedFile().getName().contains("xml")) {
-                File selectedFile = fileChooser.getSelectedFile();
+                File selectedFile = new File("C:\\Users\\fabiano\\Downloads\\xml_000571938345573083.xml");;//fileChooser.getSelectedFile();
                 NotaFiscalXML nf = new NotaFiscalXML(selectedFile);
-                nf.update();
+                nf.getAllNotas();
+                NotaFiscalController controller = new NotaFiscalController(nf.getNota());
+                controller.adicionaNota();
             }else{
                 JOptionPane.showMessageDialog(null, "Arquivo invÃ¡lido");
             }

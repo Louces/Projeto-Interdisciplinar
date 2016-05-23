@@ -33,7 +33,7 @@ public class NotaFiscalXML {
         this.xml = xml;
     }
     
-    public void update(){
+    public void getAllNotas(){
     
         SAXBuilder sb = new SAXBuilder();
         Document d = null;
@@ -146,12 +146,16 @@ public class NotaFiscalXML {
             notaFiscal.setDEDUCAO(element.getChild("ITENS").getChild("ITEM").getChildText("DEDUCAO"));
             notaFiscal.setVALOR_ISS_UNITARIO(element.getChild("ITENS").getChild("ITEM").getChildText("VALOR_ISS_UNITARIO"));
             
-            nota.add(notaFiscal);
+            getNota().add(notaFiscal);
             
         }
         long fim = System.currentTimeMillis();
         long tempo = (long) ((fim-inicio)/1000d);
         System.out.println("Tempo total : " + tempo);
+    }
+
+    public ArrayList <NotaFiscal> getNota() {
+        return nota;
     }
     
 }

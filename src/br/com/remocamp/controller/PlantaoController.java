@@ -10,7 +10,6 @@ import br.com.remocamp.jasper.plantao.PlantaoGerarRelatorio;
 import br.com.remocamp.jasper.plantao.PlantaoJRDataSourceFactory;
 import br.com.remocamp.model.Plantao;
 import br.com.remocamp.view.FormularioPlantao;
-import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 
