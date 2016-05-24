@@ -220,42 +220,11 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        eraseTable();
-        
-        if (checkBoxEnableDate.isSelected() && !txtNomeEvento.getText().equals("")) {
-            //pesquisa por nome e data
-            tabelaModelo = controller.selectPlantaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim), txtNomeEvento.getText());
-        } else if (!txtNomeEvento.getText().equals("")) {
-            //pesquisa por nome
-            tabelaModelo = controller.selectPlantaoNome(tabelaModelo, txtNomeEvento.getText());
-        } else if (checkBoxEnableDate.isSelected() && txtNomeEvento.getText().equals("")) {
-            //pesquisa por data
-            tabelaModelo = controller.selectPlantaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
-        } else {
-            //pesquisa tudo
-            tabelaModelo = controller.selectPlantoesAll(tabelaModelo);
-        }
-        
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {
-        String strDate = DateFormat.getDateInstance().format(dateChooser.getDate());
-        java.sql.Date sqlDate = null;
-        try {
-            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
-            sqlDate = new java.sql.Date(utilDate.getTime());
-            return sqlDate;
-        } catch (ParseException ex) {
-            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return sqlDate;
-    }
     private void tableConsultaPlantaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaPlantaoMouseClicked
         if(evt.getClickCount()==2){
             int i = tableConsultaPlantao.getSelectedRow();
             int numeroPlantao = (int) tableConsultaPlantao.getValueAt(i, 0);
-            
+
             PlantaoController controller = new PlantaoController();
             FormularioPlantao plantaoFormulario = controller.selectPlantao(numeroPlantao);
             plantaoFormulario.getDateChoserInicio().setDate(plantaoFormulario.getInicio());
@@ -275,6 +244,37 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_checkBoxEnableDateActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        eraseTable();
+
+        if (checkBoxEnableDate.isSelected() && !txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome e data
+            tabelaModelo = controller.selectPlantaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim), txtNomeEvento.getText());
+        } else if (!txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome
+            tabelaModelo = controller.selectPlantaoNome(tabelaModelo, txtNomeEvento.getText());
+        } else if (checkBoxEnableDate.isSelected() && txtNomeEvento.getText().equals("")) {
+            //pesquisa por data
+            tabelaModelo = controller.selectPlantaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
+        } else {
+            //pesquisa tudo
+            tabelaModelo = controller.selectPlantoesAll(tabelaModelo);
+        }
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {
+        String strDate = DateFormat.getDateInstance().format(dateChooser.getDate());
+        java.sql.Date sqlDate = null;
+        try {
+            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            return sqlDate;
+        } catch (ParseException ex) {
+            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sqlDate;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;

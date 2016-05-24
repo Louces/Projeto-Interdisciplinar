@@ -90,7 +90,7 @@ public class PlantaoDao {
                 plantao.setFim(rs.getDate("dataFim"));
                 plantoes.add(plantao);
             }   
-           
+           stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -114,7 +114,7 @@ public class PlantaoDao {
                 plantao.setFim(rs.getDate("dataFim"));
                 plantoes.add(plantao);
             }   
-           
+           stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -141,7 +141,7 @@ public class PlantaoDao {
                 plantao.setFim(rs.getDate("dataFim"));
                 plantoes.add(plantao);
             }   
-           
+           stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -169,7 +169,7 @@ public class PlantaoDao {
                 plantao.setFim(rs.getDate("dataFim"));
                 plantoes.add(plantao);
             }   
-           
+           stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -205,7 +205,7 @@ public class PlantaoDao {
                 plantao.setAmbulancia(rs.getString("ambulancia"));
                 plantao.setObservacao(rs.getString("observacao"));
             }
-            
+            stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

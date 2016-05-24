@@ -193,6 +193,10 @@ public class Principal extends javax.swing.JFrame {
             SearchPlantao searchPlantao = new SearchPlantao();
             desktopPane.add(searchPlantao);
             searchPlantao.setVisible(true);
+         }else if(menu.equals("[Atividades, Consultas, Clientes, Base de dados]")){
+            SearchNotaFiscal searchNotaFiscal = new SearchNotaFiscal();
+            desktopPane.add(searchNotaFiscal);
+            searchNotaFiscal.setVisible(true);
          }
         }
     }//GEN-LAST:event_treeAtividadesMouseClicked
@@ -203,13 +207,14 @@ public class Principal extends javax.swing.JFrame {
 
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             if (fileChooser.getSelectedFile().getName().contains("xml")) {
-                File selectedFile = new File("C:\\Users\\fabiano\\Downloads\\xml_000571938345573083.xml");;//fileChooser.getSelectedFile();
+                File selectedFile = fileChooser.getSelectedFile();
                 NotaFiscalXML nf = new NotaFiscalXML(selectedFile);
                 nf.getAllNotas();
                 NotaFiscalController controller = new NotaFiscalController(nf.getNota());
-                controller.adicionaNota();
+                controller.adicionaNotas();
+                JOptionPane.showMessageDialog(this, "Notas fiscais cadastradas com sucesso.");
             }else{
-                JOptionPane.showMessageDialog(null, "Arquivo invÃ¡lido");
+                JOptionPane.showMessageDialog(this, "Arquivo inválido");
             }
         }
     }//GEN-LAST:event_jMenuItemAtualizarBaseActionPerformed

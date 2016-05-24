@@ -9,8 +9,11 @@ import br.com.remocamp.jdbc.ConnectionFactory;
 import br.com.remocamp.model.NotaFiscal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,8 +25,13 @@ public class NotaFiscalDao {
     private PreparedStatement stmt;
     private ArrayList<NotaFiscal> notasFiscaisXML = new ArrayList<>();
 
-    public NotaFiscalDao() {
+    public NotaFiscalDao(ArrayList<NotaFiscal> notasFiscaisXML) {
         setConnection(new ConnectionFactory().getConnection());
+        this.notasFiscaisXML=notasFiscaisXML;
+    }
+
+    public NotaFiscalDao() {
+        setConnection(new ConnectionFactory().getConnection());     
     }
 
     public Connection getConnection() {
@@ -34,8 +42,17 @@ public class NotaFiscalDao {
         this.connection = connection;
     }
 
+    public void adicionaNotas() {
+        for (int i = 0; i < notasFiscaisXML.size(); i++) {
+            adiciona(notasFiscaisXML.get(i));
+        }
+    }
+    
     public void adiciona(NotaFiscal nota) {
 
+        if(contemNota(nota)){
+            return;
+        }
         String sql = "insert into nfse"
            + "("
                 +"TIPO,"
@@ -242,7 +259,6 @@ public class NotaFiscalDao {
           stmt.setString(++i,nota.getDEDUCAO());
           stmt.setString(++i,nota.getVALOR_ISS_UNITARIO());
           
-            System.out.println(sql);
           stmt.execute();
           stmt.close();
 
@@ -252,10 +268,51 @@ public class NotaFiscalDao {
 
     }
 
+    public boolean contemNota(NotaFiscal nota) {
+        String sql = "select * from nfse where NUM_NOTA=?";
+
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1, nota.getNUM_NOTA() + "");
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return false;
+    }
+    
+    public void consultaAllNotas(){
+        String sql = "select * from nfse";
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            notasFiscaisXML.clear();
+            
+            while (rs.next()) {
+                NotaFiscal nota = new NotaFiscal();
+                nota.setNUM_NOTA(rs.getInt("NUM_NOTA"));
+                nota.setTOMADOR_RAZAO_SOCIAL(rs.getString("TOMADOR_RAZAO_SOCIAL"));
+                nota.setDATA_HORA_EMISSAO(rs.getString("DATA_HORA_EMISSAO"));
+                notasFiscaisXML.add(nota);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        
+    }
+    
     public ArrayList<NotaFiscal> getNotasFiscaisXML() {
         return notasFiscaisXML;
     }
-
+    
     public void setNotasFiscaisXML(ArrayList<NotaFiscal> notasFiscaisXML) {
         this.notasFiscaisXML = notasFiscaisXML;
     }

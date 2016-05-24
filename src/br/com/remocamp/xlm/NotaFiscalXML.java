@@ -48,7 +48,7 @@ public class NotaFiscalXML {
         List elements = mural.getChildren();
         Iterator iterator = elements.iterator();
         
-        long inicio = System.currentTimeMillis();
+        
         while(iterator.hasNext()){
             Element element = (Element)iterator.next();
             
@@ -149,9 +149,7 @@ public class NotaFiscalXML {
             getNota().add(notaFiscal);
             
         }
-        long fim = System.currentTimeMillis();
-        long tempo = (long) ((fim-inicio)/1000d);
-        System.out.println("Tempo total : " + tempo);
+       
     }
 
     public ArrayList <NotaFiscal> getNota() {
