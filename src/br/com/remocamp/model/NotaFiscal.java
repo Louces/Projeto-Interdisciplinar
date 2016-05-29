@@ -12,7 +12,7 @@ package br.com.remocamp.model;
 public class NotaFiscal {
 
     private String TIPO;
-    private long NUM_NOTA;
+    private int NUM_NOTA;
     private String DATA_HORA_EMISSAO;
     private String DIA_EMISSAO;
     private String MES_COMPETENCIA;
@@ -116,7 +116,7 @@ public class NotaFiscal {
         return NUM_NOTA;
     }
 
-    public void setNUM_NOTA(long NUM_NOTA) {
+    public void setNUM_NOTA(int NUM_NOTA) {
         this.NUM_NOTA = NUM_NOTA;
     }
 

@@ -309,6 +309,120 @@ public class NotaFiscalDao {
         
     }
     
+    public NotaFiscal nota(int numeroNota){
+        String sql = "select * from nfse where NUM_NOTA = ?";
+        
+        NotaFiscal nota = new NotaFiscal();
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            int i=0;
+            stmt.setString(1,numeroNota+"");
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                nota.setTIPO(rs.getString("TIPO"));
+                nota.setNUM_NOTA(rs.getInt("NUM_NOTA"));
+                nota.setDATA_HORA_EMISSAO(rs.getString("DATA_HORA_EMISSAO"));
+                nota.setDIA_EMISSAO(rs.getString("DIA_EMISSAO"));
+                nota.setMES_COMPETENCIA(rs.getString("MES_COMPETENCIA"));
+                nota.setSITUACAO_NF(rs.getString("SITUACAO_NF"));
+                nota.setCODIGO_CIDADE(rs.getInt("CODIGO_CIDADE"));
+                nota.setUSUARIO_CPF_CNPJ(rs.getString("USUARIO_CPF_CNPJ"));
+                nota.setUSUARIO_RAZAO_SOCIAL(rs.getString("USUARIO_RAZAO_SOCIAL"));
+                nota.setDATA_HORA_CANCELAMENTO(rs.getString("DATA_HORA_CANCELAMENTO"));
+                nota.setRPS_EMISSAO(rs.getInt("RPS_EMISSAO"));
+                nota.setSUB_EMISSAO(rs.getInt("SUB_EMISSAO"));
+                nota.setPRESTADOR_CPF_CNPJ(rs.getString("PRESTADOR_CPF_CNPJ"));
+                nota.setPRESTADOR_INSCRICAO_MUNICIPAL(rs.getString("PRESTADOR_INSCRICAO_MUNICIPAL"));
+                nota.setPRESTADOR_RAZAO_SOCIAL(rs.getString("PRESTADOR_RAZAO_SOCIAL"));
+                nota.setPRESTADOR_NOME_FANTASIA(rs.getString("PRESTADOR_NOME_FANTASIA"));
+                nota.setPRESTADOR_TIPO_LOGRADOURO(rs.getString("PRESTADOR_TIPO_LOGRADOURO"));
+                nota.setPRESTADOR_LOGRADOURO(rs.getString("PRESTADOR_LOGRADOURO"));
+                nota.setPRESTADOR_PREST_NUMERO(rs.getString("PRESTADOR_PREST_NUMERO"));
+                nota.setPRESTADOR_COMPLEMENTO(rs.getString("PRESTADOR_COMPLEMENTO"));
+                nota.setPRESTADOR_TIPO_BAIRRO(rs.getString("PRESTADOR_TIPO_BAIRRO"));
+                nota.setPRESTADOR_BAIRRO(rs.getString("PRESTADOR_BAIRRO"));
+                nota.setPRESTADOR_CIDADE_CODIGO(rs.getInt("PRESTADOR_CIDADE_CODIGO"));
+                nota.setPRESTADOR_CIDADE(rs.getString("PRESTADOR_CIDADE"));
+                nota.setPRESTADOR_UF(rs.getString("PRESTADOR_UF"));
+                nota.setPRESTADOR_CEP(rs.getString("PRESTADOR_CEP"));
+                nota.setPRESTADOR_DDD_TELEFONE(rs.getInt("PRESTADOR_DDD_TELEFONE"));
+                nota.setTOMADOR_CPF_CNPJ(rs.getString("TOMADOR_CPF_CNPJ"));
+                nota.setTOMADOR_RAZAO_SOCIAL(rs.getString("TOMADOR_RAZAO_SOCIAL"));
+                nota.setTOMADOR_TIPO_LOGRADOURO(rs.getString("TOMADOR_TIPO_LOGRADOURO"));
+                nota.setTOMADOR_LOGRADOURO(rs.getString("TOMADOR_LOGRADOURO"));
+                nota.setTOMADOR_NUMERO(rs.getString("TOMADOR_NUMERO"));
+                nota.setTOMADOR_TIPO_BAIRRO(rs.getString("TOMADOR_TIPO_BAIRRO"));
+                nota.setTOMADOR_BAIRRO(rs.getString("TOMADOR_BAIRRO"));
+                nota.setTOMADOR_CIDADE_CODIGO(rs.getInt("TOMADOR_CIDADE_CODIGO"));
+                nota.setTOMADOR_CIDADE(rs.getString("TOMADOR_CIDADE"));
+                nota.setTOMADOR_UF(rs.getString("TOMADOR_UF"));
+                nota.setTOMADOR_CEP(rs.getString("TOMADOR_CEP"));
+                nota.setTOMADOR_EMAIL(rs.getString("TOMADOR_EMAIL"));
+                nota.setTOMADOR_OPTANTE_SIMPLES(rs.getString("TOMADOR_OPTANTE_SIMPLES"));
+                nota.setTOMADOR_DDD_TELEFONE(rs.getInt("TOMADOR_DDD_TELEFONE"));
+                nota.setTOMADOR_TELEFONE(rs.getString("TOMADOR_TELEFONE"));
+                nota.setVALOR_NOTA(Double.parseDouble(rs.getString("VALOR_NOTA")));
+                nota.setVALOR_DEDUCAO(Double.parseDouble(rs.getString("VALOR_DEDUCAO")));
+                nota.setVALOR_SERVICO(Double.parseDouble(rs.getString("VALOR_SERVICO")));
+                nota.setVALOR_ISS(Double.parseDouble(rs.getString("VALOR_ISS")));
+                nota.setVALOR_PIS(Double.parseDouble(rs.getString("VALOR_PIS")));
+                nota.setVALOR_COFINS(Double.parseDouble(rs.getString("VALOR_COFINS")));
+                nota.setVALOR_INSS(Double.parseDouble(rs.getString("VALOR_INSS")));
+                nota.setVALOR_IR(Double.parseDouble(rs.getString("VALOR_IR")));
+                nota.setVALOR_CSLL(Double.parseDouble(rs.getString("VALOR_CSLL")));
+                nota.setALIQUOTA_PIS(rs.getString("ALIQUOTA_PIS"));
+                nota.setALIQUOTA_COFINS(rs.getString("ALIQUOTA_COFINS"));
+                nota.setALIQUOTA_INSS(rs.getString("ALIQUOTA_INSS"));
+                nota.setALIQUOTA_IR(rs.getString("ALIQUOTA_IR"));
+                nota.setALIQUOTA_CSLL(rs.getString("ALIQUOTA_CSLL"));
+                nota.setCODIGO_ATIVIDADE(rs.getString("CODIGO_ATIVIDADE"));
+                nota.setDESCRICAO_ATIVIDADE(rs.getString("DESCRICAO_ATIVIDADE"));
+                nota.setGRUPO_ATIVIDADE(rs.getString("GRUPO_ATIVIDADE"));
+                nota.setENQUADRAMENTO_ATIVIDADE(rs.getString("ENQUADRAMENTO_ATIVIDADE"));
+                nota.setLOCAL_INCIDENCIA_ATIVIDADE(rs.getString("LOCAL_INCIDENCIA_ATIVIDADE"));
+                nota.setTRIBUTAVEL_ATIVIDADE(rs.getString("TRIBUTAVEL_ATIVIDADE"));
+                nota.setDEDUCAO_VALOR_ATIVIDADE(rs.getString("DEDUCAO_VALOR_ATIVIDADE"));
+                nota.setDEDUCAO_ATIVIDADE(rs.getString("DEDUCAO_ATIVIDADE"));
+                nota.setATV_ECON_ATV(rs.getString("ATV_ECON_ATV"));
+                nota.setCOS_SERVICO(rs.getInt("COS_SERVICO"));
+                nota.setDESCRICAO_SERVICO(rs.getString("DESCRICAO_SERVICO"));
+                nota.setALIQUOTA(rs.getString("ALIQUOTA"));
+                nota.setTIPO_RECOLHIMENTO(rs.getString("TIPO_RECOLHIMENTO"));
+                nota.setOPERACAO_TRIBUTACAO(rs.getString("OPERACAO_TRIBUTACAO"));
+                nota.setMOTIVO_PAGAMENTO(rs.getString("MOTIVO_PAGAMENTO"));
+                nota.setCODIGO_REGIME(rs.getInt("CODIGO_REGIME"));
+                nota.setCIDADE_CODIGO_PRESTACAO(rs.getInt("CIDADE_CODIGO_PRESTACAO"));
+                nota.setCIDADE_PRESTACAO(rs.getString("CIDADE_PRESTACAO"));
+                nota.setUF_PRESTACAO(rs.getString("UF_PRESTACAO"));
+                nota.setDOCUMENTO_PRESTACAO(rs.getString("DOCUMENTO_PRESTACAO"));
+                nota.setSERIE_PRESTACAO(rs.getString("SERIE_PRESTACAO"));
+                nota.setTRIBUTACAO_PRESTACAO(rs.getString("TRIBUTACAO_PRESTACAO"));
+                nota.setDESCRICAO_NOTA(rs.getString("DESCRICAO_NOTA"));
+                nota.setCODIGO_VERIFICACAO(rs.getString("CODIGO_VERIFICACAO"));
+                nota.setID_NOTA_FISCAL(rs.getInt("ID_NOTA_FISCAL"));
+                nota.setVALOR_ISS_RET(rs.getString("VALOR_ISS_RET"));
+                nota.setALIQ_RET(rs.getString("ALIQ_RET"));
+                nota.setDESCONTO_RET(rs.getString("DESCONTO_RET"));
+                nota.setTRIBUTAVEL(rs.getString("TRIBUTAVEL"));
+                nota.setDESCRICAO(rs.getString("DESCRICAO"));
+                nota.setQUANTIDADE(rs.getString("QUANTIDADE"));
+                nota.setVALOR_UNITARIO(Double.parseDouble(rs.getString("VALOR_UNITARIO")));
+                nota.setVALOR_TOTAL(Double.parseDouble(rs.getString("VALOR_TOTAL")));
+                nota.setDEDUCAO(rs.getString("DEDUCAO"));
+                nota.setVALOR_ISS_UNITARIO(rs.getString("VALOR_ISS_UNITARIO"));
+            }
+            
+            
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+        
+       return nota;
+    }
+    
     public ArrayList<NotaFiscal> getNotasFiscaisXML() {
         return notasFiscaisXML;
     }

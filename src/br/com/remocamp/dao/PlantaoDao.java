@@ -182,7 +182,7 @@ public class PlantaoDao {
         try {
             // prepared statement para consulta
             stmt = getConnection().prepareStatement(sql);
-            int j=0;
+          //  int j=0;
             stmt.setString(1,i+"");
             
             // executa um select

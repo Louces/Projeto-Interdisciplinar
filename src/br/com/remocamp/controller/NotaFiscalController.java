@@ -52,4 +52,9 @@ public class NotaFiscalController {
         notaDao.adicionaNotas();
     }
     
+    public NotaFiscal getNota (int numeroNota){
+        notaDao = new NotaFiscalDao();
+        return notaDao.nota(numeroNota);
+    }
+    
 }

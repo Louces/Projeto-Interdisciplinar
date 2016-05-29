@@ -7,6 +7,7 @@ package br.com.remocamp.view;
 
 import br.com.remocamp.controller.NotaFiscalController;
 import br.com.remocamp.model.CellRenderer;
+import br.com.remocamp.model.NotaFiscal;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -115,15 +116,14 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
             panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPesquisaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbRazaoSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbRazaoSocial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelPesquisaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(checkBoxHabilitar))
+                    .addComponent(checkBoxHabilitar)
                     .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateChooserFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -136,9 +136,14 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nº Nota", "Razão Social", "Data de Emissão"
+
             }
         ));
+        tabelaConsultaNotaFiscal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaConsultaNotaFiscalMouseClicked(evt);
+            }
+        });
         scrollPaneTable.setViewportView(tabelaConsultaNotaFiscal);
 
         javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
@@ -154,8 +159,8 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPaneTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollPaneTable, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,13 +179,29 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabelaConsultaNotaFiscalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaConsultaNotaFiscalMouseClicked
+
+        if(evt.getClickCount()==2){
+            int i = tabelaConsultaNotaFiscal.getSelectedRow();
+            String numeroNota = tabelaConsultaNotaFiscal.getValueAt(i, 0)+"";
+            NotaFiscalController controller = new NotaFiscalController();
+            NotaFiscal nota = controller.getNota(Integer.parseInt(numeroNota.trim()));
+            
+            NotaFiscalFrame notaFrame = new NotaFiscalFrame(nota);
+            Principal.desktopPane.add(notaFrame);
+            notaFrame.setVisible(true);
+            
+        }
+        
+    }//GEN-LAST:event_tabelaConsultaNotaFiscalMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

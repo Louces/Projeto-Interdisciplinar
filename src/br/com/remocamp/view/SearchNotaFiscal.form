@@ -38,7 +38,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelPesquisa" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="panelTable" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -88,17 +88,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnPesquisar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="txtPesquisa" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lbRazaoSocial" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnPesquisar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="txtPesquisa" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="checkBoxHabilitar" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="checkBoxHabilitar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="dateChooserInicio" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="dateChooserFim" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -168,8 +167,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="scrollPaneTable" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="scrollPaneTable" pref="418" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -185,13 +184,12 @@
             <Component class="javax.swing.JTable" name="tabelaConsultaNotaFiscal">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="0">
-                    <Column editable="true" title="N&#xba; Nota" type="java.lang.Object"/>
-                    <Column editable="true" title="Raz&#xe3;o Social" type="java.lang.Object"/>
-                    <Column editable="true" title="Data de Emiss&#xe3;o" type="java.lang.Object"/>
-                  </Table>
+                  <Table columnCount="0" rowCount="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaConsultaNotaFiscalMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
