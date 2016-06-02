@@ -12,8 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -415,6 +413,7 @@ public class NotaFiscalDao {
                 nota.setVALOR_ISS_UNITARIO(rs.getString("VALOR_ISS_UNITARIO"));
             }
             
+            stmt.close();
             
         } catch (SQLException e) {
              throw new RuntimeException(e);
@@ -422,6 +421,81 @@ public class NotaFiscalDao {
         
        return nota;
     }
+    
+     public void consultaNomeRazaoSocial(String nomeRazaoSocial){
+         String sql = "SELECT * FROM nfse WHERE LOWER(TOMADOR_RAZAO_SOCIAL) LIKE ?";
+         
+            try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,"%"+nomeRazaoSocial+"%");
+            
+            ResultSet rs = stmt.executeQuery();
+            notasFiscaisXML.clear();
+            
+            while (rs.next()) {
+                NotaFiscal nota = new NotaFiscal();
+                nota.setNUM_NOTA(rs.getInt("NUM_NOTA"));
+                nota.setTOMADOR_RAZAO_SOCIAL(rs.getString("TOMADOR_RAZAO_SOCIAL"));
+                nota.setDATA_HORA_EMISSAO(rs.getString("DATA_HORA_EMISSAO"));
+                notasFiscaisXML.add(nota);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+         
+     }
+    
+    public void consultaEntreDatas(java.sql.Date inicio, java.sql.Date fim){
+        String sql ="SELECT * FROM nfse WHERE DATA_HORA_EMISSAO >= ? AND DATA_HORA_EMISSAO <= ?";
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,inicio+"");
+            stmt.setString(2,fim+"");
+            
+            ResultSet rs = stmt.executeQuery();
+            notasFiscaisXML.clear();
+            
+            while (rs.next()) {
+                NotaFiscal nota = new NotaFiscal();
+                nota.setNUM_NOTA(rs.getInt("NUM_NOTA"));
+                nota.setTOMADOR_RAZAO_SOCIAL(rs.getString("TOMADOR_RAZAO_SOCIAL"));
+                nota.setDATA_HORA_EMISSAO(rs.getString("DATA_HORA_EMISSAO"));
+                notasFiscaisXML.add(nota);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+     public void consultaEntreDatasComNome(java.sql.Date inicio, java.sql.Date fim, String nomeRazaoSocial){
+         String sql ="SELECT * FROM nfse WHERE (DATA_HORA_EMISSAO >= ? AND DATA_HORA_EMISSAO <= ?) AND LOWER(TOMADOR_RAZAO_SOCIAL) LIKE ?";
+         
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1,inicio+"");
+            stmt.setString(2,fim+"");
+            stmt.setString(3,"%"+nomeRazaoSocial+"%");
+            
+            ResultSet rs = stmt.executeQuery();
+            notasFiscaisXML.clear();
+            
+            while (rs.next()) {
+                NotaFiscal nota = new NotaFiscal();
+                nota.setNUM_NOTA(rs.getInt("NUM_NOTA"));
+                nota.setTOMADOR_RAZAO_SOCIAL(rs.getString("TOMADOR_RAZAO_SOCIAL"));
+                nota.setDATA_HORA_EMISSAO(rs.getString("DATA_HORA_EMISSAO"));
+                notasFiscaisXML.add(nota);
+            }
+            stmt.close();
+            
+        } catch (SQLException e) {
+             throw new RuntimeException(e);
+        }
+         
+     }
     
     public ArrayList<NotaFiscal> getNotasFiscaisXML() {
         return notasFiscaisXML;

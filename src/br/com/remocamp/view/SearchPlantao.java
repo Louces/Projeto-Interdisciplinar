@@ -229,7 +229,7 @@ public class SearchPlantao extends javax.swing.JInternalFrame {
             FormularioPlantao plantaoFormulario = controller.selectPlantao(numeroPlantao);
             plantaoFormulario.getDateChoserInicio().setDate(plantaoFormulario.getInicio());
             plantaoFormulario.getDateChoserFim().setDate(plantaoFormulario.getFim());
-            Principal.desktopPane.add(plantaoFormulario);
+            Principal.desktopPane.add(plantaoFormulario).setLocation(85,0);
             plantaoFormulario.setVisible(true);
         }
     }//GEN-LAST:event_tableConsultaPlantaoMouseClicked

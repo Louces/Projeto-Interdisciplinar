@@ -12,13 +12,13 @@ import br.com.remocamp.model.NotaFiscal;
  * @author fabiano
  */
 public class NotaFiscalFrame extends javax.swing.JInternalFrame {
-    NotaFiscal nota;
+    //NotaFiscal nota;
     /**
      * Creates new form NotaFiscalFrame
      */
     public NotaFiscalFrame(NotaFiscal nota) {
         initComponents();
-        this.nota=nota;
+      //  this.nota=nota;
         
         lbNumeroNota.setText(lbNumeroNota.getText()+nota.getNUM_NOTA());
         lbDataHoraEmissao.setText(lbDataHoraEmissao.getText()+nota.getDATA_HORA_EMISSAO());
@@ -36,8 +36,8 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
         lbTomadorCPF_CNPJ.setText(lbTomadorCPF_CNPJ.getText()+nota.getTOMADOR_CPF_CNPJ());
         lbTomadorInscricao.setText(lbTomadorInscricao.getText()+"N/D");
         String endereco = nota.getTOMADOR_TIPO_LOGRADOURO()+" "+nota.getTOMADOR_LOGRADOURO()
-                          +" , nº "+nota.getTOMADOR_NUMERO()+" "+nota.getTOMADOR_TIPO_BAIRRO()+" "+nota.getTOMADOR_BAIRRO()
-                          +" - CEP: "+nota.getTOMADOR_CEP();
+                          +" , Nº "+nota.getTOMADOR_NUMERO()+" - "+nota.getTOMADOR_TIPO_BAIRRO()+" "+nota.getTOMADOR_BAIRRO()
+                          +" - CEP : "+nota.getTOMADOR_CEP().substring(0, nota.getTOMADOR_CEP().length()-3)+"-"+nota.getTOMADOR_CEP().substring(nota.getTOMADOR_CEP().length()-3);
         lbTomadorEndereco.setText(lbTomadorEndereco.getText()+endereco);
         lbTomadorMunicipio.setText(lbTomadorMunicipio.getText()+nota.getTOMADOR_CIDADE());
         lbTomadorUF.setText(lbTomadorUF.getText()+nota.getTOMADOR_UF());
@@ -46,7 +46,8 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
         
         txtAreaDescricaoNota.setText(nota.getDESCRICAO_NOTA().replaceAll("<br />", "\n"));
         
-        lbValorNota.setText(lbValorNota.getText()+nota.getVALOR_TOTAL());
+        String valorTotal = nota.getVALOR_TOTAL()+"";
+        lbValorNota.setText(lbValorNota.getText()+valorTotal.replace('.', ','));
         lbMesNotaFiscal.setText(lbMesNotaFiscal.getText()+nota.getMES_COMPETENCIA());
         lbLocalPrestacao.setText(lbLocalPrestacao.getText()+nota.getCIDADE_PRESTACAO());
         txtAreaDescricaoServico.setText(nota.getDESCRICAO_SERVICO());
@@ -62,12 +63,12 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelHeader = new javax.swing.JPanel();
+        lbCampinas = new javax.swing.JLabel();
+        lbHeader01 = new javax.swing.JLabel();
+        lbHeader02 = new javax.swing.JLabel();
+        lbHeader03 = new javax.swing.JLabel();
+        panelInformacoes = new javax.swing.JPanel();
         lbNumeroNota = new javax.swing.JLabel();
         lbDataHoraEmissao = new javax.swing.JLabel();
         lbCodigoVerificacao = new javax.swing.JLabel();
@@ -91,68 +92,68 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
         lbTomadorTelefone = new javax.swing.JLabel();
         lbTomadorEmail = new javax.swing.JLabel();
         panelDescriminacaoServico = new javax.swing.JPanel();
-        scrollPane = new javax.swing.JScrollPane();
+        scrollPaneDiscriminacao = new javax.swing.JScrollPane();
         txtAreaDescricaoNota = new javax.swing.JTextArea();
-        jPanel7 = new javax.swing.JPanel();
+        panelOutrasInformacoes = new javax.swing.JPanel();
         lbMesNotaFiscal = new javax.swing.JLabel();
         lbLocalPrestacao = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        lbDescricaoServico = new javax.swing.JLabel();
+        scrollPaneDescricaoServico = new javax.swing.JScrollPane();
         txtAreaDescricaoServico = new javax.swing.JTextArea();
 
         setClosable(true);
         setTitle("Nota Fiscal");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelHeader.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/prefeitura-municipal-de-campinas-original.jpg"))); // NOI18N
+        lbCampinas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/prefeitura-municipal-de-campinas-original.jpg"))); // NOI18N
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel14.setText("PREFEITURA MUNICIPAL DE CAMPINAS");
+        lbHeader01.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbHeader01.setText("PREFEITURA MUNICIPAL DE CAMPINAS");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setText("SECRETARIA MUNICIPAL DE FINANÇAS DE CAMPINAS");
+        lbHeader02.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbHeader02.setText("SECRETARIA MUNICIPAL DE FINANÇAS DE CAMPINAS");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel16.setText("NOTA FISCAL DE SERVIÇOS ELETRÔNICA ­ NFSe");
+        lbHeader03.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbHeader03.setText("NOTA FISCAL DE SERVIÇOS ELETRÔNICA ­ NFSe");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
+        panelHeader.setLayout(panelHeaderLayout);
+        panelHeaderLayout.setHorizontalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lbCampinas)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addGap(78, 78, 78)
-                        .addComponent(jLabel14)
+                        .addComponent(lbHeader01)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelHeaderLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel16))
-                            .addComponent(jLabel15))
+                                .addComponent(lbHeader03))
+                            .addComponent(lbHeader02))
                         .addContainerGap())))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelHeaderLayout.setVerticalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14)
+                .addComponent(lbHeader01)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
+                .addComponent(lbHeader02)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
+                .addComponent(lbHeader03)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addComponent(lbCampinas)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panelInformacoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lbNumeroNota.setText("Número da Nota : ");
 
@@ -163,28 +164,28 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
         lbValorNota.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbValorNota.setText("VALOR TOTAL DA NOTA :  R$ ");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelInformacoesLayout = new javax.swing.GroupLayout(panelInformacoes);
+        panelInformacoes.setLayout(panelInformacoesLayout);
+        panelInformacoesLayout.setHorizontalGroup(
+            panelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInformacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(panelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInformacoesLayout.createSequentialGroup()
                         .addComponent(lbNumeroNota, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                         .addGap(70, 70, 70))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelInformacoesLayout.createSequentialGroup()
                         .addComponent(lbDataHoraEmissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(34, 34, 34))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(panelInformacoesLayout.createSequentialGroup()
                         .addComponent(lbCodigoVerificacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(45, 45, 45))
                     .addComponent(lbValorNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelInformacoesLayout.setVerticalGroup(
+            panelInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInformacoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lbNumeroNota)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,7 +197,7 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        panelPrestador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Prestador de Serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelPrestador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Prestador de Serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lbRemocamp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/LOGOMARCA.jpg"))); // NOI18N
 
@@ -252,7 +253,7 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
                 .addComponent(lbPrestadorTelefone))
         );
 
-        panelTomador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tomador de Serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelTomador.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Tomador de Serviço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lbTomadorRazaoSocial.setText("Nome/Razão Social : ");
 
@@ -307,11 +308,11 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
                 .addComponent(lbTomadorEmail))
         );
 
-        panelDescriminacaoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Discriminação dos Serviços", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelDescriminacaoServico.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Discriminação dos Serviços", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         txtAreaDescricaoNota.setColumns(20);
         txtAreaDescricaoNota.setRows(5);
-        scrollPane.setViewportView(txtAreaDescricaoNota);
+        scrollPaneDiscriminacao.setViewportView(txtAreaDescricaoNota);
 
         javax.swing.GroupLayout panelDescriminacaoServicoLayout = new javax.swing.GroupLayout(panelDescriminacaoServico);
         panelDescriminacaoServico.setLayout(panelDescriminacaoServicoLayout);
@@ -319,54 +320,54 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
             panelDescriminacaoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDescriminacaoServicoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane)
+                .addComponent(scrollPaneDiscriminacao)
                 .addContainerGap())
         );
         panelDescriminacaoServicoLayout.setVerticalGroup(
             panelDescriminacaoServicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDescriminacaoServicoLayout.createSequentialGroup()
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addComponent(scrollPaneDiscriminacao, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Outras Informações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        panelOutrasInformacoes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Outras Informações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lbMesNotaFiscal.setText("Mês de Competencia da Nota Fiscal : ");
 
         lbLocalPrestacao.setText("Local da Prestação de Serviço : ");
 
-        jLabel26.setText("Descrição do Serviço : ");
+        lbDescricaoServico.setText("Descrição do Serviço : ");
 
         txtAreaDescricaoServico.setColumns(20);
         txtAreaDescricaoServico.setRows(5);
-        jScrollPane1.setViewportView(txtAreaDescricaoServico);
+        scrollPaneDescricaoServico.setViewportView(txtAreaDescricaoServico);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelOutrasInformacoesLayout = new javax.swing.GroupLayout(panelOutrasInformacoes);
+        panelOutrasInformacoes.setLayout(panelOutrasInformacoesLayout);
+        panelOutrasInformacoesLayout.setHorizontalGroup(
+            panelOutrasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOutrasInformacoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelOutrasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneDescricaoServico)
+                    .addGroup(panelOutrasInformacoesLayout.createSequentialGroup()
+                        .addGroup(panelOutrasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbLocalPrestacao)
                             .addComponent(lbMesNotaFiscal)
-                            .addComponent(jLabel26))
+                            .addComponent(lbDescricaoServico))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        panelOutrasInformacoesLayout.setVerticalGroup(
+            panelOutrasInformacoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelOutrasInformacoesLayout.createSequentialGroup()
                 .addComponent(lbMesNotaFiscal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbLocalPrestacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel26)
+                .addComponent(lbDescricaoServico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneDescricaoServico, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -378,22 +379,22 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panelInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelPrestador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelTomador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDescriminacaoServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(panelOutrasInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(1, 1, 1)
                 .addComponent(panelPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -401,7 +402,7 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
                 .addGap(1, 1, 1)
                 .addComponent(panelDescriminacaoServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelOutrasInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -410,17 +411,13 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCampinas;
     private javax.swing.JLabel lbCodigoVerificacao;
     private javax.swing.JLabel lbDataHoraEmissao;
+    private javax.swing.JLabel lbDescricaoServico;
+    private javax.swing.JLabel lbHeader01;
+    private javax.swing.JLabel lbHeader02;
+    private javax.swing.JLabel lbHeader03;
     private javax.swing.JLabel lbLocalPrestacao;
     private javax.swing.JLabel lbMesNotaFiscal;
     private javax.swing.JLabel lbNumeroNota;
@@ -442,9 +439,13 @@ public class NotaFiscalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbTomadorUF;
     private javax.swing.JLabel lbValorNota;
     private javax.swing.JPanel panelDescriminacaoServico;
+    private javax.swing.JPanel panelHeader;
+    private javax.swing.JPanel panelInformacoes;
+    private javax.swing.JPanel panelOutrasInformacoes;
     private javax.swing.JPanel panelPrestador;
     private javax.swing.JPanel panelTomador;
-    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JScrollPane scrollPaneDescricaoServico;
+    private javax.swing.JScrollPane scrollPaneDiscriminacao;
     private javax.swing.JTextArea txtAreaDescricaoNota;
     private javax.swing.JTextArea txtAreaDescricaoServico;
     // End of variables declaration//GEN-END:variables

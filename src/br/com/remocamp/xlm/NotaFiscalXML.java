@@ -55,7 +55,12 @@ public class NotaFiscalXML {
             NotaFiscal notaFiscal = new NotaFiscal();
             notaFiscal.setTIPO(element.getChildText("TIPO"));
             notaFiscal.setNUM_NOTA(Integer.parseInt(element.getChildText("NUM_NOTA")));
-            notaFiscal.setDATA_HORA_EMISSAO(element.getChildText("DATA_HORA_EMISSAO"));
+            
+            String data[] = element.getChildText("DATA_HORA_EMISSAO").split("/", 3);
+            String anoHora[] = data[2].split(" ");
+            String dataformatada = anoHora[0]+"/"+data[1]+"/"+data[0]+" "+anoHora[1];
+            
+            notaFiscal.setDATA_HORA_EMISSAO(dataformatada);
             notaFiscal.setDIA_EMISSAO(element.getChildText("DIA_EMISSAO"));
             notaFiscal.setMES_COMPETENCIA(element.getChildText("MES_COMPETENCIA"));
             notaFiscal.setSITUACAO_NF(element.getChildText("SITUACAO_NF"));

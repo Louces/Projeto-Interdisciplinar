@@ -179,23 +179,23 @@ public class Principal extends javax.swing.JFrame {
          
          if(menu.equals("[Atividades, Orderm de serviço, Nova ordem, Remoção]")){
             FormularioRemocao remocao = new FormularioRemocao();
-            desktopPane.add(remocao);
+            desktopPane.add(remocao).setLocation(90,0);
             remocao.setVisible(true);
          }else if(menu.equals("[Atividades, Orderm de serviço, Nova ordem, Plantão]")){
             FormularioPlantao plantao  = new FormularioPlantao();
-            desktopPane.add(plantao);
+            desktopPane.add(plantao).setLocation(90,0);
             plantao.setVisible(true);
          }else if(menu.equals("[Atividades, Consultas, Ordem de serviço, Remoção]")){
             SearchRemocao searchRemocao = new SearchRemocao();
-            desktopPane.add(searchRemocao);
+            desktopPane.add(searchRemocao).setLocation(90,0);
             searchRemocao.setVisible(true);
          }else if(menu.equals("[Atividades, Consultas, Ordem de serviço, Plantão]")){
             SearchPlantao searchPlantao = new SearchPlantao();
-            desktopPane.add(searchPlantao);
+            desktopPane.add(searchPlantao).setLocation(90,0);
             searchPlantao.setVisible(true);
          }else if(menu.equals("[Atividades, Consultas, Clientes, Base de dados]")){
             SearchNotaFiscal searchNotaFiscal = new SearchNotaFiscal();
-            desktopPane.add(searchNotaFiscal);
+            desktopPane.add(searchNotaFiscal).setLocation(90,0);
             searchNotaFiscal.setVisible(true);
          }
         }

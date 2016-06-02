@@ -8,6 +8,12 @@ package br.com.remocamp.view;
 import br.com.remocamp.controller.NotaFiscalController;
 import br.com.remocamp.model.CellRenderer;
 import br.com.remocamp.model.NotaFiscal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -36,6 +42,14 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
     public final void tabelaInicial(){
          tabelaModelo = controller.selectNotaFiscalAll(tabelaModelo);
      }
+    
+    public void eraseTable() {
+        if (tabelaModelo.getRowCount() > 0) {
+            for (int i = tabelaModelo.getRowCount() - 1; i > -1; i--) {
+                tabelaModelo.removeRow(i);
+            }
+        }
+    }
     
     private void configTable(){
     
@@ -82,6 +96,11 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
         panelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Pesquisa"));
 
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         lbRazaoSocial.setText("Razão Social :");
 
@@ -90,6 +109,11 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
         dateChooserFim.setBorder(javax.swing.BorderFactory.createTitledBorder("Fim"));
 
         checkBoxHabilitar.setText("Habilitar");
+        checkBoxHabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxHabilitarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
         panelPesquisa.setLayout(panelPesquisaLayout);
@@ -196,13 +220,55 @@ public class SearchNotaFiscal extends javax.swing.JInternalFrame {
             NotaFiscal nota = controller.getNota(Integer.parseInt(numeroNota.trim()));
             
             NotaFiscalFrame notaFrame = new NotaFiscalFrame(nota);
-            Principal.desktopPane.add(notaFrame);
+            Principal.desktopPane.add(notaFrame).setLocation(85,0);
             notaFrame.setVisible(true);
             
         }
         
     }//GEN-LAST:event_tabelaConsultaNotaFiscalMouseClicked
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+         eraseTable();
+        
+         if (checkBoxHabilitar.isSelected() && !txtPesquisa.getText().equals("")) {
+            //pesquisa por nome e data
+            tabelaModelo = controller.select_NFSE_DataNomeRazaoSocial(tabelaModelo, date(dateChooserInicio), date(dateChooserFim), txtPesquisa.getText());
+        } else if (!txtPesquisa.getText().equals("")) {
+            //pesquisa por nome
+            tabelaModelo = controller.select_NFSE_RazaoSocial(tabelaModelo, txtPesquisa.getText());
+        } else if (checkBoxHabilitar.isSelected() && txtPesquisa.getText().equals("")) {
+            //pesquisa por data
+            tabelaModelo = controller.select_NFSE_Data(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
+        } else {
+            //pesquisa tudo
+            tabelaModelo = controller.selectNotaFiscalAll(tabelaModelo);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void checkBoxHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxHabilitarActionPerformed
+    
+        if (checkBoxHabilitar.isSelected()) {
+            dateChooserInicio.setEnabled(true);
+            dateChooserFim.setEnabled(true);
+        } else {
+            dateChooserInicio.setEnabled(false);
+            dateChooserFim.setEnabled(false);
+        }
+        
+    }//GEN-LAST:event_checkBoxHabilitarActionPerformed
+
+    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {
+        String strDate = DateFormat.getDateInstance().format(dateChooser.getDate());
+        java.sql.Date sqlDate = null;
+        try {
+            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            return sqlDate;
+        } catch (ParseException ex) {
+            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sqlDate;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar;

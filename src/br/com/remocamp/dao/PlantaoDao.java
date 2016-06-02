@@ -149,14 +149,13 @@ public class PlantaoDao {
     
     public void consultaEntreDatasComNome(java.sql.Date inicio, java.sql.Date fim, String nomeEvento){
          String sql ="SELECT * FROM plantao WHERE (dataInicio >= ? AND dataFim <= ?) AND LOWER(nomeEvento) LIKE ?";
-         System.out.println(inicio+" "+fim+" "+nomeEvento);
+         
         try {
             // prepared statement para consulta
             stmt = getConnection().prepareStatement(sql);
             stmt.setString(1,inicio+"");
             stmt.setString(2,fim+"");
             stmt.setString(3,"%"+nomeEvento+"%");
-            System.out.println(sql);
             // executa um select
             ResultSet rs = stmt.executeQuery();
             plantoes.clear();
