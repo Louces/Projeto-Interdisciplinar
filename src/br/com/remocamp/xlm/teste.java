@@ -1,17 +1,12 @@
 package br.com.remocamp.xlm;
 
-import br.com.remocamp.controller.PlantaoController;
-import br.com.remocamp.model.Plantao;
 import java.io.File;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.Namespace;
-import org.jdom2.filter.ElementFilter;
 import org.jdom2.input.SAXBuilder;
 
 

@@ -5,6 +5,8 @@
  */
 package br.com.remocamp.view;
 
+import br.com.remocamp.model.Remocao;
+
 /**
  *
  * @author fabiano
@@ -14,6 +16,13 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     /**
      * Creates new form NovoJInternalFrame
      */
+    private int idRemocao; 
+    private java.sql.Date inicio;
+    private java.sql.Date fim;
+    private String ambulancia;
+    private com.toedter.calendar.JDateChooser dateInicio;
+    private com.toedter.calendar.JDateChooser dateFim;
+    
     public FormularioRemocao() {
         initComponents();
     }
@@ -657,4 +666,206 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtResponsavel;
     private javax.swing.JTextField txtUnidMedico;
     // End of variables declaration//GEN-END:variables
+
+    private void setAmbulanciaFormulario(Remocao remocao) {
+
+        String tipo = remocao.getAmbulancia();
+
+        if (tipo.equals("UTI")) {
+            checkBoxUTI.setSelected(true);
+        } else if (tipo.equals("Basica")) {
+            checkBoxBasica.setSelected(true);
+        } else {
+            checkBoxSimples.setSelected(true);
+        }
+    }
+    
+    public int getIdRemocao() {
+        return idRemocao;
+    }
+
+    public void setIdRemocao(int idRemocao) {
+        this.idRemocao = idRemocao;
+    }
+    
+    public String getNome(){
+        return txtNome.getText();
+    }
+    
+    public void setNome(String nome){
+        this.txtNome.setText(nome);
+    }
+    
+    public String getIdade(){
+        return txtIdade.getText();
+    }
+    
+    public void setIdade(String idade){
+        this.txtIdade.setText(idade);
+    }
+    
+    public String getvagaConfirmada(){
+        if(checkBoxVaga.isSelected()){
+            return "Sim";
+        }
+       return "Não";
+    }
+    
+    public java.sql.Date getDataSolicitacao(){
+     
+    }
+    
+    public void setDataSolicitacao(java.sql.Date dataSolicitacao){
+    
+    }
+    
+    public java.sql.Date getDataRemocao(){
+     
+    }
+    
+    public void setDataRemocao(java.sql.Date dataRemocao){
+    
+    }
+    
+    public String getDiagnostico(){
+        return txtAreaDiagnostico.getText();
+    }
+    
+    public void setDiagnostico(String diagnostico){
+        this.txtAreaDiagnostico.setText(diagnostico);
+    }
+    
+    public String getEnderecoOrigem(){
+        return txtEnderecoOrigem.getText();
+    }
+    
+    public void setEnderecoOrigem(String enderecoOrigem){
+        this.txtEnderecoOrigem.setText(enderecoOrigem);
+    }
+    
+    public String getCidadeOrigem(){
+        return txtCidadeOrigem.getText();
+    }
+    
+    public void setCidadeOrigem(String cidadeOrigem){
+        this.txtCidadeOrigem.setText(cidadeOrigem);
+    }
+     
+    public String getEstadoOrigem(){
+        return txtEstadoOrigem.getText();
+    }
+    
+    public void setEstadoOrigem(String estadoOrigem){
+        this.txtEstadoOrigem.setText(estadoOrigem);
+    }
+    
+    public String getComplementoOrigem(){
+        return txtComplementoOrigem.getText();
+    }
+    
+    public void setComplementoOrigem(String complementoOrigem){
+        this.txtComplementoOrigem.setText(complementoOrigem);
+    }
+    
+    public String getHoraOrigem(){
+        return this.txtHora.getText();
+    }
+    
+    public void setHoraOrigem(String horaOrigem){
+        this.txtHora.setText(horaOrigem);
+    }
+    
+     public String getEnderecoDestino(){
+        return txtEnderecoDestino.getText();
+    }
+    
+    public void setEnderecoDestino(String enderecoDestino){
+        this.txtEnderecoDestino.setText(enderecoDestino);
+    }
+    
+    public String getCidadeDestino(){
+        return txtCidadeDestino.getText();
+    }
+    
+    public void setCidadeDestino(String cidadeDestino){
+        this.txtCidadeDestino.setText(cidadeDestino);
+    }
+     
+    public String getEstadoDestino(){
+        return txtEstadoDestino.getText();
+    }
+    
+    public void setEstadoDestino(String estadoDestino){
+        this.txtEstadoDestino.setText(estadoDestino);
+    }
+    
+    public String getComplementoDestino(){
+        return txtComplementoDestino.getText();
+    }
+    
+    public void setComplementoDestino(String complementoDestino){
+        this.txtComplementoDestino.setText(complementoDestino);
+    }
+    
+    public String getMedico(){
+        return txtMedico.getText();
+    }
+    
+    public void setMedico(String medico){
+        this.txtMedico.setText(medico);
+    }
+    
+    public String getEnfermeiro(){
+        return txtEnfermeiro.getText();
+    }
+    
+    public void setEnfermeiro(String enfermeiro){
+        this.txtEnfermeiro.setText(enfermeiro);
+    }
+    
+    public String getMotorista(){
+        return txtMotorista.getText();
+    }
+    
+    public void setMotorista(String motorista){
+        this.txtMotorista.setText(motorista);
+    }
+    
+    public String getOperador(){
+        return txtOperador.getText();
+    }
+    
+    public void setOperador(String operador){
+        this.txtOperador.setText(operador);
+    }
+    
+    public String getAmbulancia() {
+        setAmbulancia();
+        return ambulancia;
+    }
+
+    public void setAmbulancia() {
+        if (checkBoxBasica.isSelected()) {
+            ambulancia = "Basica";
+        } else if (checkBoxSimples.isSelected()) {
+            ambulancia = "Simples";
+        } else if (checkBoxUTI.isSelected()) {
+            ambulancia = "UTI";
+        } else {
+            ambulancia = "";
+        }
+    }
+
+    public void setAmbulancia(String campo) {
+        ambulancia = campo;
+        if (ambulancia.equals("Basica")) {
+            checkBoxBasica.setSelected(true);
+        } else if (ambulancia.equals("Simples")) {
+            checkBoxSimples.setSelected(true);
+        } else {
+            checkBoxUTI.setSelected(true);
+        }
+    }
+    
+    
 }

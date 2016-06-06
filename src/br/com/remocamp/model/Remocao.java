@@ -1,15 +1,14 @@
 package br.com.remocamp.model;
 
-import java.util.Calendar;
-
 public class Remocao {
     
+    private int idRemocao;
     /*Paciente*/
     private String nome;
     private String idade;
-    private boolean vagaConfirmada;
-    private Calendar dataSolicitacao;
-    private Calendar dataRemocao;
+    private String vagaConfirmada;
+    private java.sql.Date dataSolicitacao;
+    private java.sql.Date dataRemocao;
     private String diagnostico;
     
     /*Origem*/
@@ -54,27 +53,27 @@ public class Remocao {
         this.idade = idade;
     }
 
-    public boolean isVagaConfirmada() {
+    public String getVagaConfirmada() {
         return vagaConfirmada;
     }
 
-    public void setVagaConfirmada(boolean vagaConfirmada) {
+    public void setVagaConfirmada(String vagaConfirmada) {
         this.vagaConfirmada = vagaConfirmada;
     }
 
-    public Calendar getDataSolicitacao() {
+    public java.sql.Date getDataSolicitacao() {
         return dataSolicitacao;
     }
 
-    public void setDataSolicitacao(Calendar dataSolicitacao) {
+    public void setDataSolicitacao(java.sql.Date dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public Calendar getDataRemocao() {
+    public java.sql.Date getDataRemocao() {
         return dataRemocao;
     }
 
-    public void setDataRemocao(Calendar dataRemocao) {
+    public void setDataRemocao(java.sql.Date dataRemocao) {
         this.dataRemocao = dataRemocao;
     }
 
@@ -221,4 +220,12 @@ public class Remocao {
     public void setUnidMedico(String unidMedico) {
         this.unidMedico = unidMedico;
     }  
+
+    public int getIdRemocao() {
+        return idRemocao;
+    }
+
+    public void setIdRemocao(int idRemocao) {
+        this.idRemocao = idRemocao;
+    }
 }
