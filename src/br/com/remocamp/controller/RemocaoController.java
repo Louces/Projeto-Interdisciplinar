@@ -40,30 +40,30 @@ public class RemocaoController {
     }
     
     public void setRemocao() {
-        remocao.setIdRemocao(formularioRemocao.getIdRemocao());
-        remocao.setNome();
-        remocao.setIdade();
-        remocao.setVagaConfirmada();
-        remocao.setDataSolicitacao();
-        remocao.setDataRemocao();
-        remocao.setDiagnostico();
-        remocao.setEnderecoOrigem();
-        remocao.setCidadeOrigem();
-        remocao.setEstadoOrigem();
-        remocao.setComplementoOrigem();
-        remocao.setHoraOrigem();
-        remocao.setEnderecoDestino();
-        remocao.setCidadeDestino();
-        remocao.setEstadoDestino();
-        remocao.setComplementoDestino();
-        remocao.setMedico();
-        remocao.setEnfermeiro();
-        remocao.setMotorista();
-        remocao.setOperador();
-        remocao.setAmbulancia();
-        remocao.setObservacao();
-        remocao.setResponsavel();
-        remocao.setUnidMedico();
+//        remocao.setIdRemocao(formularioRemocao.getIdRemocao());
+//        remocao.setNome();
+//        remocao.setIdade();
+//        remocao.setVagaConfirmada();
+//        remocao.setDataSolicitacao();
+//        remocao.setDataRemocao();
+//        remocao.setDiagnostico();
+//        remocao.setEnderecoOrigem();
+//        remocao.setCidadeOrigem();
+//        remocao.setEstadoOrigem();
+//        remocao.setComplementoOrigem();
+//        remocao.setHoraOrigem();
+//        remocao.setEnderecoDestino();
+//        remocao.setCidadeDestino();
+//        remocao.setEstadoDestino();
+//        remocao.setComplementoDestino();
+//        remocao.setMedico();
+//        remocao.setEnfermeiro();
+//        remocao.setMotorista();
+//        remocao.setOperador();
+//        remocao.setAmbulancia();
+//        remocao.setObservacao();
+//        remocao.setResponsavel();
+//        remocao.setUnidMedico();
     }
 
     public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {

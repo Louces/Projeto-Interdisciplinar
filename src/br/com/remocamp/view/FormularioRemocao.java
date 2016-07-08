@@ -711,17 +711,17 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
        return "Não";
     }
     
-    public java.sql.Date getDataSolicitacao(){
-     
-    }
+//    public java.sql.Date getDataSolicitacao(){
+//     
+//    }
     
     public void setDataSolicitacao(java.sql.Date dataSolicitacao){
     
     }
     
-    public java.sql.Date getDataRemocao(){
-     
-    }
+//    public java.sql.Date getDataRemocao(){
+//     
+//    }
     
     public void setDataRemocao(java.sql.Date dataRemocao){
     
