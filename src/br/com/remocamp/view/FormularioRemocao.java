@@ -5,7 +5,9 @@
  */
 package br.com.remocamp.view;
 
+import br.com.remocamp.controller.RemocaoController;
 import br.com.remocamp.model.Remocao;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,14 +19,16 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
      * Creates new form NovoJInternalFrame
      */
     private int idRemocao; 
-    private java.sql.Date inicio;
-    private java.sql.Date fim;
+    private java.sql.Date inicio;//solicitacao
+    private java.sql.Date fim;//remocao
     private String ambulancia;
     private com.toedter.calendar.JDateChooser dateInicio;
     private com.toedter.calendar.JDateChooser dateFim;
     
     public FormularioRemocao() {
         initComponents();
+        btnEditar.setVisible(false);
+        btnImpressao.setVisible(false);
     }
 
     /**
@@ -92,6 +96,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         txtEstadoOrigem = new javax.swing.JTextField();
         btnGravar = new javax.swing.JButton();
         btnImpressao = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
@@ -99,11 +104,11 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         panelPaciente.setBorder(javax.swing.BorderFactory.createTitledBorder("Paciente"));
 
-        lbNome.setText("Nome :");
+        lbNome.setText("*Nome :");
 
-        lbIdade.setText("Idade :");
+        lbIdade.setText("*Idade :");
 
-        panelDiagnostico.setBorder(javax.swing.BorderFactory.createTitledBorder("Diagnóstico"));
+        panelDiagnostico.setBorder(javax.swing.BorderFactory.createTitledBorder("*Diagnóstico"));
 
         txtAreaDiagnostico.setColumns(20);
         txtAreaDiagnostico.setRows(5);
@@ -128,7 +133,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         lbVaga.setText("Vaga Confirmada");
 
-        panelDataSolicitacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Data de solicitação"));
+        panelDataSolicitacao.setBorder(javax.swing.BorderFactory.createTitledBorder("*Data de solicitação"));
 
         javax.swing.GroupLayout panelDataSolicitacaoLayout = new javax.swing.GroupLayout(panelDataSolicitacao);
         panelDataSolicitacao.setLayout(panelDataSolicitacaoLayout);
@@ -147,7 +152,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        panelDataRemocao.setBorder(javax.swing.BorderFactory.createTitledBorder("Data de remoção"));
+        panelDataRemocao.setBorder(javax.swing.BorderFactory.createTitledBorder("*Data de remoção"));
 
         javax.swing.GroupLayout panelDataRemocaoLayout = new javax.swing.GroupLayout(panelDataRemocao);
         panelDataRemocao.setLayout(panelDataRemocaoLayout);
@@ -186,8 +191,8 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addComponent(lbNome)
                 .addGap(22, 22, 22)
                 .addComponent(txtNome)
-                .addGap(18, 18, 18)
-                .addComponent(lbIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -215,13 +220,13 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         panelEquipe.setBorder(javax.swing.BorderFactory.createTitledBorder("Equipe"));
 
-        lbMedico.setText("Médico :");
+        lbMedico.setText("*Médico :");
 
-        lbEnfermeiro.setText("Enfermeiro(a) :");
+        lbEnfermeiro.setText("*Enfermeiro(a) :");
 
-        lbMotorista.setText("Condutor:");
+        lbMotorista.setText("*Condutor:");
 
-        lbOperador.setText("Operador(a) :");
+        lbOperador.setText("*Operador(a) :");
 
         txtMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,7 +252,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
             }
         });
 
-        panelAmbulancia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Ambulancia"));
+        panelAmbulancia.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "*Ambulancia"));
 
         checkBoxUTI.setText("UTI");
         checkBoxUTI.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +269,11 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         });
 
         checkBoxSimples.setText("Simples");
+        checkBoxSimples.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxSimplesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAmbulanciaLayout = new javax.swing.GroupLayout(panelAmbulancia);
         panelAmbulancia.setLayout(panelAmbulanciaLayout);
@@ -347,9 +357,9 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         txtAreaObs.setRows(5);
         jScrollPaneObs.setViewportView(txtAreaObs);
 
-        lbResponsavel.setText("Responsável :");
+        lbResponsavel.setText("*Responsável :");
 
-        lbUnidMedico.setText("Unid/Médico :");
+        lbUnidMedico.setText("*Unid/Médico :");
 
         javax.swing.GroupLayout panelObsLayout = new javax.swing.GroupLayout(panelObs);
         panelObs.setLayout(panelObsLayout);
@@ -385,11 +395,11 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         lbComplementoDestino.setText("Complemento :");
 
-        lbEnderecoDestino.setText("Endereço :");
+        lbEnderecoDestino.setText("*Endereço :");
 
-        lbEstadoDestino.setText("Estado :");
+        lbEstadoDestino.setText("*Estado :");
 
-        lbCidadeDestino.setText("Cidade :");
+        lbCidadeDestino.setText("*Cidade :");
 
         txtEstadoDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -449,7 +459,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
             }
         });
 
-        lbHora.setText("Hora :");
+        lbHora.setText("*Hora :");
 
         txtHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,11 +469,11 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         lbComplementoOrigem.setText("Complemento :");
 
-        lbEnderecoOrigem.setText("Endereço :");
+        lbEnderecoOrigem.setText("*Endereço :");
 
-        lbCidadeOrigem.setText("Cidade :");
+        lbCidadeOrigem.setText("*Cidade :");
 
-        lbEstadoOrigem.setText("Estado : ");
+        lbEstadoOrigem.setText("*Estado : ");
 
         javax.swing.GroupLayout panelOrigemLayout = new javax.swing.GroupLayout(panelOrigem);
         panelOrigem.setLayout(panelOrigemLayout);
@@ -520,8 +530,20 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         );
 
         btnGravar.setText("Gravar");
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
 
         btnImpressao.setText("Vizualizar impressão");
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -543,6 +565,8 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImpressao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGravar)
                 .addGap(12, 12, 12))
         );
@@ -562,7 +586,8 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImpressao)
-                    .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -592,11 +617,17 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtOperadorActionPerformed
 
     private void checkBoxUTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxUTIActionPerformed
-        // TODO add your handling code here:
+        if (checkBoxBasica.isSelected() || checkBoxSimples.isSelected()) {
+            checkBoxBasica.setSelected(false);
+            checkBoxSimples.setSelected(false);
+        }
     }//GEN-LAST:event_checkBoxUTIActionPerformed
 
     private void checkBoxBasicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxBasicaActionPerformed
-        // TODO add your handling code here:
+       if (checkBoxSimples.isSelected() || checkBoxUTI.isSelected()) {
+            checkBoxSimples.setSelected(false);
+            checkBoxUTI.setSelected(false);
+        }
     }//GEN-LAST:event_checkBoxBasicaActionPerformed
 
     private void txtEstadoDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoDestinoActionPerformed
@@ -607,8 +638,90 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHoraActionPerformed
 
+    private void checkBoxSimplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxSimplesActionPerformed
+        if (checkBoxBasica.isSelected() || checkBoxUTI.isSelected()) {
+            checkBoxBasica.setSelected(false);
+            checkBoxUTI.setSelected(false);
+        }
+    }//GEN-LAST:event_checkBoxSimplesActionPerformed
+
+    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+        if (validarFormulario()) {
+            RemocaoController controller = new RemocaoController(this);
+            controller.gravarFormulario();
+            btnImpressao.setVisible(true);
+            btnGravar.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Os campos obrigatórios não foram preenchidos", "Validação de formulário", JOptionPane.ERROR_MESSAGE);
+        }    
+    }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        statusAllTxtField(true);
+
+        if (btnEditar.getText().equals("Gravar")) {
+            if (validarFormulario()) {
+                RemocaoController controller = new RemocaoController(this);
+                FormularioRemocao remocaoFormulario = controller.updateRemocao();
+                dispose();
+                Principal.desktopPane.add(remocaoFormulario);
+                remocaoFormulario.setVisible(true);
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Os campos obrigatórios não foram preenchidos", "Validação de formulário", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        if (btnEditar.getText().equals("Editar")) {
+            btnEditar.setText("Gravar");
+            btnVisualizarImpressaoVisible(false);
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+    
+    private boolean validarFormulario(){
+        if(txtNome.getText().isEmpty()){
+            return false;
+        }else if(txtIdade.getText().isEmpty()){
+            return false;
+        }else if(dateChooserSolicitacao == null){
+            return false;
+        }else if(dateChooserRemocao == null){
+            return false;
+        }else if(txtAreaDiagnostico.getText().isEmpty()){
+            return false;
+        }else if(txtEnderecoOrigem.getText().isEmpty()){
+            return false;
+        }else if(txtCidadeOrigem.getText().isEmpty()){
+            return false;
+        }else if(txtEstadoOrigem.getText().isEmpty()){
+            return false;
+        }else if(txtHora.getText().isEmpty()){
+            return false;
+        }else if(txtEnderecoDestino.getText().isEmpty()){
+            return false;
+        }else if(txtCidadeDestino.getText().isEmpty()){
+            return false;
+        }else if(txtEstadoDestino.getText().isEmpty()){
+            return false;
+        }else if(txtMedico.getText().isEmpty()){
+            return false;
+        }else if(txtEnfermeiro.getText().isEmpty()){
+            return false;
+        }else if(txtMotorista.getText().isEmpty()){
+            return false;
+        }else if(txtOperador.getText().isEmpty()){
+            return false;
+        }else if(txtResponsavel.getText().isEmpty()){
+            return false;
+        }else if(txtUnidMedico.getText().isEmpty()){
+            return false;
+        }else return !getAmbulancia().equals("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnImpressao;
     private javax.swing.JCheckBox checkBoxBasica;
@@ -711,20 +824,47 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
        return "Não";
     }
     
-//    public java.sql.Date getDataSolicitacao(){
-//     
-//    }
-    
-    public void setDataSolicitacao(java.sql.Date dataSolicitacao){
-    
+    public void setVagaConfirmada(String vaga) {
+        if (vaga.equals("Sim")) {
+            checkBoxVaga.setSelected(true);
+        } else {
+            checkBoxVaga.setSelected(false);
+        }
     }
     
-//    public java.sql.Date getDataRemocao(){
-//     
-//    }
+    public com.toedter.calendar.JDateChooser getDataChooserSolicitacao(){
+        setDataChooserSolicitacao(dateChooserSolicitacao);
+        return dateInicio;
+        
+    }
     
-    public void setDataRemocao(java.sql.Date dataRemocao){
+    public void setDataChooserSolicitacao(com.toedter.calendar.JDateChooser dataSolicitacao){
+        dateInicio = dataSolicitacao;
+    }
     
+    public com.toedter.calendar.JDateChooser getDataChoserRemocao(){
+        setDataChooserRemocao(dateChooserRemocao);
+        return dateFim;
+    }
+    
+    public void setDataChooserRemocao(com.toedter.calendar.JDateChooser dataRemocao){
+        dateFim = dataRemocao;
+    }
+    
+    public java.sql.Date getSolicitacao() {
+        return inicio;
+    }
+
+    public void setSolicitacao(java.sql.Date solicitacao) {
+        this.inicio = solicitacao;
+    }
+    
+    public java.sql.Date getRemocao() {
+        return fim;
+    }
+
+    public void setRemocao(java.sql.Date remocao) {
+        this.fim = remocao;
     }
     
     public String getDiagnostico(){
@@ -867,5 +1007,64 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         }
     }
     
+    public String getObservacao(){
+        return this.txtAreaObs.getText();
+    }
+    
+    public void setObservacao(String obs){
+        this.txtAreaObs.setText(obs);
+    }
+    
+    public String getResponsavel(){
+        return this.txtResponsavel.getText();
+    }
+    
+    public void setResponsavel(String responsavel){
+        this.txtResponsavel.setText(responsavel);
+    }
+    
+    public String getUnidMedico(){
+        return this.txtUnidMedico.getText();
+    }
+    
+    public void setUnidMedico(String medico){
+        this.txtUnidMedico.setText(medico);
+    }
+    
+    public void btnGravarVisible(boolean mode){
+        btnGravar.setVisible(mode);
+    }
+    
+    public void btnVisualizarImpressaoVisible(boolean mode){
+        btnImpressao.setVisible(mode);
+    }
+    
+    public void btnEditarVisible(boolean mode){
+        btnEditar.setVisible(mode);
+    }
+    
+    public void statusAllTxtField(boolean habilitar){
+        txtNome.setEditable(habilitar);
+        txtIdade.setEditable(habilitar);
+        dateChooserSolicitacao.setEnabled(habilitar);
+        dateChooserRemocao.setEnabled(habilitar);
+        txtAreaDiagnostico.setEditable(habilitar);
+        txtEnderecoOrigem.setEditable(habilitar);
+        txtCidadeOrigem.setEditable(habilitar);
+        txtEstadoOrigem.setEditable(habilitar);
+        txtComplementoOrigem.setEditable(habilitar);
+        txtHora.setEditable(habilitar);
+        txtEnderecoDestino.setEditable(habilitar);
+        txtCidadeDestino.setEditable(habilitar);
+        txtEstadoDestino.setEditable(habilitar);
+        txtComplementoDestino.setEditable(habilitar);
+        txtMedico.setEditable(habilitar);
+        txtEnfermeiro.setEditable(habilitar);
+        txtMotorista.setEditable(habilitar);
+        txtOperador.setEditable(habilitar);
+        txtAreaObs.setEditable(habilitar);
+        txtResponsavel.setEditable(habilitar);
+        txtUnidMedico.setEditable(habilitar);  
+    }
     
 }

@@ -44,6 +44,8 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnImpressao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnGravar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
@@ -66,6 +68,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnImpressao" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnGravar" linkSize="3" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -102,8 +105,8 @@
                   <Component id="lbNome" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="txtNome" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="lbIdade" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lbIdade" min="-2" pref="49" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtIdade" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
@@ -136,7 +139,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lbNome">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome :"/>
+            <Property name="text" type="java.lang.String" value="*Nome :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
@@ -145,14 +148,14 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbIdade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Idade :"/>
+            <Property name="text" type="java.lang.String" value="*Idade :"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="panelDiagnostico">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Diagn&#xf3;stico"/>
+                <TitledBorder title="*Diagn&#xf3;stico"/>
               </Border>
             </Property>
           </Properties>
@@ -206,7 +209,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Data de solicita&#xe7;&#xe3;o"/>
+                <TitledBorder title="*Data de solicita&#xe7;&#xe3;o"/>
               </Border>
             </Property>
           </Properties>
@@ -240,7 +243,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Data de remo&#xe7;&#xe3;o"/>
+                <TitledBorder title="*Data de remo&#xe7;&#xe3;o"/>
               </Border>
             </Property>
           </Properties>
@@ -345,22 +348,22 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lbMedico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="M&#xe9;dico :"/>
+            <Property name="text" type="java.lang.String" value="*M&#xe9;dico :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEnfermeiro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enfermeiro(a) :"/>
+            <Property name="text" type="java.lang.String" value="*Enfermeiro(a) :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbMotorista">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Condutor:"/>
+            <Property name="text" type="java.lang.String" value="*Condutor:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbOperador">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Operador(a) :"/>
+            <Property name="text" type="java.lang.String" value="*Operador(a) :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMedico">
@@ -387,7 +390,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Ambulancia">
+                <TitledBorder title="*Ambulancia">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder/>
                   </Border>
@@ -444,6 +447,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Simples"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxSimplesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -512,14 +518,14 @@
         </Container>
         <Component class="javax.swing.JLabel" name="lbResponsavel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Respons&#xe1;vel :"/>
+            <Property name="text" type="java.lang.String" value="*Respons&#xe1;vel :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtResponsavel">
         </Component>
         <Component class="javax.swing.JLabel" name="lbUnidMedico">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Unid/M&#xe9;dico :"/>
+            <Property name="text" type="java.lang.String" value="*Unid/M&#xe9;dico :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUnidMedico">
@@ -597,12 +603,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbEnderecoDestino">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Endere&#xe7;o :"/>
+            <Property name="text" type="java.lang.String" value="*Endere&#xe7;o :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstadoDestino">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estado :"/>
+            <Property name="text" type="java.lang.String" value="*Estado :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCidadeDestino">
@@ -611,7 +617,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbCidadeDestino">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cidade :"/>
+            <Property name="text" type="java.lang.String" value="*Cidade :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtComplementoDestino">
@@ -708,7 +714,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbHora">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Hora :"/>
+            <Property name="text" type="java.lang.String" value="*Hora :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHora">
@@ -723,12 +729,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbEnderecoOrigem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Endere&#xe7;o :"/>
+            <Property name="text" type="java.lang.String" value="*Endere&#xe7;o :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCidadeOrigem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cidade :"/>
+            <Property name="text" type="java.lang.String" value="*Cidade :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCidadeOrigem">
@@ -737,7 +743,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lbEstadoOrigem">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Estado : "/>
+            <Property name="text" type="java.lang.String" value="*Estado : "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEstadoOrigem">
@@ -748,11 +754,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gravar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGravarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnImpressao">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vizualizar impress&#xe3;o"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEditar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

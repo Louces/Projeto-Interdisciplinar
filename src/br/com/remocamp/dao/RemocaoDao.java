@@ -35,7 +35,7 @@ public class RemocaoDao {
         this.connection = connection;
     }
     
-    public ArrayList<Remocao> getPlantoes() {
+    public ArrayList<Remocao> getRemocoes() {
         return remocoes;
     }
     
@@ -201,7 +201,7 @@ public class RemocaoDao {
         }
     }
 
-    public Remocao consultaPlantao(int i) {
+    public Remocao consultaRemocao(int i) {
         String sql = "select * from remocao where ID_PACIENTE = ?";
         Remocao remocao = new Remocao();
         

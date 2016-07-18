@@ -5,19 +5,69 @@
  */
 package br.com.remocamp.view;
 
+import br.com.remocamp.controller.RemocaoController;
+import br.com.remocamp.model.CellRenderer;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author fabiano
  */
 public class SearchRemocao extends javax.swing.JInternalFrame {
-
+    
+    private RemocaoController controller = new RemocaoController();
+    private DefaultTableModel tabelaModelo;
+    private  TableCellRenderer tcr;
     /**
      * Creates new form SearchRemocao
      */
     public SearchRemocao() {
         initComponents();
+        dateChooserInicio.setEnabled(false);
+        dateChooserFim.setEnabled(false);
+        configTable();
+        tabelaInicial();
     }
+    
+    private void configTable(){
+    
+        tableConsultaRemocao.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"Nº", "Remocao", "Data Remocao"}) {
 
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+
+        });
+        tabelaModelo = (DefaultTableModel) tableConsultaRemocao.getModel();
+        tcr = new CellRenderer();
+        
+        for(int i=0; i< tableConsultaRemocao.getColumnCount() ; i++){
+            TableColumn column =  tableConsultaRemocao.getColumnModel().getColumn(i);
+            column.setCellRenderer(tcr);
+        }
+    
+    }
+    
+     public final void tabelaInicial(){
+         tabelaModelo = controller.selectRemocaoAll(tabelaModelo);
+     }
+     
+     public void eraseTable() {
+        if (tabelaModelo.getRowCount() > 0) {
+            for (int i = tabelaModelo.getRowCount() - 1; i > -1; i--) {
+                tabelaModelo.removeRow(i);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,72 +77,106 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        panelPesquisa = new javax.swing.JPanel();
+        txtNomeEvento = new javax.swing.JTextField();
+        lbNomeEvento = new javax.swing.JLabel();
+        dateChooserInicio = new com.toedter.calendar.JDateChooser();
+        dateChooserFim = new com.toedter.calendar.JDateChooser();
+        btnPesquisar = new javax.swing.JButton();
+        checkBoxHabilitar = new javax.swing.JCheckBox();
+        panelTable = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableConsultaRemocao = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Pesquisa remoção");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
+        panelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisa"));
 
-        jLabel1.setText("Nome do envento :");
+        lbNomeEvento.setText("Nome do envento :");
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio"));
+        dateChooserInicio.setBorder(javax.swing.BorderFactory.createTitledBorder("Inicio"));
 
-        jDateChooser2.setBorder(javax.swing.BorderFactory.createTitledBorder("Fim"));
+        dateChooserFim.setBorder(javax.swing.BorderFactory.createTitledBorder("Fim"));
 
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        checkBoxHabilitar.setText("Habilitar");
+        checkBoxHabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxHabilitarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
+        panelPesquisa.setLayout(panelPesquisaLayout);
+        panelPesquisaLayout.setHorizontalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisaLayout.createSequentialGroup()
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPesquisaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbNomeEvento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNomeEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisar))
+                    .addGroup(panelPesquisaLayout.createSequentialGroup()
+                        .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(dateChooserFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBoxHabilitar)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        panelPesquisaLayout.setVerticalGroup(
+            panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisaLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lbNomeEvento)
+                    .addComponent(txtNomeEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dateChooserInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dateChooserFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkBoxHabilitar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        tableConsultaRemocao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tableConsultaRemocao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableConsultaRemocaoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableConsultaRemocao);
+
+        javax.swing.GroupLayout panelTableLayout = new javax.swing.GroupLayout(panelTable);
+        panelTable.setLayout(panelTableLayout);
+        panelTableLayout.setHorizontalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 196, Short.MAX_VALUE)
+        panelTableLayout.setVerticalGroup(
+            panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,35 +188,91 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(panelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+         eraseTable();
+         
+         if (checkBoxHabilitar.isSelected() && !txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome e data
+            tabelaModelo = controller.selectRemocaoDataNome(tabelaModelo, date(dateChooserInicio), date(dateChooserFim), txtNomeEvento.getText());
+        } else if (!txtNomeEvento.getText().equals("")) {
+            //pesquisa por nome
+            tabelaModelo = controller.selectRemocaoNome(tabelaModelo, txtNomeEvento.getText());
+        } else if (checkBoxHabilitar.isSelected() && txtNomeEvento.getText().equals("")) {
+            //pesquisa por data
+            tabelaModelo = controller.selectRemocaoData(tabelaModelo, date(dateChooserInicio), date(dateChooserFim));
+        } else {
+            //pesquisa tudo
+            tabelaModelo = controller.selectRemocaoAll(tabelaModelo);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
+    private void checkBoxHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxHabilitarActionPerformed
+         if(checkBoxHabilitar.isSelected()){
+            dateChooserInicio.setEnabled(true);
+            dateChooserFim.setEnabled(true);
+        }else{
+            dateChooserInicio.setEnabled(false);
+            dateChooserFim.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkBoxHabilitarActionPerformed
 
+    private void tableConsultaRemocaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsultaRemocaoMouseClicked
+        if(evt.getClickCount()==2){
+            int i = tableConsultaRemocao.getSelectedRow();
+            int numeroRemocao = (int) tableConsultaRemocao.getValueAt(i, 0);
+            
+            RemocaoController controller = new RemocaoController();
+            FormularioRemocao remocaoFormulario = controller.selectRemocao(numeroRemocao);
+            remocaoFormulario.getDataChooserSolicitacao().setDate(remocaoFormulario.getSolicitacao());
+            remocaoFormulario.getDataChoserRemocao().setDate(remocaoFormulario.getRemocao());
+            Principal.desktopPane.add(remocaoFormulario).setLocation(85,0);
+            remocaoFormulario.setVisible(true);
+        }
+    }//GEN-LAST:event_tableConsultaRemocaoMouseClicked
+
+    
+    
+    public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {
+        String strDate = DateFormat.getDateInstance().format(dateChooser.getDate());
+        java.sql.Date sqlDate = null;
+        try {
+            Date utilDate = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
+            sqlDate = new java.sql.Date(utilDate.getTime());
+            return sqlDate;
+        } catch (ParseException ex) {
+            Logger.getLogger(FormularioPlantao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sqlDate;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JCheckBox checkBoxHabilitar;
+    private com.toedter.calendar.JDateChooser dateChooserFim;
+    private com.toedter.calendar.JDateChooser dateChooserInicio;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbNomeEvento;
+    private javax.swing.JPanel panelPesquisa;
+    private javax.swing.JPanel panelTable;
+    private javax.swing.JTable tableConsultaRemocao;
+    private javax.swing.JTextField txtNomeEvento;
     // End of variables declaration//GEN-END:variables
 }
