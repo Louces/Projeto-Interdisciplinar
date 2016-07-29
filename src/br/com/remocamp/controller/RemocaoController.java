@@ -6,6 +6,8 @@
 package br.com.remocamp.controller;
 
 import br.com.remocamp.dao.RemocaoDao;
+import br.com.remocamp.jasper.remocao.RemocaoGerarRelatorio;
+import br.com.remocamp.jasper.remocao.RemocaoJRDataSourceFactory;
 import br.com.remocamp.model.Remocao;
 import br.com.remocamp.view.FormularioPlantao;
 import br.com.remocamp.view.FormularioRemocao;
@@ -17,6 +19,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -56,7 +59,7 @@ public class RemocaoController {
         remocao.setHoraOrigem(formularioRemocao.getHoraOrigem());
         remocao.setEnderecoDestino(formularioRemocao.getEnderecoDestino());
         remocao.setCidadeDestino(formularioRemocao.getCidadeDestino());
-        remocao.setEstadoDestino(formularioRemocao.getEnderecoDestino());
+        remocao.setEstadoDestino(formularioRemocao.getEstadoDestino());
         remocao.setComplementoDestino(formularioRemocao.getComplementoDestino());
         remocao.setMedico(formularioRemocao.getMedico());
         remocao.setEnfermeiro(formularioRemocao.getEnfermeiro());
@@ -81,9 +84,9 @@ public class RemocaoController {
         formularioRemocao.setEstadoOrigem(remocao.getEstadoOrigem());
         formularioRemocao.setComplementoOrigem(remocao.getComplementoOrigem());
         formularioRemocao.setHoraOrigem(remocao.getHoraOrigem());
-        formularioRemocao.setEnderecoDestino(remocao.getEstadoDestino());
-        formularioRemocao.setCidadeDestino(remocao.getCidadeDestino());
         formularioRemocao.setEnderecoDestino(remocao.getEnderecoDestino());
+        formularioRemocao.setCidadeDestino(remocao.getCidadeDestino());
+        formularioRemocao.setEstadoDestino(remocao.getEstadoDestino());
         formularioRemocao.setComplementoDestino(remocao.getComplementoDestino());
         formularioRemocao.setMedico(remocao.getMedico());
         formularioRemocao.setEnfermeiro(remocao.getEnfermeiro());
@@ -181,11 +184,11 @@ public class RemocaoController {
     }
     
     public void gerarFormulario(){
-//        try {
-//            PlantaoGerarRelatorio.gerarRelatorio(PlantaoJRDataSourceFactory.createDatasource(plantao));
-//        } catch (JRException ex) {
-//            Logger.getLogger(PlantaoController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            RemocaoGerarRelatorio.gerarRelatorio(RemocaoJRDataSourceFactory.createDatasource(remocao));
+        } catch (JRException ex) {
+            Logger.getLogger(PlantaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public java.sql.Date date(com.toedter.calendar.JDateChooser dateChooser) {

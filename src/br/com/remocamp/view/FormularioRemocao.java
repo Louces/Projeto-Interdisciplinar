@@ -475,6 +475,12 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
 
         lbEstadoOrigem.setText("*Estado : ");
 
+        txtEstadoOrigem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoOrigemActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelOrigemLayout = new javax.swing.GroupLayout(panelOrigem);
         panelOrigem.setLayout(panelOrigemLayout);
         panelOrigemLayout.setHorizontalGroup(
@@ -537,6 +543,11 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         });
 
         btnImpressao.setText("Vizualizar impressão");
+        btnImpressao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImpressaoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -679,6 +690,15 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnImpressaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpressaoActionPerformed
+        RemocaoController clt = new RemocaoController(this);
+        clt.gerarFormulario();
+    }//GEN-LAST:event_btnImpressaoActionPerformed
+
+    private void txtEstadoOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoOrigemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstadoOrigemActionPerformed
     
     private boolean validarFormulario(){
         if(txtNome.getText().isEmpty()){

@@ -747,6 +747,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEstadoOrigem">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEstadoOrigemActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -762,6 +765,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Vizualizar impress&#xe3;o"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImpressaoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEditar">
       <Properties>

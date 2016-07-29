@@ -76,6 +76,7 @@ public class PlantaoController {
         formularioPlantao.setAmbulancia(plantao.getAmbulancia());
         formularioPlantao.btnGravarVisible(false);
         formularioPlantao.btnVisualizarImpressaoVisible(true);
+        formularioPlantao.btnHistotico(true);
         formularioPlantao.btnEditarVisible(true);
         formularioPlantao.statusAllTxtField(false);
     }

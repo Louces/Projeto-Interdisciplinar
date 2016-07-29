@@ -18,6 +18,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         initComponents();
         btnEditar.setVisible(false);
         btnImpressao.setVisible(false);
+        btnHistorico.setVisible(false);
     }
     
 
@@ -69,6 +70,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
         btnImpressao = new javax.swing.JButton();
         btnGravar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnHistorico = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Formulário plantão");
@@ -421,12 +423,21 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
             }
         });
 
+        btnHistorico.setText("Histórico de tratativas");
+        btnHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoricoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelControleLayout = new javax.swing.GroupLayout(PanelControle);
         PanelControle.setLayout(PanelControleLayout);
         PanelControleLayout.setHorizontalGroup(
             PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelControleLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHistorico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImpressao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
@@ -441,7 +452,8 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                 .addGroup(PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImpressao)
                     .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnHistorico))
                 .addContainerGap())
         );
 
@@ -587,6 +599,12 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     private void txtResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResponsavelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtResponsavelActionPerformed
+
+    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
+        HistoricodeTratativas historico = new HistoricodeTratativas();
+        Principal.desktopPane.add(historico).setLocation(85, 0);
+        historico.setVisible(true);
+    }//GEN-LAST:event_btnHistoricoActionPerformed
         
     private boolean validarFormulario(){
         if(txtNomeEvento.getText().isEmpty()){
@@ -811,11 +829,16 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     public void btnEditarVisible(boolean mode){
         btnEditar.setVisible(mode);
     }
+    
+    public void btnHistotico(boolean mode){
+        btnHistorico.setVisible(mode);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelControle;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnImpressao;
     private javax.swing.JCheckBox checkBoxBasica;
     private javax.swing.JCheckBox checkBoxSimples;

@@ -267,35 +267,36 @@ public class RemocaoDao {
                         + "AMBULANCIA=?, "
                         + "OBSERVACAO=?, "
                         + "RESPONSAVEL=?, "
-                        + "UNIDADEMEDICO=?, "
+                        + "UNIDADEMEDICO=? "
                  +"where ID_PACIENTE=?";
          
         try {
             int j=0;
             stmt = getConnection().prepareStatement(sql);
-            stmt.setString(++i, remocao.getNome());
-            stmt.setString(++i, remocao.getIdade());
-            stmt.setString(++i, remocao.getVagaConfirmada());
-            stmt.setString(++i, remocao.getDataSolicitacao()+"");
-            stmt.setString(++i, remocao.getDataRemocao()+"");
-            stmt.setString(++i, remocao.getDiagnostico());
-            stmt.setString(++i, remocao.getEnderecoOrigem());
-            stmt.setString(++i, remocao.getCidadeOrigem());
-            stmt.setString(++i, remocao.getEstadoOrigem());
-            stmt.setString(++i, remocao.getComplementoOrigem());
-            stmt.setString(++i, remocao.getHoraOrigem());
-            stmt.setString(++i, remocao.getEnderecoDestino());
-            stmt.setString(++i, remocao.getCidadeDestino());
-            stmt.setString(++i, remocao.getEstadoDestino());
-            stmt.setString(++i, remocao.getComplementoDestino());
-            stmt.setString(++i, remocao.getMedico());
-            stmt.setString(++i, remocao.getEnfermeiro());
-            stmt.setString(++i, remocao.getMotorista());
-            stmt.setString(++i, remocao.getOperador());
-            stmt.setString(++i, remocao.getAmbulancia());
-            stmt.setString(++i, remocao.getObservacao());
-            stmt.setString(++i, remocao.getResponsavel());
-            stmt.setString(++i, remocao.getUnidMedico());
+            stmt.setString(++j, remocao.getNome());
+            stmt.setString(++j, remocao.getIdade());
+            stmt.setString(++j, remocao.getVagaConfirmada());
+            stmt.setString(++j, remocao.getDataSolicitacao()+"");
+            stmt.setString(++j, remocao.getDataRemocao()+"");
+            stmt.setString(++j, remocao.getDiagnostico());
+            stmt.setString(++j, remocao.getEnderecoOrigem());
+            stmt.setString(++j, remocao.getCidadeOrigem());
+            stmt.setString(++j, remocao.getEstadoOrigem());
+            stmt.setString(++j, remocao.getComplementoOrigem());
+            stmt.setString(++j, remocao.getHoraOrigem());
+            stmt.setString(++j, remocao.getEnderecoDestino());
+            stmt.setString(++j, remocao.getCidadeDestino());
+            stmt.setString(++j, remocao.getEstadoDestino());
+            stmt.setString(++j, remocao.getComplementoDestino());
+            stmt.setString(++j, remocao.getMedico());
+            stmt.setString(++j, remocao.getEnfermeiro());
+            stmt.setString(++j, remocao.getMotorista());
+            stmt.setString(++j, remocao.getOperador());
+            stmt.setString(++j, remocao.getAmbulancia());
+            stmt.setString(++j, remocao.getObservacao());
+            stmt.setString(++j, remocao.getResponsavel());
+            stmt.setString(++j, remocao.getUnidMedico());
+            stmt.setString(++j, i+"");
             // executa
             stmt.execute();
             stmt.close();

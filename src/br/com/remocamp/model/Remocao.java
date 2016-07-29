@@ -15,14 +15,14 @@ public class Remocao {
     private String enderecoOrigem;
     private String cidadeOrigem;
     private String estadoOrigem;
-    private String ComplementoOrigem;
+    private String complementoOrigem;
     private String horaOrigem;
     
     /*Destino*/
     private String enderecoDestino;
     private String cidadeDestino;
     private String estadoDestino;
-    private String ComplementoDestino;
+    private String complementoDestino;
     
     /*Equipe*/
     private String medico;
@@ -110,11 +110,11 @@ public class Remocao {
     }
 
     public String getComplementoOrigem() {
-        return ComplementoOrigem;
+        return complementoOrigem;
     }
 
     public void setComplementoOrigem(String ComplementoOrigem) {
-        this.ComplementoOrigem = ComplementoOrigem;
+        this.complementoOrigem = ComplementoOrigem;
     }
 
     public String getHoraOrigem() {
@@ -150,11 +150,11 @@ public class Remocao {
     }
 
     public String getComplementoDestino() {
-        return ComplementoDestino;
+        return complementoDestino;
     }
 
     public void setComplementoDestino(String ComplementoDestino) {
-        this.ComplementoDestino = ComplementoDestino;
+        this.complementoDestino = ComplementoDestino;
     }
 
     public String getMedico() {
