@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlantaoDao {
 
@@ -160,7 +162,6 @@ public class PlantaoDao {
             ResultSet rs = stmt.executeQuery();
             plantoes.clear();
             while (rs.next()) {
-                System.out.println("while");
                 Plantao plantao = new Plantao();
                 plantao.setIdPlantao(rs.getInt("idPlantao"));
                 plantao.setNomeEvento(rs.getString("nomeEvento"));
@@ -260,5 +261,40 @@ public class PlantaoDao {
         // executa um update
         stmt.execute();
         stmt.close();
+    }
+    
+    public void setHistorico(String historico,int numero){
+        String sql = "update plantao set historico = ? where idPlantao = ?";
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1, historico);
+            stmt.setString(2, numero+"");
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public String getHistorico(int numero){
+        String sql = "select historico from plantao where idPlantao = ?";
+        String out = null;
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1, numero +" ");
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                out = rs.getString("historico");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return out;
     }
 }

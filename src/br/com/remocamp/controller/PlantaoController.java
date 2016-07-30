@@ -172,6 +172,14 @@ public class PlantaoController {
         return formularioPlantao;
     }
     
+    public void updateHistico(String historico, int numero){
+        dao.setHistorico(historico, numero);
+    }
+    
+    public String getHistorico(int numero){
+        return dao.getHistorico(numero);
+    }
+    
     public void gerarFormulario(){
         try {
             PlantaoGerarRelatorio.gerarRelatorio(PlantaoJRDataSourceFactory.createDatasource(plantao));

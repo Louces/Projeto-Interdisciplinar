@@ -5,17 +5,29 @@
  */
 package br.com.remocamp.view;
 
+import br.com.remocamp.controller.PlantaoController;
+import java.util.Date;
+
 /**
  *
  * @author fabiano
  */
 public class HistoricodeTratativas extends javax.swing.JInternalFrame {
-
+    int numero;
+    
     /**
      * Creates new form HistoricodeTratativas
      */
-    public HistoricodeTratativas() {
+    public HistoricodeTratativas(Object obj,int numero) {
         initComponents();
+        this.numero = numero;
+        lbNumeroCampo.setText(this.numero+"");
+        lbTipoCampo.setText(obj.getClass().getName().replace("br.com.remocamp.view.Formulario", ""));
+        
+        if(lbTipoCampo.getText().equals("Plantao")){
+            PlantaoController clt = new PlantaoController();
+            txtAreaHistorico.setText(clt.getHistorico(numero));
+        }
         
     }
 
@@ -28,91 +40,92 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        panelTratativa = new javax.swing.JPanel();
+        scrollPaneTratativa = new javax.swing.JScrollPane();
+        txtAreaTratativa = new javax.swing.JTextArea();
+        btnInserirTratativa = new javax.swing.JButton();
+        lbTipo = new javax.swing.JLabel();
+        lbNumero = new javax.swing.JLabel();
+        lbNumeroCampo = new javax.swing.JLabel();
+        lbTipoCampo = new javax.swing.JLabel();
+        panelTXTArea = new javax.swing.JPanel();
+        scrollPaneTxtArea = new javax.swing.JScrollPane();
+        txtAreaHistorico = new javax.swing.JTextArea();
 
         setClosable(true);
         setTitle("Histórico de Tratativas");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelTratativa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAreaTratativa.setColumns(20);
+        txtAreaTratativa.setRows(5);
+        scrollPaneTratativa.setViewportView(txtAreaTratativa);
 
-        jButton1.setText("Inserir Tratativa");
+        btnInserirTratativa.setText("Inserir Tratativa");
+        btnInserirTratativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirTratativaActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Tipo:");
+        lbTipo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbTipo.setText("Tipo:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Nº:");
+        lbNumero.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbNumero.setText("Nº:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTratativaLayout = new javax.swing.GroupLayout(panelTratativa);
+        panelTratativa.setLayout(panelTratativaLayout);
+        panelTratativaLayout.setHorizontalGroup(
+            panelTratativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTratativaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelTratativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneTratativa, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                    .addGroup(panelTratativaLayout.createSequentialGroup()
+                        .addGroup(panelTratativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnInserirTratativa)
+                            .addGroup(panelTratativaLayout.createSequentialGroup()
+                                .addComponent(lbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbTipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
+                                .addComponent(lbNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lbNumeroCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 1, Short.MAX_VALUE)))
+        panelTratativaLayout.setVerticalGroup(
+            panelTratativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTratativaLayout.createSequentialGroup()
+                .addGroup(panelTratativaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lbNumeroCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbNumero)
+                    .addComponent(lbTipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTipo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                .addComponent(scrollPaneTratativa, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnInserirTratativa)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txtAreaHistorico.setColumns(20);
+        txtAreaHistorico.setRows(5);
+        scrollPaneTxtArea.setViewportView(txtAreaHistorico);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+        javax.swing.GroupLayout panelTXTAreaLayout = new javax.swing.GroupLayout(panelTXTArea);
+        panelTXTArea.setLayout(panelTXTAreaLayout);
+        panelTXTAreaLayout.setHorizontalGroup(
+            panelTXTAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollPaneTxtArea, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        panelTXTAreaLayout.setVerticalGroup(
+            panelTXTAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTXTAreaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scrollPaneTxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,35 +135,46 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelTXTArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelTratativa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelTratativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelTXTArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInserirTratativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirTratativaActionPerformed
+        txtAreaHistorico.append(" " + new Date()+ " : "+ txtAreaTratativa.getText()+"\n\n");
+        
+        if(lbTipoCampo.getText().equals("Plantao")){
+            PlantaoController clt = new PlantaoController();
+            clt.updateHistico(txtAreaHistorico.getText(), numero);
+        }
+        
+        
+    }//GEN-LAST:event_btnInserirTratativaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton btnInserirTratativa;
+    private javax.swing.JLabel lbNumero;
+    private javax.swing.JLabel lbNumeroCampo;
+    private javax.swing.JLabel lbTipo;
+    private javax.swing.JLabel lbTipoCampo;
+    private javax.swing.JPanel panelTXTArea;
+    private javax.swing.JPanel panelTratativa;
+    private javax.swing.JScrollPane scrollPaneTratativa;
+    private javax.swing.JScrollPane scrollPaneTxtArea;
+    private javax.swing.JTextArea txtAreaHistorico;
+    private javax.swing.JTextArea txtAreaTratativa;
     // End of variables declaration//GEN-END:variables
 }

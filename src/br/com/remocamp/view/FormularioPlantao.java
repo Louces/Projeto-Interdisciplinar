@@ -601,7 +601,7 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtResponsavelActionPerformed
 
     private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
-        HistoricodeTratativas historico = new HistoricodeTratativas();
+        HistoricodeTratativas historico = new HistoricodeTratativas(this,idPlantao);
         Principal.desktopPane.add(historico).setLocation(85, 0);
         historico.setVisible(true);
     }//GEN-LAST:event_btnHistoricoActionPerformed
