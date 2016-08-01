@@ -6,6 +6,7 @@
 package br.com.remocamp.view;
 
 import br.com.remocamp.controller.PlantaoController;
+import br.com.remocamp.controller.RemocaoController;
 import java.util.Date;
 
 /**
@@ -26,7 +27,10 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
         
         if(lbTipoCampo.getText().equals("Plantao")){
             PlantaoController clt = new PlantaoController();
-            txtAreaHistorico.setText(clt.getHistorico(numero));
+            txtAreaHistorico.setText(clt.getHistorico(this.numero));
+        }else if(lbTipoCampo.getText().equals("Remocao")){
+            RemocaoController clt = new RemocaoController();
+            txtAreaHistorico.setText(clt.getHistorico(this.numero));
         }
         
     }
@@ -158,9 +162,10 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
         if(lbTipoCampo.getText().equals("Plantao")){
             PlantaoController clt = new PlantaoController();
             clt.updateHistico(txtAreaHistorico.getText(), numero);
+        }else if(lbTipoCampo.getText().equals("Remocao")){
+            RemocaoController clt = new RemocaoController();
+            clt.updateHistico(txtAreaHistorico.getText(), numero);
         }
-        
-        
     }//GEN-LAST:event_btnInserirTratativaActionPerformed
 
 

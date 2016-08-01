@@ -99,6 +99,7 @@ public class RemocaoController {
         formularioRemocao.btnGravarVisible(false);
         formularioRemocao.btnVisualizarImpressaoVisible(true);
         formularioRemocao.btnEditarVisible(true);
+        formularioRemocao.btnHistoricoVisible(true);
         formularioRemocao.statusAllTxtField(false);
     }
     
@@ -181,6 +182,14 @@ public class RemocaoController {
         remocao = dao.alteraPlantao(remocao, remocao.getIdRemocao());
         setFormularioRemocao();
         return formularioRemocao;
+    }
+    
+     public void updateHistico(String historico, int numero){
+        dao.setHistorico(historico, numero);
+    }
+    
+    public String getHistorico(int numero){
+        return dao.getHistorico(numero);
     }
     
     public void gerarFormulario(){

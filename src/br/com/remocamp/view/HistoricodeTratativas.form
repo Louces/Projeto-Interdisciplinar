@@ -91,7 +91,7 @@
                       <Component id="lbTipoCampo" alignment="2" min="-2" pref="14" max="-2" attributes="0"/>
                       <Component id="lbTipo" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="1" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="scrollPaneTratativa" min="-2" pref="79" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnInserirTratativa" min="-2" max="-2" attributes="0"/>

@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -306,5 +308,41 @@ public class RemocaoDao {
         }
         return  remocao;
     }
+    
+    public void setHistorico(String historico,int numero){
+        String sql = "update remocao set historico = ? where id_Paciente = ?";
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1, historico);
+            stmt.setString(2, numero+"");
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public String getHistorico(int numero){
+        String sql = "select historico from remocao where id_Paciente = ?";
+        String out = null;
+        
+        try {
+            stmt = getConnection().prepareStatement(sql);
+            stmt.setString(1, numero +" ");
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                out = rs.getString("historico");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return out;
+    }
+    
 }
 

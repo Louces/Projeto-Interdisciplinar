@@ -29,6 +29,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         initComponents();
         btnEditar.setVisible(false);
         btnImpressao.setVisible(false);
+        btnHistorico.setVisible(false);
     }
 
     /**
@@ -97,6 +98,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
         btnGravar = new javax.swing.JButton();
         btnImpressao = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnHistorico = new javax.swing.JButton();
 
         setClosable(true);
         setResizable(true);
@@ -556,6 +558,13 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
             }
         });
 
+        btnHistorico.setText("Histórico de Tratativas");
+        btnHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoricoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -574,6 +583,8 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHistorico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnImpressao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
@@ -598,7 +609,8 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImpressao)
                     .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnHistorico))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -699,6 +711,12 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     private void txtEstadoOrigemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoOrigemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEstadoOrigemActionPerformed
+
+    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
+        HistoricodeTratativas historico = new HistoricodeTratativas(this,idRemocao);
+        Principal.desktopPane.add(historico).setLocation(85, 0);
+        historico.setVisible(true);
+    }//GEN-LAST:event_btnHistoricoActionPerformed
     
     private boolean validarFormulario(){
         if(txtNome.getText().isEmpty()){
@@ -743,6 +761,7 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGravar;
+    private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnImpressao;
     private javax.swing.JCheckBox checkBoxBasica;
     private javax.swing.JCheckBox checkBoxSimples;
@@ -1061,6 +1080,10 @@ public class FormularioRemocao extends javax.swing.JInternalFrame {
     
     public void btnEditarVisible(boolean mode){
         btnEditar.setVisible(mode);
+    }
+    
+    public void btnHistoricoVisible(boolean mode){
+        btnHistorico.setVisible(mode);
     }
     
     public void statusAllTxtField(boolean habilitar){

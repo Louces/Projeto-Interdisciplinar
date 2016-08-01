@@ -5,6 +5,7 @@
  */
 package br.com.remocamp.jasper.remocao;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRDataSource;
