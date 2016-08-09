@@ -114,7 +114,7 @@ public class RemocaoDao {
     }
 
     public void consultaAllTableRemocao() {
-        String sql = "select * from remocao";
+        String sql = "select * from remocao ORDER BY ID_PACIENTE DESC";
         
         try {
             stmt = getConnection().prepareStatement(sql);

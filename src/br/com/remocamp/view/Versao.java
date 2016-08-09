@@ -30,7 +30,6 @@ public class Versao extends javax.swing.JFrame {
         jPanelVersao = new javax.swing.JPanel();
         lbVersao = new javax.swing.JLabel();
         lbDesenvolvidoPor = new javax.swing.JLabel();
-        lbDesenvolverdorUm = new javax.swing.JLabel();
         lbDesenvolvedorDois = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
 
@@ -38,38 +37,11 @@ public class Versao extends javax.swing.JFrame {
         setTitle("Sobre");
         setResizable(false);
 
-        lbVersao.setText("Versão : 1.0 Beta (não liberada)");
+        lbVersao.setText("Versão : 1.0 Beta");
 
         lbDesenvolvidoPor.setText("Desenvolvidor por :");
 
-        lbDesenvolverdorUm.setText("Andre Pereira (andrelspereira@gmail.com)");
-
         lbDesenvolvedorDois.setText("Fabiano l. Cesario (fabiano.cesario.k@gmail.com)");
-
-        javax.swing.GroupLayout jPanelVersaoLayout = new javax.swing.GroupLayout(jPanelVersao);
-        jPanelVersao.setLayout(jPanelVersaoLayout);
-        jPanelVersaoLayout.setHorizontalGroup(
-            jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelVersaoLayout.createSequentialGroup()
-                .addGroup(jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbVersao)
-                    .addComponent(lbDesenvolverdorUm)
-                    .addComponent(lbDesenvolvedorDois)
-                    .addComponent(lbDesenvolvidoPor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 25, Short.MAX_VALUE))
-        );
-        jPanelVersaoLayout.setVerticalGroup(
-            jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVersaoLayout.createSequentialGroup()
-                .addComponent(lbVersao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbDesenvolvidoPor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbDesenvolverdorUm)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbDesenvolvedorDois)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
 
         btnFechar.setText("Fechar");
         btnFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,31 +50,51 @@ public class Versao extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanelVersaoLayout = new javax.swing.GroupLayout(jPanelVersao);
+        jPanelVersao.setLayout(jPanelVersaoLayout);
+        jPanelVersaoLayout.setHorizontalGroup(
+            jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelVersaoLayout.createSequentialGroup()
+                .addGroup(jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbVersao)
+                    .addComponent(lbDesenvolvedorDois)
+                    .addComponent(lbDesenvolvidoPor, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVersaoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFechar)
+                .addGap(106, 106, 106))
+        );
+        jPanelVersaoLayout.setVerticalGroup(
+            jPanelVersaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVersaoLayout.createSequentialGroup()
+                .addComponent(lbVersao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDesenvolvidoPor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbDesenvolvedorDois)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFechar)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanelVersao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(btnFechar)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanelVersao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelVersao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFechar)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jPanelVersao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(333, 191));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,7 +141,6 @@ public class Versao extends javax.swing.JFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JPanel jPanelVersao;
     private javax.swing.JLabel lbDesenvolvedorDois;
-    private javax.swing.JLabel lbDesenvolverdorUm;
     private javax.swing.JLabel lbDesenvolvidoPor;
     private javax.swing.JLabel lbVersao;
     // End of variables declaration//GEN-END:variables

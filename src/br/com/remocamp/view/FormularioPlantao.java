@@ -439,11 +439,10 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
                 .addComponent(btnHistorico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImpressao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(4, 4, 4)
                 .addComponent(btnEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGravar)
-                .addContainerGap())
+                .addComponent(btnGravar))
         );
         PanelControleLayout.setVerticalGroup(
             PanelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

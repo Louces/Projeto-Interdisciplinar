@@ -75,7 +75,7 @@ public class PlantaoDao {
     
     public void consultaAllTablePlantao() {
 
-        String sql = "select * from plantao";
+        String sql = "select * from plantao ORDER BY idPlantao DESC";
         
         try {
             // prepared statement para consulta

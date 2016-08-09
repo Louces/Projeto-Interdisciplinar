@@ -41,14 +41,15 @@ public class Principal extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
-        jMenuItemAtualizarBase = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuItemAtualizarBase = new javax.swing.JMenuItem();
+        menuItemSair = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuItemVersao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("2016 © REMOCAMP - AMBULÂNCIAS");
 
+        treeAtividades.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Atividades");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Orderm de serviço");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Nova ordem");
@@ -108,35 +109,38 @@ public class Principal extends javax.swing.JFrame {
 
         menuArquivo.setText("Arquivo");
 
-        jMenuItemAtualizarBase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItemAtualizarBase.setText("Atualizar base de dados");
-        jMenuItemAtualizarBase.addActionListener(new java.awt.event.ActionListener() {
+        menuItemAtualizarBase.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemAtualizarBase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/open_icon.png"))); // NOI18N
+        menuItemAtualizarBase.setText("Atualizar base de dados");
+        menuItemAtualizarBase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemAtualizarBaseActionPerformed(evt);
+                menuItemAtualizarBaseActionPerformed(evt);
             }
         });
-        menuArquivo.add(jMenuItemAtualizarBase);
+        menuArquivo.add(menuItemAtualizarBase);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Sair");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuItemSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/exit.jpg"))); // NOI18N
+        menuItemSair.setText("Sair");
+        menuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuItemSairActionPerformed(evt);
             }
         });
-        menuArquivo.add(jMenuItem1);
+        menuArquivo.add(menuItemSair);
 
         menuBar.add(menuArquivo);
 
         menuAjuda.setText("Ajuda");
 
-        jMenuItem2.setText("Versao");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemVersao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/info_blue.png"))); // NOI18N
+        menuItemVersao.setText("Versao");
+        menuItemVersao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuItemVersaoActionPerformed(evt);
             }
         });
-        menuAjuda.add(jMenuItem2);
+        menuAjuda.add(menuItemVersao);
 
         menuBar.add(menuAjuda);
 
@@ -201,7 +205,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_treeAtividadesMouseClicked
 
-    private void jMenuItemAtualizarBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAtualizarBaseActionPerformed
+    private void menuItemAtualizarBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAtualizarBaseActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
 
@@ -217,17 +221,17 @@ public class Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Arquivo inválido");
             }
         }
-    }//GEN-LAST:event_jMenuItemAtualizarBaseActionPerformed
+    }//GEN-LAST:event_menuItemAtualizarBaseActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuItemVersaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVersaoActionPerformed
           Versao versao = new Versao();
           versao.setVisible(true);
           
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuItemVersaoActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSairActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuItemSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,13 +271,13 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItemAtualizarBase;
     private javax.swing.JLabel lbLogo;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuItemAtualizarBase;
+    private javax.swing.JMenuItem menuItemSair;
+    private javax.swing.JMenuItem menuItemVersao;
     private javax.swing.JScrollPane scrollPaneAtividades;
     private javax.swing.JScrollPane scrollPaneDesktop;
     private javax.swing.JTree treeAtividades;
