@@ -38,15 +38,15 @@ public class PlantaoDao {
                 + "(nomeEvento,dataInicio,dataFim,responsavel,endereco,cidade,estado,complemento,medico,enfermeiro,motorista,operador,ambulancia,observacao)"
                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         
-         try {
-         // prepared statement para inserção
-         stmt = getConnection().prepareStatement(sql);
- 
+        try {
+            // prepared statement para inserção
+            stmt = getConnection().prepareStatement(sql);
+
             adicionaStmt(plantao);
-            
-     } catch (SQLException e) {
-         throw new RuntimeException(e);
-     }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

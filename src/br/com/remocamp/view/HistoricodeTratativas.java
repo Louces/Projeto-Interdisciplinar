@@ -55,6 +55,7 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
         panelTXTArea = new javax.swing.JPanel();
         scrollPaneTxtArea = new javax.swing.JScrollPane();
         txtAreaHistorico = new javax.swing.JTextArea();
+        btnAnexos = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Histórico de Tratativas");
@@ -108,7 +109,7 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
                     .addComponent(lbNumero)
                     .addComponent(lbTipoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbTipo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(scrollPaneTratativa, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInserirTratativa)
@@ -127,20 +128,30 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
         );
         panelTXTAreaLayout.setVerticalGroup(
             panelTXTAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTXTAreaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(scrollPaneTxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelTXTAreaLayout.createSequentialGroup()
+                .addComponent(scrollPaneTxtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        btnAnexos.setText("Anexos");
+        btnAnexos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnexosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelTXTArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelTratativa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelTXTArea, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelTratativa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAnexos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,7 +161,9 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
                 .addComponent(panelTratativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelTXTArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAnexos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,8 +181,15 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnInserirTratativaActionPerformed
 
+    private void btnAnexosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnexosActionPerformed
+       ImageView view = new ImageView(numero);
+       Principal.desktopPane.add(view).setLocation(85, 0);
+       view.setVisible(true);
+    }//GEN-LAST:event_btnAnexosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnexos;
     private javax.swing.JButton btnInserirTratativa;
     private javax.swing.JLabel lbNumero;
     private javax.swing.JLabel lbNumeroCampo;
