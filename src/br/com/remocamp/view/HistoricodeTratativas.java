@@ -15,7 +15,6 @@ import java.util.Date;
  */
 public class HistoricodeTratativas extends javax.swing.JInternalFrame {
     int numero;
-    
     /**
      * Creates new form HistoricodeTratativas
      */
@@ -182,7 +181,7 @@ public class HistoricodeTratativas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnInserirTratativaActionPerformed
 
     private void btnAnexosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnexosActionPerformed
-       ImageView view = new ImageView(numero);
+       FileView view = new FileView(lbTipoCampo.getText(),numero);
        Principal.desktopPane.add(view).setLocation(85, 0);
        view.setVisible(true);
     }//GEN-LAST:event_btnAnexosActionPerformed
