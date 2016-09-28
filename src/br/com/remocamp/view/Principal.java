@@ -70,6 +70,10 @@ public class Principal extends javax.swing.JFrame {
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Base de dados");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Funcionários");
+        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Funcionários");
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeAtividades.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treeAtividades.setAutoscrolls(true);
@@ -81,7 +85,7 @@ public class Principal extends javax.swing.JFrame {
         scrollPaneAtividades.setViewportView(treeAtividades);
         treeAtividades.getAccessibleContext().setAccessibleParent(this);
 
-        lbLogo.setIcon(new javax.swing.ImageIcon("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\figuras\\LOGOMARCA.jpg")); // NOI18N
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/remocamp/figuras/LOGOMARCA.jpg"))); // NOI18N
 
         scrollPaneDesktop.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPaneDesktop.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -89,20 +93,19 @@ public class Principal extends javax.swing.JFrame {
         scrollPaneDesktop.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         scrollPaneDesktop.setMaximumSize(new java.awt.Dimension(32767, 42767));
 
-        desktopPane.setBackground(new java.awt.Color(0, 102, 255));
-        desktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        desktopPane.setForeground(new java.awt.Color(0, 102, 204));
+        desktopPane.setBackground(new java.awt.Color(30, 136, 171));
+        desktopPane.setName(""); // NOI18N
         desktopPane.setPreferredSize(new java.awt.Dimension(1024, 900));
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 896, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
 
         scrollPaneDesktop.setViewportView(desktopPane);
@@ -164,10 +167,10 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneDesktop, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(scrollPaneDesktop, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPaneAtividades, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(scrollPaneAtividades)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );

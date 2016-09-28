@@ -21,7 +21,7 @@ public class PlantaoGerarRelatorio {
 
     public static void gerarRelatorio(JRDataSource source) throws JRException {
         Map map = new HashMap();
-        JasperFillManager.fillReportToFile("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\src\\br\\com\\remocamp\\jasper\\plantao\\Plantao.jasper", map, source);
-        JasperViewer.viewReport("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\src\\br\\com\\remocamp\\jasper\\plantao\\Plantao.jrprint", false , false);
+        JasperFillManager.fillReportToFile("C:\\Remocamp\\relatorios\\Plantao.jasper", map, source);
+        JasperViewer.viewReport("C:\\Remocamp\\relatorios\\Plantao.jrprint", false , false);
     }
 }

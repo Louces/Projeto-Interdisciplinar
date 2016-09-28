@@ -19,7 +19,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class RemocaoGerarRelatorio {
     public static void gerarRelatorio(JRDataSource source) throws JRException {
         Map map = new HashMap();
-        JasperFillManager.fillReportToFile("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\src\\br\\com\\remocamp\\jasper\\remocao\\Remocao.jasper", map, source);
-        JasperViewer.viewReport("C:\\Users\\fabiano\\workspace\\ProjetoInterdisciplinar\\src\\br\\com\\remocamp\\jasper\\remocao\\Remocao.jrprint", false , false);
+        JasperFillManager.fillReportToFile("C:\\Remocamp\\relatorios\\Remocao.jasper", map, source);
+        JasperViewer.viewReport("C:\\Remocamp\\relatorios\\Remocao.jrprint", false , false);
     }
 }

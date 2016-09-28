@@ -35,6 +35,7 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
         dateChooserFim.setEnabled(false);
         configTable();
         tabelaInicial();
+        lbNumeroRemocoes.setText("Nº de remoções cadastradas : " + tableConsultaRemocao.getRowCount());
     }
     
     private void configTable(){
@@ -87,6 +88,7 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
         panelTable = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsultaRemocao = new javax.swing.JTable();
+        lbNumeroRemocoes = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Pesquisa remoção");
@@ -176,8 +178,10 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
         );
         panelTableLayout.setVerticalGroup(
             panelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
         );
+
+        lbNumeroRemocoes.setText("Nº de remoções cadastradas : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,7 +193,10 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(panelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbNumeroRemocoes)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -199,7 +206,9 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
                 .addComponent(panelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbNumeroRemocoes)
+                .addGap(5, 5, 5))
         );
 
         pack();
@@ -270,6 +279,7 @@ public class SearchRemocao extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dateChooserInicio;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbNomeEvento;
+    private javax.swing.JLabel lbNumeroRemocoes;
     private javax.swing.JPanel panelPesquisa;
     private javax.swing.JPanel panelTable;
     private javax.swing.JTable tableConsultaRemocao;

@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,12 +65,15 @@ public class FileRemocaoDao {
                 stmt.setString(++j,ID_REMOCAO+"");
                 stmt.execute();
                 stmt.close();
-
+                JOptionPane.showMessageDialog(null, "O anexo foi amarzenado com sucesso.");
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 throw new RuntimeException(e);
             } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         
@@ -129,9 +133,12 @@ public class FileRemocaoDao {
                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
                     bos.write(bytes); 
                     bos.close();
+                    
                 } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
                     Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
                     Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
                  
@@ -139,6 +146,7 @@ public class FileRemocaoDao {
             
             
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
             Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
             

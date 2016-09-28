@@ -17,11 +17,13 @@ public class Login {
 	private JFrame frmRemocamp;
 	private JPasswordField txtPass;
 	private JTextField txtUsuario;
+        public static String [] argumentos;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+                argumentos=args;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

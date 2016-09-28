@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,6 +62,7 @@ public class FilePlantaoDao {
                 byte[] bytes = new byte[(int) file.length()];
                 int offset = 0;
                 int numRead = 0;
+               
                 while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
                     offset += numRead;
                 }
@@ -71,12 +73,15 @@ public class FilePlantaoDao {
                 stmt.setString(++j,ID_PLANTAO+"");
                 stmt.execute();
                 stmt.close();
-
+                JOptionPane.showMessageDialog(null, "O anexo foi amarzenado com sucesso.");
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 throw new RuntimeException(e);
             } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel armazenar o anexo.");
                 Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         
@@ -131,14 +136,16 @@ public class FilePlantaoDao {
             
             while(rs.next()){
                  byte[] bytes = rs.getBytes("fileLongBlob");
-                
+                                 
                  try {
                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
-                    bos.write(bytes); 
+                    bos.write(bytes);
                     bos.close();
                 } catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
                     Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
                     Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
                 }
                  
@@ -146,6 +153,7 @@ public class FilePlantaoDao {
             
             
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocorreu algum erro na recuperação do anexo.");
             Logger.getLogger(FilePlantaoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
             

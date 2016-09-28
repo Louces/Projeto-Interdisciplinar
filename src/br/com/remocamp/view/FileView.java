@@ -99,14 +99,12 @@ public class FileView extends javax.swing.JInternalFrame {
             .addGroup(panelPicLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelPicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPicLayout.createSequentialGroup()
-                        .addComponent(lbNome)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbNome)
                     .addGroup(panelPicLayout.createSequentialGroup()
                         .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRemover)
-                        .addGap(0, 264, Short.MAX_VALUE))))
+                        .addComponent(btnRemover)))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         panelPicLayout.setVerticalGroup(
             panelPicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +155,7 @@ public class FileView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuIncluirAnexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIncluirAnexoActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
+        final JFileChooser fileChooser = new JFileChooser();
         fileChooser.setMultiSelectionEnabled(false);
 
         int returnValue = fileChooser.showOpenDialog(null);
@@ -165,19 +163,27 @@ public class FileView extends javax.swing.JInternalFrame {
         if (returnValue != JFileChooser.APPROVE_OPTION) {
             return;
         }
+        
+        FileView.this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File arquivosSelecionado = fileChooser.getSelectedFile();
 
-        File arquivosSelecionado = fileChooser.getSelectedFile();
+                String nomeClass = tipo;
 
-        String nomeClass = tipo;
-
-        if (nomeClass.equals("Plantao")) {
-            FileControllerPlantao ctl = new FileControllerPlantao(arquivosSelecionado, id);
-            ctl.insertFile();
-        } else if (nomeClass.equals("Remocao")) {
-            FileControllerRemocao ctl = new FileControllerRemocao(arquivosSelecionado, id);
-            ctl.insertFile();
-        }
-        setNameFile();
+                if (nomeClass.equals("Plantao")) {
+                    FileControllerPlantao ctl = new FileControllerPlantao(arquivosSelecionado, id);
+                    ctl.insertFile();
+                } else if (nomeClass.equals("Remocao")) {
+                    FileControllerRemocao ctl = new FileControllerRemocao(arquivosSelecionado, id);
+                    ctl.insertFile();
+                }
+                setNameFile();
+            }
+        }).start();
+        FileView.this.setDefaultCloseOperation(2);
+        
     }//GEN-LAST:event_menuIncluirAnexoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
