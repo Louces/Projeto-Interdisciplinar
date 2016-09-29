@@ -70,10 +70,6 @@ public class Principal extends javax.swing.JFrame {
         treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Base de dados");
         treeNode3.add(treeNode4);
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Funcionários");
-        treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Funcionários");
-        treeNode3.add(treeNode4);
-        treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeAtividades.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treeAtividades.setAutoscrolls(true);

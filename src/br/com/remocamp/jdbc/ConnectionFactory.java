@@ -11,7 +11,7 @@ public class ConnectionFactory {
         String host = null;
         try {
              host= br.com.remocamp.view.Login.argumentos[0];
-            return DriverManager.getConnection("jdbc:mysql://"+host+"/remocampdb", "root", "padtec");
+            return DriverManager.getConnection("jdbc:mysql://"+host+"/remocampdb", "root", "remocampdb");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,"Não foi possivel conectar ao banco de dados em "+host);
             throw new RuntimeException(e);

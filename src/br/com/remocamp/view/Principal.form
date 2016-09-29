@@ -129,7 +129,7 @@
               <Font name="Arial" size="15" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-              <TreeModel code="Atividades&#xa; Orderm de servi&#xe7;o&#xa;  Nova ordem&#xa;   Remo&#xe7;&#xe3;o&#xa;   Plant&#xe3;o&#xa; Consultas&#xa;  Ordem de servi&#xe7;o&#xa;   Remo&#xe7;&#xe3;o&#xa;   Plant&#xe3;o&#xa;  Clientes&#xa;   Base de dados&#xa;  Funcion&#xe1;rios&#xa;    Funcion&#xe1;rios"/>
+              <TreeModel code="Atividades&#xa; Orderm de servi&#xe7;o&#xa;  Nova ordem&#xa;   Remo&#xe7;&#xe3;o&#xa;   Plant&#xe3;o&#xa; Consultas&#xa;  Ordem de servi&#xe7;o&#xa;   Remo&#xe7;&#xe3;o&#xa;   Plant&#xe3;o&#xa;  Clientes&#xa;   Base de dados"/>
             </Property>
             <Property name="autoscrolls" type="boolean" value="true"/>
           </Properties>

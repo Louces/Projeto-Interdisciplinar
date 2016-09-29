@@ -85,28 +85,24 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbOperador.setText("*Operador(a) :");
 
-        txtMedico.setText("Augusto Maranhão");
         txtMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMedicoActionPerformed(evt);
             }
         });
 
-        txtEnfermeiro.setText("Patricia Lima da Silva");
         txtEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnfermeiroActionPerformed(evt);
             }
         });
 
-        txtMotorista.setText("Sandro de Almeida");
         txtMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMotoristaActionPerformed(evt);
             }
         });
 
-        txtOperador.setText("Gabriela Martinez");
         txtOperador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOperadorActionPerformed(evt);
@@ -216,7 +212,6 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         txtAreaObs.setColumns(20);
         txtAreaObs.setRows(5);
-        txtAreaObs.setText("Chegar às 10 horas");
         jScrollPaneObs.setViewportView(txtAreaObs);
 
         javax.swing.GroupLayout panelObsLayout = new javax.swing.GroupLayout(panelObs);
@@ -243,15 +238,8 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbEstado.setText("*Estado :");
 
-        txtCidade.setText("São Paulo");
-
-        txtEndereco.setText("Praça Roberto Gomes Pedrosa, 1 - Morumbi, São Paulo - SP, 05653-070");
-
         lbCidade.setText("*Cidade :");
 
-        txtComplemento.setText("Estádio do Morumbi");
-
-        txtEstado.setText("SP");
         txtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEstadoActionPerformed(evt);
@@ -306,7 +294,6 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbNome.setText("*Nome :");
 
-        txtNomeEvento.setText("São Paulo x Ponte Preta");
         txtNomeEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeEventoActionPerformed(evt);
@@ -315,7 +302,6 @@ public class FormularioPlantao extends javax.swing.JInternalFrame {
 
         lbResponsavel.setText("*Responsável :");
 
-        txtResponsavel.setText("José Roberto");
         txtResponsavel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtResponsavelActionPerformed(evt);
